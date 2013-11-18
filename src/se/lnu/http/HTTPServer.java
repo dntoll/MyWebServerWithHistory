@@ -1,29 +1,45 @@
 package se.lnu.http;
 
 import java.io.File;
+import java.io.IOException;
 
 public class HTTPServer {
 
 	
 	private HTTPServerObserver view;
-	private boolean serverIsRunning;
+	
+	private Port port;
+	private AcceptThread acceptThread;
 
 	public HTTPServer(Port port, File sharedDirectory, HTTPServerObserver view) {
 		this.view = view;
-		serverIsRunning = false;
 		view.serverConstructed();
-		
+		this.port = port;
 	}
 
-	public void start() {
-		serverIsRunning = true;
+	public void start() throws IOException {
+		
+		acceptThread = new AcceptThread(port, view);
+		
+		acceptThread.start();
+		
 		view.serverStarted();
 	}
 
-	public void stop() throws NotStartedException {
-		if (serverIsRunning == false)
+	public void stop() throws NotStartedException, InterruptedException, IOException {
+		if (acceptThread == null)
 			throw new NotStartedException();
+		
+		acceptThread.stopme();
+		
+		while(acceptThread.isAlive()) {
+			Thread.sleep(100);
+		}
+		
+		
 		view.serverStopped();
+		
+		acceptThread = null;
 	}
 
 }

@@ -64,7 +64,14 @@ public class ConsoleViewTest {
 	public void testOkDirectory() throws Exception {
 		ConsoleView view = new ConsoleView(okInput);
 		File actual = view.getDirectory();
-		Assert.assertSame("/", actual.getPath());
+		
+		String os = System.getProperty("os.name");
+		
+		if (os.contains("Windows")) {
+			Assert.assertEquals("\\", actual.getPath()); // on windows this becomes \\ under linux it is '/'
+		} else {
+			Assert.assertEquals("/", actual.getPath()); // on windows this becomes \\ under linux it is '/'
+		}
 	}
 	
 	@Test

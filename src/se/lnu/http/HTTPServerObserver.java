@@ -8,4 +8,10 @@ public interface HTTPServerObserver {
 
 	void serverStopped();
 
+	void closedAccept();
+
+	void startedClient();
+
+	void waitForClient();
+
 }

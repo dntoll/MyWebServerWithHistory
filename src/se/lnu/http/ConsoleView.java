@@ -10,6 +10,9 @@ public class ConsoleView implements HTTPServerObserver {
 	static final String SERVER_CONSTRUCTED = "HTTP Server object constructed";
 	static final String SERVER_STARTED = "HTTP Server started";
 	static final String SERVER_STOPPED = "HTTP Server stopped";
+	static final String SERVER_ACCEPT_THREAD_STOPPED = "HTTP Server Accept thread stopped";
+	static final String STARTED_CLIENT = "Started Client";
+	static final String WAIT_FOR_ACCEPT = "Accept";
 	
 	private String[] args;
 	
@@ -78,19 +81,37 @@ public class ConsoleView implements HTTPServerObserver {
 	
 	@Override
 	public void serverConstructed() {
-		System.out.print(SERVER_CONSTRUCTED);
+		System.out.println(SERVER_CONSTRUCTED);
 		
 	}
 
 	@Override
 	public void serverStarted() {
-		System.out.print(SERVER_STARTED);
+		System.out.println(SERVER_STARTED);
 		
 	}
 
 	@Override
 	public void serverStopped() {
-		System.out.print(SERVER_STOPPED);
+		System.out.println(SERVER_STOPPED);
+		
+	}
+
+	@Override
+	public void closedAccept() {
+		System.out.println(SERVER_ACCEPT_THREAD_STOPPED);
+		
+	}
+
+	@Override
+	public void startedClient() {
+		System.out.println(STARTED_CLIENT);
+		
+	}
+
+	@Override
+	public void waitForClient() {
+		System.out.println(WAIT_FOR_ACCEPT);
 		
 	}
 
