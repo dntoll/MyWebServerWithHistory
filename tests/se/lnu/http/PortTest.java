@@ -1,5 +1,7 @@
 package se.lnu.http;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 public class PortTest {
@@ -18,7 +20,6 @@ public class PortTest {
 	@Test
 	public void testPortOk() throws InvalidPortException {
 		new Port(80);
-		
 		//no exception
 	}
 
