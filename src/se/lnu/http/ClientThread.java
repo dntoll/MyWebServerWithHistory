@@ -35,7 +35,7 @@ public class ClientThread extends Thread{
 					out.write("HTTP/1.1 200 OK\r\n");	
 				} else {
 					content = "<html><body><h1>404 Not found</h1></body></html>";
-					out.write("HTTP/1.1 404 NotFound\r\n");
+					out.write("HTTP/1.1 404 Not Found\r\n");
 				}
 				System.out.println(request.getURL());
 				

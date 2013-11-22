@@ -66,7 +66,7 @@ public class HTTPServerTest {
 		try {
 			SocketClient client = new SocketClient(new Socket(), new HTTPGetProtocoll());
 			String actual = client.get("127.0.0.1", portNumber , "/crap.php");
-			String response = "HTTP/1.0 404 Not Found\r\n";
+			String response = "HTTP/1.1 404 Not Found\r\n";
 			
 			return actual.contains(response);
 		} catch (Exception e) {

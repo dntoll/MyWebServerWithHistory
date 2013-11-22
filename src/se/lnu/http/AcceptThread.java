@@ -9,9 +9,13 @@ public class AcceptThread extends Thread{
 
 	volatile ServerSocket socket;
 	volatile private HTTPServerObserver observer;
-	public AcceptThread(Port port, HTTPServerObserver observer) throws IOException {
-		socket = new ServerSocket(port.getPort()); 
+	private ClientFactory cfactory;
+	public AcceptThread(ServerSocket sock, 
+						HTTPServerObserver observer, 
+						ClientFactory cfactory) {
+		socket = sock;
 		this.observer = observer;
+		this.cfactory = cfactory;
 	}
 	
 	public void stopme() throws IOException {
@@ -23,12 +27,9 @@ public class AcceptThread extends Thread{
         	
         	while (true) {
         		try {
-        			observer.waitForClient();
-        			Socket clientSocket = socket.accept();
-        			ClientThread client = new ClientThread(clientSocket);
-    				client.start();
-    				observer.startedClient();
+        			acceptClient();
         		} catch (SocketException e) {
+        			//when stopme is called we get a socket exception
         			break;
                 } catch (IOException e) {
         			e.printStackTrace();
@@ -40,6 +41,14 @@ public class AcceptThread extends Thread{
         	observer.closedAccept();
         	
 		
-    } 
+    }
+
+	private void acceptClient() throws IOException {
+		observer.waitForClient();
+		Socket clientSocket = socket.accept();
+		ClientThread client = cfactory.createClient(clientSocket);
+		client.start();
+		observer.startedClient();
+	} 
 	
 }
