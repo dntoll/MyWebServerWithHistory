@@ -1,0 +1,34 @@
+package se.lnu.http;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+
+public class ClientSocket {
+	
+	private Socket sock;
+
+	public ClientSocket(Socket sock) {
+		this.sock = sock;
+	}
+
+	public String getRequest() throws IOException {
+		BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+		HTTPReader httpReader = new HTTPReader(in);
+		String requestString = httpReader.readHeader();
+		return requestString;
+	}
+
+	public void writeResponse(String response) throws IOException {
+		
+		PrintWriter out = new PrintWriter(sock.getOutputStream(), true);
+		out.write(response.toString());
+		out.flush();
+		
+		sock.close();
+		
+	}
+
+}

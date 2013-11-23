@@ -1,0 +1,3388 @@
+<?xml version="1.0" encoding="UTF-8"?><TestSessionContainer xmlns="http://www.codecover.org/xml/testsession-container" Date="1385198377314" TestSessionContainerId="78601194-26d1-4c5c-9f67-77805d69ec5f" version="1.0">
+<SrcFileList>
+<SrcFile Content="package se.lnu.http;&#10;&#10;public class WrongNumberOfArgumentsException extends Exception {&#10;&#10;&#9;/**&#10;&#9; * &#10;&#9; */&#10;&#9;private static final long serialVersionUID = -7327975009047813601L;&#10;&#10;&#9;public WrongNumberOfArgumentsException() {&#10;&#9;&#9;super(&quot;This program should only have one or two arguments&quot;);&#10;&#9;}&#10;&#10;&#9;&#10;&#10;}&#10;" Filename="WrongNumberOfArgumentsException.java" Intrnl_Id="1"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;import java.io.BufferedReader;&#10;import java.io.BufferedWriter;&#10;import java.io.IOException;&#10;import java.io.InputStreamReader;&#10;import java.io.OutputStreamWriter;&#10;import java.net.InetSocketAddress;&#10;import java.net.Socket;&#10;&#10;public class SocketClient {&#10;&#9;private HTTPGetProtocoll client;&#10;&#9;private Socket socket;&#10;&#10;&#9;public SocketClient(Socket echoSocket, HTTPGetProtocoll client) {&#10;&#9;&#9;this.socket = echoSocket;&#10;&#9;&#9;this.client = client;&#10;&#9;}&#10;&#10;&#9;public String get(String hostName, int portNumber, String file) throws IOException {&#10;&#9;&#9;&#10;&#9;&#9;try {&#10;&#9;&#9;&#9;InetSocketAddress endpoint = new InetSocketAddress(hostName, portNumber);&#10;&#9;&#9;&#9;socket.connect(endpoint, 100);&#10;&#9;&#9;&#9;BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));&#10;&#9;&#9;&#9;BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;String data = client.doGet(hostName, file, writer, reader);&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;socket.close();&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;return data;&#10;&#9;&#9;} catch (IOException e) {&#10;&#9;&#9;&#9;throw e;&#10;&#9;&#9;}&#9;&#9;&#10;&#9;&#9;&#10;&#9;}&#10;}&#10;" Filename="SocketClient.java" Intrnl_Id="2"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;import java.io.File;&#10;&#10;public class ServerFactory {&#10;&#10;&#9;public HTTPServer create(Port port, File sharedDirectory, HTTPServerObserver view) {&#10;&#9;&#9;return new HTTPServer(port, sharedDirectory, view);&#10;&#9;}&#10;&#10;}&#10;" Filename="ServerFactory.java" Intrnl_Id="3"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;public class Port {&#10;&#10;&#9;private int portNumber;&#10;&#10;&#9;public Port(int portNumber) throws InvalidPortException {&#10;&#9;&#9;if (portNumber &lt;= 0 || portNumber &gt; 65535) {&#10;&#9;&#9;&#9;throw new InvalidPortException(&quot;invalid port number please choose a port between 1 and 65535&quot;);&#10;&#9;&#9;}&#10;&#9;&#9;&#10;&#9;&#9;this.portNumber = portNumber;&#10;&#9;&#9;&#10;&#9;}&#10;&#10;&#9;public int getPort() {&#10;&#9;&#9;// TODO Auto-generated method stub&#10;&#9;&#9;return portNumber;&#10;&#9;}&#10;&#9;&#10;}&#10;" Filename="Port.java" Intrnl_Id="4"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;public class NotStartedException extends Exception {&#10;&#10;&#9;/**&#10;&#9; * &#10;&#9; */&#10;&#9;private static final long serialVersionUID = 6733868884526050283L;&#10;&#10;}&#10;" Filename="NotStartedException.java" Intrnl_Id="5"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;public class NotADirectoryException extends Exception {&#10;&#10;&#9;public NotADirectoryException(String string) {&#10;&#9;&#9;super(string);&#10;&#9;}&#10;&#10;&#9;public NotADirectoryException(Exception e) {&#10;&#9;&#9;super(e);&#10;&#9;}&#10;&#10;&#9;/**&#10;&#9; * &#10;&#9; */&#10;&#9;private static final long serialVersionUID = -6619732026622856729L;&#10;&#10;}&#10;" Filename="NotADirectoryException.java" Intrnl_Id="6"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;public class MalformedRequestException extends Exception {&#10;&#10;&#9;public MalformedRequestException(String requestString) {&#10;&#9;&#9;super(requestString);&#10;&#9;}&#10;&#10;&#9;/**&#10;&#9; * &#10;&#9; */&#10;&#9;private static final long serialVersionUID = 347832735672941517L;&#10;&#10;}&#10;" Filename="MalformedRequestException.java" Intrnl_Id="7"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;public class InvalidPortException extends Exception {&#10;&#10;&#9;/**&#10;&#9; * &#10;&#9; */&#10;&#9;private static final long serialVersionUID = 3615635556121136L;&#10;&#10;&#9;public InvalidPortException(String string) {&#10;&#9;&#9;super(string);&#10;&#9;}&#10;&#10;&#9;&#10;&#10;}&#10;" Filename="InvalidPortException.java" Intrnl_Id="8"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;public interface HTTPServerObserver {&#10;&#10;&#9;void serverConstructed();&#10;&#10;&#9;void serverStarted();&#10;&#10;&#9;void serverStopped();&#10;&#10;&#9;void closedAccept();&#10;&#10;&#9;void startedClient();&#10;&#10;&#9;void waitForClient();&#10;&#10;}&#10;" Filename="HTTPServerObserver.java" Intrnl_Id="9"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;import java.io.File;&#10;&#10;public class HTTPServerConsole {&#10;&#9;private ConsoleView view;&#10;&#9;private ServerFactory factory;&#10;&#10;&#9;public HTTPServerConsole(ConsoleView view, ServerFactory factory ) {&#10;&#9;&#9;this.view = view;&#10;&#9;&#9;this.factory = factory;&#10;&#9;}&#10;&#10;&#9;/**&#10;&#9; * @param args&#10;&#9; * @throws Exception &#10;&#9; */&#10;&#9;public static void main(String[] args) throws Exception {&#10;&#9;&#9;ConsoleView view = new ConsoleView(args);&#10;&#9;&#9;ServerFactory factory = new ServerFactory();&#10;&#9;&#9;HTTPServerConsole server = new HTTPServerConsole(view, factory);&#10;&#9;&#9;server.runConsole();&#10;&#9;&#9;&#10;&#9;&#9;&#10;&#9;}&#10;&#10;&#9;void runConsole() throws Exception {&#10;&#9;&#9;&#10;&#9;&#9;try {&#10;&#9;&#9;&#9;Port port = view.getPort();&#10;&#9;&#9;&#9;File sharedDirectory = view.getDirectory();&#10;&#9;&#9;&#9;HTTPServer server = factory.create(port, sharedDirectory, view);&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;server.start();&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;while(true) {&#10;&#9;&#9;&#9;&#9;if (view.doStop()) {&#10;&#9;&#9;&#9;&#9;&#9;server.stop();&#10;&#9;&#9;&#9;&#9;&#9;break;&#10;&#9;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;&#10;&#9;&#9;} catch (InvalidPortException e) {&#10;&#9;&#9;&#9;view.showhelp();&#10;&#9;&#9;}&#10;&#9;}&#10;&#10;}&#10;" Filename="HTTPServerConsole.java" Intrnl_Id="10"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;import java.io.File;&#10;import java.io.IOException;&#10;import java.net.ServerSocket;&#10;&#10;public class HTTPServer {&#10;&#10;&#9;&#10;&#9;private HTTPServerObserver view;&#10;&#9;&#10;&#9;private Port port;&#10;&#9;private AcceptThread acceptThread;&#10;&#10;&#9;public HTTPServer(Port port, File sharedDirectory, HTTPServerObserver view) {&#10;&#9;&#9;this.view = view;&#10;&#9;&#9;view.serverConstructed();&#10;&#9;&#9;this.port = port;&#10;&#9;}&#10;&#10;&#9;public void start() throws IOException {&#10;&#9;&#9;ServerSocket socket = new ServerSocket(port.getPort());&#10;&#9;&#9;ClientFactory factory = new ClientFactory();&#10;&#9;&#9;acceptThread = new AcceptThread(socket, view, factory);&#10;&#9;&#9;&#10;&#9;&#9;acceptThread.start();&#10;&#9;&#9;&#10;&#9;&#9;view.serverStarted();&#10;&#9;}&#10;&#10;&#9;public void stop() throws NotStartedException, InterruptedException, IOException {&#10;&#9;&#9;if (acceptThread == null)&#10;&#9;&#9;&#9;throw new NotStartedException();&#10;&#9;&#9;&#10;&#9;&#9;acceptThread.stopme();&#10;&#9;&#9;&#10;&#9;&#9;while(acceptThread.isAlive()) {&#10;&#9;&#9;&#9;Thread.sleep(100);&#10;&#9;&#9;}&#10;&#9;&#9;&#10;&#9;&#9;&#10;&#9;&#9;view.serverStopped();&#10;&#9;&#9;&#10;&#9;&#9;acceptThread = null;&#10;&#9;}&#10;&#10;}&#10;" Filename="HTTPServer.java" Intrnl_Id="11"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;public class HTTPRequestParser {&#10;&#10;&#9;public static HTTPRequest parseRequest(String requestString) throws MalformedRequestException {&#10;&#9;&#9;&#10;&#9;&#9;String[] parts = requestString.split(&quot;\r\n&quot;);&#10;&#9;&#9;if (parts.length &lt; 1) {&#10;&#9;&#9;&#9;throw new MalformedRequestException(requestString);&#10;&#9;&#9;}&#10;&#9;&#9;&#10;&#9;&#9;String[] requestType = parts[0].split(&quot; &quot;);&#10;&#9;&#9;if (requestType.length != 3) {&#10;&#9;&#9;&#9;throw new MalformedRequestException(requestString);&#10;&#9;&#9;}&#10;&#9;&#9;&#10;&#9;&#9;&#10;&#9;&#9;return new HTTPRequest(requestType[0], requestType[1]);&#10;&#9;}&#10;&#10;&#10;}&#10;" Filename="HTTPRequestParser.java" Intrnl_Id="12"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;public class HTTPRequest {&#10;&#9;&#10;&#9;private String url;&#10;&#9;private String requestType;&#10;&#10;&#9;public HTTPRequest(String requestType, String url) {&#10;&#9;&#9;this.url = url;&#10;&#9;&#9;this.requestType = requestType;&#10;&#9;}&#10;&#10;&#9;public String getURL() {&#10;&#9;&#9;&#10;&#9;&#9;return this.url;&#10;&#9;}&#10;&#10;&#9;public String getProtocoll() {&#10;&#9;&#9;return requestType;&#10;&#9;}&#10;&#10;}&#10;" Filename="HTTPRequest.java" Intrnl_Id="13"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;import java.io.BufferedReader;&#10;import java.io.IOException;&#10;&#10;public class HTTPReader {&#10;&#9;private int contentlength = 0;&#10;&#9;&#10;&#9;BufferedReader reader;&#10;&#9;&#10;&#9;public HTTPReader(BufferedReader reader) {&#10;&#9;&#9;this.reader = reader;&#10;&#9;}&#10;&#10;&#9;public String readBody() throws IOException {&#10;&#9;&#9;StringBuilder data = new StringBuilder();&#10;&#9;&#9;for (int i = 0; i &lt; contentlength; i++) {&#10;&#9;&#9;&#9;data.append((char)reader.read());&#10;&#9;&#9;}&#10;&#9;&#9;&#10;&#9;&#9;return data.toString();&#10;&#9;}&#10;&#10;&#9;public String readHeader()&#10;&#9;&#9;&#9;throws IOException {&#10;&#9;&#9;StringBuilder data = new StringBuilder();&#10;&#9;&#9;String statusLine = reader.readLine();&#10;&#9;&#9;&#10;&#9;&#9;if (statusLine == null) { //eof http://docs.oracle.com/javase/1.4.2/docs/api/java/io/BufferedReader.html&#10;&#9;&#9;&#9;throw new IOException(&quot;eof&quot;);&#10;&#9;&#9;}&#10;&#9;&#9;data.append(statusLine);&#10;&#9;&#9;data.append(&quot;\r\n&quot;);&#10;&#9;&#9;&#10;&#9;&#9;//read header lines&#10;&#9;&#9;&#10;&#9;&#9;while (true) {&#10;&#9;&#9;&#9;String lineRead = reader.readLine();&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;if (lineRead == null) { //eof http://docs.oracle.com/javase/1.4.2/docs/api/java/io/BufferedReader.html&#10;&#9;&#9;&#9;&#9;throw new IOException(&quot;eof&quot;);&#10;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;data.append(lineRead);&#10;&#9;&#9;&#9;data.append(&quot;\r\n&quot;);&#10;&#9;&#9;&#9;if (lineRead == null || lineRead.equals(&quot;\r\n&quot;) || lineRead.equals(&quot;&quot;)) {&#10;&#9;&#9;&#9;&#9;break;&#10;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;if (lineRead.startsWith(&quot;Content-Length:&quot;)) {&#10;&#9;&#9;&#9;&#9;String number = lineRead.substring(16);&#10;&#9;&#9;&#9;&#9;contentlength  = Integer.parseInt(number); &#10;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;&#10;&#9;&#9;}&#10;&#9;&#9;&#10;&#9;&#9;return data.toString();&#10;&#9;}&#10;}&#10;" Filename="HTTPReader.java" Intrnl_Id="14"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;import java.io.BufferedReader;&#10;import java.io.BufferedWriter;&#10;import java.io.IOException;&#10;&#10;public class HTTPGetProtocoll {&#10;&#9;&#10;&#10;&#9;String doGet(String hostName, String file,&#10;&#9;&#9;&#9;BufferedWriter outWriter, BufferedReader reader) throws IOException {&#10;&#9;&#9;outWriter.write(&quot;GET &quot; + file + &quot; HTTP/1.1\r\nHost: &quot; + hostName + &quot;\r\n\r\n&quot;);&#10;&#9;&#9;outWriter.flush();&#10;&#9;&#9;&#10;&#9;&#9;HTTPReader httpReader = new HTTPReader(reader);&#10;&#9;&#9;String data = httpReader.readHeader();&#10;&#9;&#9;data += httpReader.readBody();&#10;&#9;&#9;return data;&#10;&#9;}&#10;&#10;&#9;&#10;}" Filename="HTTPGetProtocoll.java" Intrnl_Id="15"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;import java.io.BufferedReader;&#10;import java.io.File;&#10;import java.io.IOException;&#10;import java.io.InputStreamReader;&#10;&#10;public class ConsoleView implements HTTPServerObserver {&#10;&#9;static final String HELP_TEXT = &quot;Enter a valid port 1-65535 and a optional URL&quot;;&#10;&#9;static final String SERVER_CONSTRUCTED = &quot;HTTP Server object constructed&quot;;&#10;&#9;static final String SERVER_STARTED = &quot;HTTP Server started&quot;;&#10;&#9;static final String SERVER_STOPPED = &quot;HTTP Server stopped&quot;;&#10;&#9;static final String SERVER_ACCEPT_THREAD_STOPPED = &quot;HTTP Server Accept thread stopped&quot;;&#10;&#9;static final String STARTED_CLIENT = &quot;Started Client&quot;;&#10;&#9;static final String WAIT_FOR_ACCEPT = &quot;Accept&quot;;&#10;&#9;&#10;&#9;private String[] args;&#10;&#9;&#10;&#9;&#10;&#9;&#10;&#9;public ConsoleView(String[] args) throws WrongNumberOfArgumentsException {&#10;&#9;&#9;if (args.length &gt; 2 || args.length &lt; 1) {&#10;&#9;&#9;&#9;throw new WrongNumberOfArgumentsException();&#10;&#9;&#9;}&#10;&#9;&#9;&#10;&#9;&#9;this.args = args;&#10;&#9;&#9;&#10;&#9;}&#10;&#10;&#9;public Port getPort() throws InvalidPortException {&#10;&#9;&#9;int port;&#10;&#9;&#9;try {&#10;&#9;&#9;&#9;port = Integer.parseInt(args[0]);&#10;&#9;&#9;} catch (Exception e) {&#10;&#9;&#9;&#9;throw new InvalidPortException(&quot;not an integer argument&quot;);&#10;&#9;&#9;}&#10;&#9;&#9;Port p = new Port(port);&#10;&#9;&#9;&#10;&#9;&#9;return p;&#10;&#9;}&#10;&#10;&#9;&#10;&#9;public void showhelp() {&#10;&#9;&#9;System.out.print(HELP_TEXT);&#10;&#9;&#9;&#10;&#9;}&#10;&#9;&#10;&#9;&#10;&#10;&#9;public File getDirectory() throws NotADirectoryException {&#10;&#9;&#9;File directory;&#10;&#9;&#9;try {&#10;&#9;&#9;&#9;directory = new File(args[1]);//may throw nullpointerexception&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;if (directory.exists() == false) {&#10;&#9;&#9;&#9;&#9;throw new NotADirectoryException(&quot;directory does not exists&quot;);&#10;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;if (directory.isDirectory() == false) {&#10;&#9;&#9;&#9;&#9;throw new NotADirectoryException(&quot;url is not a directory&quot;);&#10;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;&#10;&#9;&#9;} catch (Exception e) {&#10;&#9;&#9;&#9;throw new NotADirectoryException(e);&#10;&#9;&#9;}&#10;&#9;&#9;&#10;&#9;&#9;&#10;&#9;&#9;return directory;&#10;&#9;}&#10;&#10;&#9;public boolean doStop() throws IOException {&#10;&#9;&#9;BufferedReader br = new BufferedReader(new InputStreamReader(System.in));&#10;&#9;&#9;&#10;&#9;&#9;String line = br.readLine();&#10;&#9;&#9;if (line.equals(&quot;stop&quot;)) {&#10;&#9;&#9;&#9;return true;&#10;&#9;&#9;}&#10;&#9;&#9;&#10;&#9;&#9;return false;&#10;&#9;}&#10;&#9;&#10;&#9;@Override&#10;&#9;public void serverConstructed() {&#10;&#9;&#9;System.out.println(SERVER_CONSTRUCTED);&#10;&#9;&#9;&#10;&#9;}&#10;&#10;&#9;@Override&#10;&#9;public void serverStarted() {&#10;&#9;&#9;System.out.println(SERVER_STARTED);&#10;&#9;&#9;&#10;&#9;}&#10;&#10;&#9;@Override&#10;&#9;public void serverStopped() {&#10;&#9;&#9;System.out.println(SERVER_STOPPED);&#10;&#9;&#9;&#10;&#9;}&#10;&#10;&#9;@Override&#10;&#9;public void closedAccept() {&#10;&#9;&#9;System.out.println(SERVER_ACCEPT_THREAD_STOPPED);&#10;&#9;&#9;&#10;&#9;}&#10;&#10;&#9;@Override&#10;&#9;public void startedClient() {&#10;&#9;&#9;System.out.println(STARTED_CLIENT);&#10;&#9;&#9;&#10;&#9;}&#10;&#10;&#9;@Override&#10;&#9;public void waitForClient() {&#10;&#9;&#9;System.out.println(WAIT_FOR_ACCEPT);&#10;&#9;&#9;&#10;&#9;}&#10;&#10;&#9;&#10;&#10;&#9;&#10;}&#10;" Filename="ConsoleView.java" Intrnl_Id="16"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;import java.io.BufferedReader;&#10;import java.io.IOException;&#10;import java.io.InputStreamReader;&#10;import java.io.PrintWriter;&#10;import java.net.Socket;&#10;&#10;public class ClientThread extends Thread{&#10;&#9;&#10;&#9;&#10;&#9;private Socket clientSocket;&#10;&#10;&#9;public ClientThread(Socket clientSocket) {&#10;&#9;&#9;this.clientSocket = clientSocket;&#10;&#9;}&#10;&#9;&#10;&#9;public void run() {&#10;&#9;&#9; &#10;&#9;&#9;try {&#10;&#9;&#9;&#9;PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);&#10;&#9;&#9;&#9;BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;HTTPReader httpReader = new HTTPReader(in);&#10;&#9;&#9;&#9;String requestString = httpReader.readHeader();&#10;&#9;&#9;&#9;requestString += httpReader.readBody();&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;HTTPRequest request = HTTPRequestParser.parseRequest(requestString);&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;String content = &quot;&quot;;&#10;&#9;&#9;&#9;if (request.getProtocoll().equals(&quot;GET&quot;)) {&#10;&#9;&#9;&#9;&#9;if (request.getURL().equals(&quot;/&quot;)) {&#10;&#9;&#9;&#9;&#9;&#9;content = &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;200 OK&lt;/h1&gt;&lt;img src='img.jpg'/&gt;&lt;/body&gt;&lt;/html&gt;&quot;;&#10;&#9;&#9;&#9;&#9;&#9;out.write(&quot;HTTP/1.1 200 OK\r\n&quot;);&#9;&#10;&#9;&#9;&#9;&#9;} else {&#10;&#9;&#9;&#9;&#9;&#9;content = &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;404 Not found&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;;&#10;&#9;&#9;&#9;&#9;&#9;out.write(&quot;HTTP/1.1 404 Not Found\r\n&quot;);&#10;&#9;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;&#9;System.out.println(request.getURL());&#10;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;} else {&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;content = &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;404&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;;&#10;&#9;&#9;&#9;&#9;out.write(&quot;HTTP/1.1 404 Not Found\r\n&quot;);&#10;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;out.write(&quot;Content-Type: text/html\r\n&quot;);&#10;&#9;&#9;&#9;out.write(&quot;Content-Length: &quot; + content.length() + &quot;\r\n&quot;);&#10;&#9;&#9;&#9;out.write(&quot;Connection: close\r\n&quot;);&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;out.write(&quot;\r\n&quot;);&#10;&#9;&#9;&#9;out.write(content);&#10;&#9;&#9;&#9;out.flush();&#10;&#9;&#9;&#9;&#10;&#9;&#9;&#9;this.clientSocket.close();&#10;&#9;&#9;} catch (IOException e) {&#10;&#9;&#9;&#9;e.printStackTrace();&#10;&#9;&#9;} catch (MalformedRequestException e) {&#10;&#9;&#9;&#9;// TODO Auto-generated catch block&#10;&#9;&#9;&#9;e.printStackTrace();&#10;&#9;&#9;}&#10;&#9;&#9;System.out.println(&quot;client ended&quot;);&#10;&#9;}&#10;&#10;&#9;&#10;&#10;}&#10;" Filename="ClientThread.java" Intrnl_Id="17"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;import java.net.Socket;&#10;&#10;public class ClientFactory {&#10;&#10;&#9;public ClientThread createClient(Socket clientSocket) {&#10;&#9;&#9;&#10;&#9;&#9;return new ClientThread(clientSocket);&#10;&#9;}&#10;&#10;}&#10;" Filename="ClientFactory.java" Intrnl_Id="18"/>
+<SrcFile Content="package se.lnu.http;&#10;&#10;import java.io.IOException;&#10;import java.net.ServerSocket;&#10;import java.net.Socket;&#10;import java.net.SocketException;&#10;&#10;public class AcceptThread extends Thread{&#10;&#10;&#9;volatile ServerSocket socket;&#10;&#9;volatile private HTTPServerObserver observer;&#10;&#9;private ClientFactory cfactory;&#10;&#9;public AcceptThread(ServerSocket sock, &#10;&#9;&#9;&#9;&#9;&#9;&#9;HTTPServerObserver observer, &#10;&#9;&#9;&#9;&#9;&#9;&#9;ClientFactory cfactory) {&#10;&#9;&#9;socket = sock;&#10;&#9;&#9;this.observer = observer;&#10;&#9;&#9;this.cfactory = cfactory;&#10;&#9;}&#10;&#9;&#10;&#9;public void stopme() throws IOException {&#10;&#9;&#9;socket.close();&#10;&#9;}&#10;&#9;&#10;&#9;public void run() {&#10;        &#10;        &#9;&#10;        &#9;while (true) {&#10;        &#9;&#9;try {&#10;        &#9;&#9;&#9;acceptClient();&#10;        &#9;&#9;} catch (SocketException e) {&#10;        &#9;&#9;&#9;//when stopme is called we get a socket exception&#10;        &#9;&#9;&#9;break;&#10;                } catch (IOException e) {&#10;        &#9;&#9;&#9;e.printStackTrace();&#10;                }&#10;&#9;&#9;&#9;&#9;&#10;&#9;&#9;&#9;&#9;&#10;        &#9;}&#10;        &#9;&#10;        &#9;observer.closedAccept();&#10;        &#9;&#10;&#9;&#9;&#10;    }&#10;&#10;&#9;private void acceptClient() throws IOException {&#10;&#9;&#9;observer.waitForClient();&#10;&#9;&#9;Socket clientSocket = socket.accept();&#10;&#9;&#9;ClientThread client = cfactory.createClient(clientSocket);&#10;&#9;&#9;client.start();&#10;&#9;&#9;observer.startedClient();&#10;&#9;} &#10;&#9;&#10;}&#10;" Filename="AcceptThread.java" Intrnl_Id="19"/>
+</SrcFileList>
+<CritList>
+<CritListEntry Name="org.codecover.model.utils.criteria.LoopCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.BranchCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.ConditionCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.SynchronizedStatementCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.QMOCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.StatementCoverage" PluginName="org.codecover"/>
+</CritList>
+<BoolOpList>
+<BoolOp Arity="2" Intrnl_Id="20" Name="conditional or (||)">
+<BoolAssgnmntBoolMapList>
+<MapEntry BoolAssgnmnt="01" Value="true"/>
+<MapEntry BoolAssgnmnt="00" Value="false"/>
+<MapEntry BoolAssgnmnt="12" Value="true"/>
+</BoolAssgnmntBoolMapList>
+</BoolOp>
+</BoolOpList>
+<HierarchyLvlTypeList>
+<HierarchyLvlType EnglishName="package" IntrnlName="package" Intrnl_Id="21"/>
+<HierarchyLvlType EnglishName="class" IntrnlName="class" Intrnl_Id="22"/>
+<HierarchyLvlType EnglishName="method" IntrnlName="method" Intrnl_Id="23"/>
+<HierarchyLvlType EnglishName="default package" IntrnlName="default package" Intrnl_Id="24"/>
+<HierarchyLvlType EnglishName="interface" IntrnlName="interface" Intrnl_Id="25"/>
+</HierarchyLvlTypeList>
+<MASTRoot>
+<HierarchyLvl HierarchyLvlId="504" HierarchyLvlTypeId="24" Intrnl_Id="26" Name="default package">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="503" HierarchyLvlTypeId="21" Intrnl_Id="27" Name="se">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="502" HierarchyLvlTypeId="21" Intrnl_Id="28" Name="lnu">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="501" HierarchyLvlTypeId="21" Intrnl_Id="29" Name="http">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="435" HierarchyLvlTypeId="22" Intrnl_Id="30" Name="WrongNumberOfArgumentsException">
+<Header>
+<Loc EndOffset="84" SrcFileId="1" StartOffset="22"/>
+</Header>
+<LocList>
+<Loc EndOffset="288" SrcFileId="1" StartOffset="22"/>
+</LocList>
+<StmntSeq Intrnl_Id="31">
+<LocList>
+<Loc EndOffset="171" SrcFileId="1" StartOffset="104"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.WrongNumberOfArgumentsException.java" Intrnl_Id="32">
+<LocList>
+<Loc EndOffset="171" SrcFileId="1" StartOffset="104"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<HierarchyLvl HierarchyLvlId="434" HierarchyLvlTypeId="23" Intrnl_Id="33" Name="WrongNumberOfArgumentsException">
+<Header>
+<Loc EndOffset="214" SrcFileId="1" StartOffset="174"/>
+</Header>
+<LocList>
+<Loc EndOffset="282" SrcFileId="1" StartOffset="174"/>
+</LocList>
+<StmntSeq Intrnl_Id="34">
+<LocList>
+<Loc EndOffset="279" SrcFileId="1" StartOffset="219"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="se.lnu.http.WrongNumberOfArgumentsException.java" Intrnl_Id="35">
+<LocList>
+<Loc EndOffset="279" SrcFileId="1" StartOffset="219"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="438" HierarchyLvlTypeId="22" Intrnl_Id="36" Name="SocketClient">
+<Header>
+<Loc EndOffset="266" SrcFileId="2" StartOffset="241"/>
+</Header>
+<LocList>
+<Loc EndOffset="1014" SrcFileId="2" StartOffset="241"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="436" HierarchyLvlTypeId="23" Intrnl_Id="37" Name="SocketClient">
+<Header>
+<Loc EndOffset="392" SrcFileId="2" StartOffset="329"/>
+</Header>
+<LocList>
+<Loc EndOffset="449" SrcFileId="2" StartOffset="329"/>
+</LocList>
+<StmntSeq Intrnl_Id="38">
+<LocList>
+<Loc EndOffset="422" SrcFileId="2" StartOffset="397"/>
+<Loc EndOffset="446" SrcFileId="2" StartOffset="425"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.SocketClient.java" Intrnl_Id="39">
+<LocList>
+<Loc EndOffset="422" SrcFileId="2" StartOffset="397"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="se.lnu.http.SocketClient.java" Intrnl_Id="40">
+<LocList>
+<Loc EndOffset="446" SrcFileId="2" StartOffset="425"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="437" HierarchyLvlTypeId="23" Intrnl_Id="41" Name="get">
+<Header>
+<Loc EndOffset="534" SrcFileId="2" StartOffset="452"/>
+</Header>
+<LocList>
+<Loc EndOffset="1012" SrcFileId="2" StartOffset="452"/>
+</LocList>
+<StmntSeq Intrnl_Id="42">
+<LocList>
+<Loc EndOffset="624" SrcFileId="2" StartOffset="551"/>
+<Loc EndOffset="658" SrcFileId="2" StartOffset="628"/>
+<Loc EndOffset="755" SrcFileId="2" StartOffset="662"/>
+<Loc EndOffset="850" SrcFileId="2" StartOffset="759"/>
+<Loc EndOffset="917" SrcFileId="2" StartOffset="858"/>
+<Loc EndOffset="940" SrcFileId="2" StartOffset="925"/>
+<Loc EndOffset="960" SrcFileId="2" StartOffset="948"/>
+<Loc EndOffset="1004" SrcFileId="2" StartOffset="542"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="se.lnu.http.SocketClient.java" Intrnl_Id="43">
+<LocList>
+<Loc EndOffset="624" SrcFileId="2" StartOffset="551"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S5" CovItemPrefix="se.lnu.http.SocketClient.java" Intrnl_Id="44">
+<LocList>
+<Loc EndOffset="658" SrcFileId="2" StartOffset="628"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="se.lnu.http.SocketClient.java" Intrnl_Id="45">
+<LocList>
+<Loc EndOffset="755" SrcFileId="2" StartOffset="662"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="se.lnu.http.SocketClient.java" Intrnl_Id="46">
+<LocList>
+<Loc EndOffset="850" SrcFileId="2" StartOffset="759"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S8" CovItemPrefix="se.lnu.http.SocketClient.java" Intrnl_Id="47">
+<LocList>
+<Loc EndOffset="917" SrcFileId="2" StartOffset="858"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S9" CovItemPrefix="se.lnu.http.SocketClient.java" Intrnl_Id="48">
+<LocList>
+<Loc EndOffset="940" SrcFileId="2" StartOffset="925"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S10" CovItemPrefix="se.lnu.http.SocketClient.java" Intrnl_Id="49">
+<LocList>
+<Loc EndOffset="960" SrcFileId="2" StartOffset="948"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S3" CovItemPrefix="se.lnu.http.SocketClient.java" Intrnl_Id="50">
+<Branch CovItemId="B1" CovItemPrefix="se.lnu.http.SocketClient.java" Implct="true" Intrnl_Id="51">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="52">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="se.lnu.http.SocketClient.java" Implct="false" Intrnl_Id="53">
+<Cond>
+<Loc EndOffset="986" SrcFileId="2" StartOffset="965"/>
+</Cond>
+<LocList>
+<Loc EndOffset="1004" SrcFileId="2" StartOffset="987"/>
+</LocList>
+<StmntSeq Intrnl_Id="54">
+<LocList>
+<Loc EndOffset="1000" SrcFileId="2" StartOffset="992"/>
+</LocList>
+<BasicStmnt CovItemId="S11" CovItemPrefix="se.lnu.http.SocketClient.java" Intrnl_Id="55">
+<LocList>
+<Loc EndOffset="1000" SrcFileId="2" StartOffset="992"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="545" SrcFileId="2" StartOffset="542"/>
+<LocList>
+<Loc EndOffset="1004" SrcFileId="2" StartOffset="542"/>
+</LocList>
+</CondStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="440" HierarchyLvlTypeId="22" Intrnl_Id="56" Name="ServerFactory">
+<Header>
+<Loc EndOffset="70" SrcFileId="3" StartOffset="44"/>
+</Header>
+<LocList>
+<Loc EndOffset="219" SrcFileId="3" StartOffset="44"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="439" HierarchyLvlTypeId="23" Intrnl_Id="57" Name="create">
+<Header>
+<Loc EndOffset="157" SrcFileId="3" StartOffset="75"/>
+</Header>
+<LocList>
+<Loc EndOffset="216" SrcFileId="3" StartOffset="75"/>
+</LocList>
+<StmntSeq Intrnl_Id="58">
+<LocList>
+<Loc EndOffset="213" SrcFileId="3" StartOffset="162"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.ServerFactory.java" Intrnl_Id="59">
+<LocList>
+<Loc EndOffset="213" SrcFileId="3" StartOffset="162"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="443" HierarchyLvlTypeId="22" Intrnl_Id="60" Name="Port">
+<Header>
+<Loc EndOffset="39" SrcFileId="4" StartOffset="22"/>
+</Header>
+<LocList>
+<Loc EndOffset="408" SrcFileId="4" StartOffset="22"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="441" HierarchyLvlTypeId="23" Intrnl_Id="61" Name="Port">
+<Header>
+<Loc EndOffset="125" SrcFileId="4" StartOffset="70"/>
+</Header>
+<LocList>
+<Loc EndOffset="318" SrcFileId="4" StartOffset="70"/>
+</LocList>
+<StmntSeq Intrnl_Id="62">
+<LocList>
+<Loc EndOffset="277" SrcFileId="4" StartOffset="130"/>
+<Loc EndOffset="312" SrcFileId="4" StartOffset="283"/>
+</LocList>
+<CondStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.Port.java" Intrnl_Id="63">
+<Branch CovItemId="B1" CovItemPrefix="se.lnu.http.Port.java" Implct="false" Intrnl_Id="64">
+<Cond/>
+<LocList>
+<Loc EndOffset="277" SrcFileId="4" StartOffset="173"/>
+</LocList>
+<StmntSeq Intrnl_Id="65">
+<LocList>
+<Loc EndOffset="273" SrcFileId="4" StartOffset="178"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="se.lnu.http.Port.java" Intrnl_Id="66">
+<LocList>
+<Loc EndOffset="273" SrcFileId="4" StartOffset="178"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="se.lnu.http.Port.java" Implct="true" Intrnl_Id="67">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="68">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="132" SrcFileId="4" StartOffset="130"/>
+<LocList>
+<Loc EndOffset="277" SrcFileId="4" StartOffset="130"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="se.lnu.http.Port.java" Intrnl_Id="69">
+<OpTerm BooleanOpId="20" Intrnl_Id="70">
+<BasicBoolTerm Intrnl_Id="71">
+<LocList>
+<Loc EndOffset="149" SrcFileId="4" StartOffset="134"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="72">
+<LocList>
+<Loc EndOffset="171" SrcFileId="4" StartOffset="153"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="152" SrcFileId="4" StartOffset="150"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="se.lnu.http.Port.java" Intrnl_Id="73">
+<LocList>
+<Loc EndOffset="312" SrcFileId="4" StartOffset="283"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="442" HierarchyLvlTypeId="23" Intrnl_Id="74" Name="getPort">
+<Header>
+<Loc EndOffset="341" SrcFileId="4" StartOffset="321"/>
+</Header>
+<LocList>
+<Loc EndOffset="404" SrcFileId="4" StartOffset="321"/>
+</LocList>
+<StmntSeq Intrnl_Id="75">
+<LocList>
+<Loc EndOffset="401" SrcFileId="4" StartOffset="383"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="se.lnu.http.Port.java" Intrnl_Id="76">
+<LocList>
+<Loc EndOffset="401" SrcFileId="4" StartOffset="383"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="444" HierarchyLvlTypeId="22" Intrnl_Id="77" Name="NotStartedException">
+<Header>
+<Loc EndOffset="72" SrcFileId="5" StartOffset="22"/>
+</Header>
+<LocList>
+<Loc EndOffset="161" SrcFileId="5" StartOffset="22"/>
+</LocList>
+<StmntSeq Intrnl_Id="78">
+<LocList>
+<Loc EndOffset="158" SrcFileId="5" StartOffset="92"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.NotStartedException.java" Intrnl_Id="79">
+<LocList>
+<Loc EndOffset="158" SrcFileId="5" StartOffset="92"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="447" HierarchyLvlTypeId="22" Intrnl_Id="80" Name="NotADirectoryException">
+<Header>
+<Loc EndOffset="75" SrcFileId="6" StartOffset="22"/>
+</Header>
+<LocList>
+<Loc EndOffset="296" SrcFileId="6" StartOffset="22"/>
+</LocList>
+<StmntSeq Intrnl_Id="81">
+<LocList>
+<Loc EndOffset="293" SrcFileId="6" StartOffset="226"/>
+</LocList>
+<BasicStmnt CovItemId="S3" CovItemPrefix="se.lnu.http.NotADirectoryException.java" Intrnl_Id="82">
+<LocList>
+<Loc EndOffset="293" SrcFileId="6" StartOffset="226"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<HierarchyLvl HierarchyLvlId="445" HierarchyLvlTypeId="23" Intrnl_Id="83" Name="NotADirectoryException">
+<Header>
+<Loc EndOffset="124" SrcFileId="6" StartOffset="80"/>
+</Header>
+<LocList>
+<Loc EndOffset="146" SrcFileId="6" StartOffset="80"/>
+</LocList>
+<StmntSeq Intrnl_Id="84">
+<LocList>
+<Loc EndOffset="143" SrcFileId="6" StartOffset="129"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.NotADirectoryException.java" Intrnl_Id="85">
+<LocList>
+<Loc EndOffset="143" SrcFileId="6" StartOffset="129"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="446" HierarchyLvlTypeId="23" Intrnl_Id="86" Name="NotADirectoryException">
+<Header>
+<Loc EndOffset="191" SrcFileId="6" StartOffset="149"/>
+</Header>
+<LocList>
+<Loc EndOffset="208" SrcFileId="6" StartOffset="149"/>
+</LocList>
+<StmntSeq Intrnl_Id="87">
+<LocList>
+<Loc EndOffset="205" SrcFileId="6" StartOffset="196"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="se.lnu.http.NotADirectoryException.java" Intrnl_Id="88">
+<LocList>
+<Loc EndOffset="205" SrcFileId="6" StartOffset="196"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="449" HierarchyLvlTypeId="22" Intrnl_Id="89" Name="MalformedRequestException">
+<Header>
+<Loc EndOffset="78" SrcFileId="7" StartOffset="22"/>
+</Header>
+<LocList>
+<Loc EndOffset="252" SrcFileId="7" StartOffset="22"/>
+</LocList>
+<StmntSeq Intrnl_Id="90">
+<LocList>
+<Loc EndOffset="249" SrcFileId="7" StartOffset="184"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="se.lnu.http.MalformedRequestException.java" Intrnl_Id="91">
+<LocList>
+<Loc EndOffset="249" SrcFileId="7" StartOffset="184"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<HierarchyLvl HierarchyLvlId="448" HierarchyLvlTypeId="23" Intrnl_Id="92" Name="MalformedRequestException">
+<Header>
+<Loc EndOffset="137" SrcFileId="7" StartOffset="83"/>
+</Header>
+<LocList>
+<Loc EndOffset="166" SrcFileId="7" StartOffset="83"/>
+</LocList>
+<StmntSeq Intrnl_Id="93">
+<LocList>
+<Loc EndOffset="163" SrcFileId="7" StartOffset="142"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.MalformedRequestException.java" Intrnl_Id="94">
+<LocList>
+<Loc EndOffset="163" SrcFileId="7" StartOffset="142"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="451" HierarchyLvlTypeId="22" Intrnl_Id="95" Name="InvalidPortException">
+<Header>
+<Loc EndOffset="73" SrcFileId="8" StartOffset="22"/>
+</Header>
+<LocList>
+<Loc EndOffset="229" SrcFileId="8" StartOffset="22"/>
+</LocList>
+<StmntSeq Intrnl_Id="96">
+<LocList>
+<Loc EndOffset="156" SrcFileId="8" StartOffset="93"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.InvalidPortException.java" Intrnl_Id="97">
+<LocList>
+<Loc EndOffset="156" SrcFileId="8" StartOffset="93"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<HierarchyLvl HierarchyLvlId="450" HierarchyLvlTypeId="23" Intrnl_Id="98" Name="InvalidPortException">
+<Header>
+<Loc EndOffset="201" SrcFileId="8" StartOffset="159"/>
+</Header>
+<LocList>
+<Loc EndOffset="223" SrcFileId="8" StartOffset="159"/>
+</LocList>
+<StmntSeq Intrnl_Id="99">
+<LocList>
+<Loc EndOffset="220" SrcFileId="8" StartOffset="206"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="se.lnu.http.InvalidPortException.java" Intrnl_Id="100">
+<LocList>
+<Loc EndOffset="220" SrcFileId="8" StartOffset="206"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="458" HierarchyLvlTypeId="25" Intrnl_Id="101" Name="HTTPServerObserver">
+<Header>
+<Loc EndOffset="57" SrcFileId="9" StartOffset="22"/>
+</Header>
+<LocList>
+<Loc EndOffset="209" SrcFileId="9" StartOffset="22"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="452" HierarchyLvlTypeId="23" Intrnl_Id="102" Name="serverConstructed">
+<Header>
+<Loc EndOffset="86" SrcFileId="9" StartOffset="62"/>
+</Header>
+<LocList>
+<Loc EndOffset="87" SrcFileId="9" StartOffset="62"/>
+</LocList>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="453" HierarchyLvlTypeId="23" Intrnl_Id="103" Name="serverStarted">
+<Header>
+<Loc EndOffset="110" SrcFileId="9" StartOffset="90"/>
+</Header>
+<LocList>
+<Loc EndOffset="111" SrcFileId="9" StartOffset="90"/>
+</LocList>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="454" HierarchyLvlTypeId="23" Intrnl_Id="104" Name="serverStopped">
+<Header>
+<Loc EndOffset="134" SrcFileId="9" StartOffset="114"/>
+</Header>
+<LocList>
+<Loc EndOffset="135" SrcFileId="9" StartOffset="114"/>
+</LocList>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="455" HierarchyLvlTypeId="23" Intrnl_Id="105" Name="closedAccept">
+<Header>
+<Loc EndOffset="157" SrcFileId="9" StartOffset="138"/>
+</Header>
+<LocList>
+<Loc EndOffset="158" SrcFileId="9" StartOffset="138"/>
+</LocList>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="456" HierarchyLvlTypeId="23" Intrnl_Id="106" Name="startedClient">
+<Header>
+<Loc EndOffset="181" SrcFileId="9" StartOffset="161"/>
+</Header>
+<LocList>
+<Loc EndOffset="182" SrcFileId="9" StartOffset="161"/>
+</LocList>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="457" HierarchyLvlTypeId="23" Intrnl_Id="107" Name="waitForClient">
+<Header>
+<Loc EndOffset="205" SrcFileId="9" StartOffset="185"/>
+</Header>
+<LocList>
+<Loc EndOffset="206" SrcFileId="9" StartOffset="185"/>
+</LocList>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="462" HierarchyLvlTypeId="22" Intrnl_Id="108" Name="HTTPServerConsole">
+<Header>
+<Loc EndOffset="74" SrcFileId="10" StartOffset="44"/>
+</Header>
+<LocList>
+<Loc EndOffset="933" SrcFileId="10" StartOffset="44"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="459" HierarchyLvlTypeId="23" Intrnl_Id="109" Name="HTTPServerConsole">
+<Header>
+<Loc EndOffset="204" SrcFileId="10" StartOffset="138"/>
+</Header>
+<LocList>
+<Loc EndOffset="255" SrcFileId="10" StartOffset="138"/>
+</LocList>
+<StmntSeq Intrnl_Id="110">
+<LocList>
+<Loc EndOffset="226" SrcFileId="10" StartOffset="209"/>
+<Loc EndOffset="252" SrcFileId="10" StartOffset="229"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="111">
+<LocList>
+<Loc EndOffset="226" SrcFileId="10" StartOffset="209"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="112">
+<LocList>
+<Loc EndOffset="252" SrcFileId="10" StartOffset="229"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="460" HierarchyLvlTypeId="23" Intrnl_Id="113" Name="main">
+<Header>
+<Loc EndOffset="362" SrcFileId="10" StartOffset="307"/>
+</Header>
+<LocList>
+<Loc EndOffset="554" SrcFileId="10" StartOffset="307"/>
+</LocList>
+<StmntSeq Intrnl_Id="114">
+<LocList>
+<Loc EndOffset="408" SrcFileId="10" StartOffset="367"/>
+<Loc EndOffset="455" SrcFileId="10" StartOffset="411"/>
+<Loc EndOffset="522" SrcFileId="10" StartOffset="458"/>
+<Loc EndOffset="545" SrcFileId="10" StartOffset="525"/>
+</LocList>
+<BasicStmnt CovItemId="S3" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="115">
+<LocList>
+<Loc EndOffset="408" SrcFileId="10" StartOffset="367"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S4" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="116">
+<LocList>
+<Loc EndOffset="455" SrcFileId="10" StartOffset="411"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S5" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="117">
+<LocList>
+<Loc EndOffset="522" SrcFileId="10" StartOffset="458"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="118">
+<LocList>
+<Loc EndOffset="545" SrcFileId="10" StartOffset="525"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="461" HierarchyLvlTypeId="23" Intrnl_Id="119" Name="runConsole">
+<Header>
+<Loc EndOffset="591" SrcFileId="10" StartOffset="557"/>
+</Header>
+<LocList>
+<Loc EndOffset="930" SrcFileId="10" StartOffset="557"/>
+</LocList>
+<StmntSeq Intrnl_Id="120">
+<LocList>
+<Loc EndOffset="635" SrcFileId="10" StartOffset="608"/>
+<Loc EndOffset="682" SrcFileId="10" StartOffset="639"/>
+<Loc EndOffset="750" SrcFileId="10" StartOffset="686"/>
+<Loc EndOffset="773" SrcFileId="10" StartOffset="758"/>
+<Loc EndOffset="862" SrcFileId="10" StartOffset="781"/>
+<Loc EndOffset="927" SrcFileId="10" StartOffset="599"/>
+</LocList>
+<BasicStmnt CovItemId="S8" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="121">
+<LocList>
+<Loc EndOffset="635" SrcFileId="10" StartOffset="608"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S9" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="122">
+<LocList>
+<Loc EndOffset="682" SrcFileId="10" StartOffset="639"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S10" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="123">
+<LocList>
+<Loc EndOffset="750" SrcFileId="10" StartOffset="686"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S11" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="124">
+<LocList>
+<Loc EndOffset="773" SrcFileId="10" StartOffset="758"/>
+</LocList>
+</BasicStmnt>
+<LoopStmnt CovItemId="S12" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="125" MltplExecId="L1-2" MltplExecPrefix="se.lnu.http.HTTPServerConsole.java" NvrExecId="L1-0" NvrExecPrefix="se.lnu.http.HTTPServerConsole.java" OnceExecutedId="L1-1" OnceExecutedPrefix="se.lnu.http.HTTPServerConsole.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="126">
+<LocList>
+<Loc EndOffset="857" SrcFileId="10" StartOffset="799"/>
+</LocList>
+<CondStmnt CovItemId="S13" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="127">
+<Branch CovItemId="B2" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Implct="false" Intrnl_Id="128">
+<Cond/>
+<LocList>
+<Loc EndOffset="857" SrcFileId="10" StartOffset="818"/>
+</LocList>
+<StmntSeq Intrnl_Id="129">
+<LocList>
+<Loc EndOffset="839" SrcFileId="10" StartOffset="825"/>
+<Loc EndOffset="851" SrcFileId="10" StartOffset="845"/>
+</LocList>
+<BasicStmnt CovItemId="S14" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="130">
+<LocList>
+<Loc EndOffset="839" SrcFileId="10" StartOffset="825"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S15" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="131">
+<LocList>
+<Loc EndOffset="851" SrcFileId="10" StartOffset="845"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B3" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Implct="true" Intrnl_Id="132">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="133">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="801" SrcFileId="10" StartOffset="799"/>
+<LocList>
+<Loc EndOffset="857" SrcFileId="10" StartOffset="799"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="134">
+<BasicBoolTerm Intrnl_Id="135">
+<LocList>
+<Loc EndOffset="816" SrcFileId="10" StartOffset="803"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+<Keyword EndOffset="786" SrcFileId="10" StartOffset="781"/>
+<LocList>
+<Loc EndOffset="862" SrcFileId="10" StartOffset="781"/>
+</LocList>
+</LoopStmnt>
+<CondStmnt CovItemId="S7" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="136">
+<Branch CovItemId="B1" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Implct="true" Intrnl_Id="137">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="138">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B4" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Implct="false" Intrnl_Id="139">
+<Cond>
+<Loc EndOffset="901" SrcFileId="10" StartOffset="871"/>
+</Cond>
+<LocList>
+<Loc EndOffset="927" SrcFileId="10" StartOffset="902"/>
+</LocList>
+<StmntSeq Intrnl_Id="140">
+<LocList>
+<Loc EndOffset="923" SrcFileId="10" StartOffset="907"/>
+</LocList>
+<BasicStmnt CovItemId="S16" CovItemPrefix="se.lnu.http.HTTPServerConsole.java" Intrnl_Id="141">
+<LocList>
+<Loc EndOffset="923" SrcFileId="10" StartOffset="907"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="602" SrcFileId="10" StartOffset="599"/>
+<LocList>
+<Loc EndOffset="927" SrcFileId="10" StartOffset="599"/>
+</LocList>
+</CondStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="466" HierarchyLvlTypeId="22" Intrnl_Id="142" Name="HTTPServer">
+<Header>
+<Loc EndOffset="125" SrcFileId="11" StartOffset="102"/>
+</Header>
+<LocList>
+<Loc EndOffset="938" SrcFileId="11" StartOffset="102"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="463" HierarchyLvlTypeId="23" Intrnl_Id="143" Name="HTTPServer">
+<Header>
+<Loc EndOffset="300" SrcFileId="11" StartOffset="225"/>
+</Header>
+<LocList>
+<Loc EndOffset="373" SrcFileId="11" StartOffset="225"/>
+</LocList>
+<StmntSeq Intrnl_Id="144">
+<LocList>
+<Loc EndOffset="322" SrcFileId="11" StartOffset="305"/>
+<Loc EndOffset="350" SrcFileId="11" StartOffset="325"/>
+<Loc EndOffset="370" SrcFileId="11" StartOffset="353"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="145">
+<LocList>
+<Loc EndOffset="322" SrcFileId="11" StartOffset="305"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="146">
+<LocList>
+<Loc EndOffset="350" SrcFileId="11" StartOffset="325"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="147">
+<LocList>
+<Loc EndOffset="370" SrcFileId="11" StartOffset="353"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="464" HierarchyLvlTypeId="23" Intrnl_Id="148" Name="start">
+<Header>
+<Loc EndOffset="414" SrcFileId="11" StartOffset="376"/>
+</Header>
+<LocList>
+<Loc EndOffset="636" SrcFileId="11" StartOffset="376"/>
+</LocList>
+<StmntSeq Intrnl_Id="149">
+<LocList>
+<Loc EndOffset="474" SrcFileId="11" StartOffset="419"/>
+<Loc EndOffset="521" SrcFileId="11" StartOffset="477"/>
+<Loc EndOffset="579" SrcFileId="11" StartOffset="524"/>
+<Loc EndOffset="606" SrcFileId="11" StartOffset="585"/>
+<Loc EndOffset="633" SrcFileId="11" StartOffset="612"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="150">
+<LocList>
+<Loc EndOffset="474" SrcFileId="11" StartOffset="419"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S5" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="151">
+<LocList>
+<Loc EndOffset="521" SrcFileId="11" StartOffset="477"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="152">
+<LocList>
+<Loc EndOffset="579" SrcFileId="11" StartOffset="524"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="153">
+<LocList>
+<Loc EndOffset="606" SrcFileId="11" StartOffset="585"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S8" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="154">
+<LocList>
+<Loc EndOffset="633" SrcFileId="11" StartOffset="612"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="465" HierarchyLvlTypeId="23" Intrnl_Id="155" Name="stop">
+<Header>
+<Loc EndOffset="719" SrcFileId="11" StartOffset="639"/>
+</Header>
+<LocList>
+<Loc EndOffset="935" SrcFileId="11" StartOffset="639"/>
+</LocList>
+<StmntSeq Intrnl_Id="156">
+<LocList>
+<Loc EndOffset="785" SrcFileId="11" StartOffset="724"/>
+<Loc EndOffset="813" SrcFileId="11" StartOffset="791"/>
+<Loc EndOffset="876" SrcFileId="11" StartOffset="819"/>
+<Loc EndOffset="906" SrcFileId="11" StartOffset="885"/>
+<Loc EndOffset="932" SrcFileId="11" StartOffset="912"/>
+</LocList>
+<CondStmnt CovItemId="S9" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="157">
+<Branch CovItemId="B1" CovItemPrefix="se.lnu.http.HTTPServer.java" Implct="false" Intrnl_Id="158">
+<Cond/>
+<LocList>
+<Loc EndOffset="785" SrcFileId="11" StartOffset="753"/>
+</LocList>
+<StmntSeq Intrnl_Id="159">
+<LocList>
+<Loc EndOffset="785" SrcFileId="11" StartOffset="753"/>
+</LocList>
+<BasicStmnt CovItemId="S10" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="160">
+<LocList>
+<Loc EndOffset="785" SrcFileId="11" StartOffset="753"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="se.lnu.http.HTTPServer.java" Implct="true" Intrnl_Id="161">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="162">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="726" SrcFileId="11" StartOffset="724"/>
+<LocList>
+<Loc EndOffset="785" SrcFileId="11" StartOffset="724"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="163">
+<BasicBoolTerm Intrnl_Id="164">
+<LocList>
+<Loc EndOffset="748" SrcFileId="11" StartOffset="728"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S11" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="165">
+<LocList>
+<Loc EndOffset="813" SrcFileId="11" StartOffset="791"/>
+</LocList>
+</BasicStmnt>
+<LoopStmnt CovItemId="S12" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="166" MltplExecId="L1-2" MltplExecPrefix="se.lnu.http.HTTPServer.java" NvrExecId="L1-0" NvrExecPrefix="se.lnu.http.HTTPServer.java" OnceExecutedId="L1-1" OnceExecutedPrefix="se.lnu.http.HTTPServer.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="167">
+<LocList>
+<Loc EndOffset="872" SrcFileId="11" StartOffset="854"/>
+</LocList>
+<BasicStmnt CovItemId="S13" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="168">
+<LocList>
+<Loc EndOffset="872" SrcFileId="11" StartOffset="854"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="824" SrcFileId="11" StartOffset="819"/>
+<LocList>
+<Loc EndOffset="876" SrcFileId="11" StartOffset="819"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="169">
+<BasicBoolTerm Intrnl_Id="170">
+<LocList>
+<Loc EndOffset="847" SrcFileId="11" StartOffset="825"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</LoopStmnt>
+<BasicStmnt CovItemId="S14" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="171">
+<LocList>
+<Loc EndOffset="906" SrcFileId="11" StartOffset="885"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S15" CovItemPrefix="se.lnu.http.HTTPServer.java" Intrnl_Id="172">
+<LocList>
+<Loc EndOffset="932" SrcFileId="11" StartOffset="912"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="468" HierarchyLvlTypeId="22" Intrnl_Id="173" Name="HTTPRequestParser">
+<Header>
+<Loc EndOffset="52" SrcFileId="12" StartOffset="22"/>
+</Header>
+<LocList>
+<Loc EndOffset="500" SrcFileId="12" StartOffset="22"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="467" HierarchyLvlTypeId="23" Intrnl_Id="174" Name="parseRequest">
+<Header>
+<Loc EndOffset="150" SrcFileId="12" StartOffset="57"/>
+</Header>
+<LocList>
+<Loc EndOffset="496" SrcFileId="12" StartOffset="57"/>
+</LocList>
+<StmntSeq Intrnl_Id="175">
+<LocList>
+<Loc EndOffset="203" SrcFileId="12" StartOffset="158"/>
+<Loc EndOffset="288" SrcFileId="12" StartOffset="206"/>
+<Loc EndOffset="337" SrcFileId="12" StartOffset="294"/>
+<Loc EndOffset="429" SrcFileId="12" StartOffset="340"/>
+<Loc EndOffset="493" SrcFileId="12" StartOffset="438"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.HTTPRequestParser.java" Intrnl_Id="176">
+<LocList>
+<Loc EndOffset="203" SrcFileId="12" StartOffset="158"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S2" CovItemPrefix="se.lnu.http.HTTPRequestParser.java" Intrnl_Id="177">
+<Branch CovItemId="B1" CovItemPrefix="se.lnu.http.HTTPRequestParser.java" Implct="false" Intrnl_Id="178">
+<Cond/>
+<LocList>
+<Loc EndOffset="288" SrcFileId="12" StartOffset="228"/>
+</LocList>
+<StmntSeq Intrnl_Id="179">
+<LocList>
+<Loc EndOffset="284" SrcFileId="12" StartOffset="233"/>
+</LocList>
+<BasicStmnt CovItemId="S3" CovItemPrefix="se.lnu.http.HTTPRequestParser.java" Intrnl_Id="180">
+<LocList>
+<Loc EndOffset="284" SrcFileId="12" StartOffset="233"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="se.lnu.http.HTTPRequestParser.java" Implct="true" Intrnl_Id="181">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="182">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="208" SrcFileId="12" StartOffset="206"/>
+<LocList>
+<Loc EndOffset="288" SrcFileId="12" StartOffset="206"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="se.lnu.http.HTTPRequestParser.java" Intrnl_Id="183">
+<BasicBoolTerm Intrnl_Id="184">
+<LocList>
+<Loc EndOffset="226" SrcFileId="12" StartOffset="210"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S4" CovItemPrefix="se.lnu.http.HTTPRequestParser.java" Intrnl_Id="185">
+<LocList>
+<Loc EndOffset="337" SrcFileId="12" StartOffset="294"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S5" CovItemPrefix="se.lnu.http.HTTPRequestParser.java" Intrnl_Id="186">
+<Branch CovItemId="B3" CovItemPrefix="se.lnu.http.HTTPRequestParser.java" Implct="false" Intrnl_Id="187">
+<Cond/>
+<LocList>
+<Loc EndOffset="429" SrcFileId="12" StartOffset="369"/>
+</LocList>
+<StmntSeq Intrnl_Id="188">
+<LocList>
+<Loc EndOffset="425" SrcFileId="12" StartOffset="374"/>
+</LocList>
+<BasicStmnt CovItemId="S6" CovItemPrefix="se.lnu.http.HTTPRequestParser.java" Intrnl_Id="189">
+<LocList>
+<Loc EndOffset="425" SrcFileId="12" StartOffset="374"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B4" CovItemPrefix="se.lnu.http.HTTPRequestParser.java" Implct="true" Intrnl_Id="190">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="191">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="342" SrcFileId="12" StartOffset="340"/>
+<LocList>
+<Loc EndOffset="429" SrcFileId="12" StartOffset="340"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="se.lnu.http.HTTPRequestParser.java" Intrnl_Id="192">
+<BasicBoolTerm Intrnl_Id="193">
+<LocList>
+<Loc EndOffset="367" SrcFileId="12" StartOffset="344"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="se.lnu.http.HTTPRequestParser.java" Intrnl_Id="194">
+<LocList>
+<Loc EndOffset="493" SrcFileId="12" StartOffset="438"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="472" HierarchyLvlTypeId="22" Intrnl_Id="195" Name="HTTPRequest">
+<Header>
+<Loc EndOffset="46" SrcFileId="13" StartOffset="22"/>
+</Header>
+<LocList>
+<Loc EndOffset="323" SrcFileId="13" StartOffset="22"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="469" HierarchyLvlTypeId="23" Intrnl_Id="196" Name="HTTPRequest">
+<Header>
+<Loc EndOffset="153" SrcFileId="13" StartOffset="103"/>
+</Header>
+<LocList>
+<Loc EndOffset="210" SrcFileId="13" StartOffset="103"/>
+</LocList>
+<StmntSeq Intrnl_Id="197">
+<LocList>
+<Loc EndOffset="173" SrcFileId="13" StartOffset="158"/>
+<Loc EndOffset="207" SrcFileId="13" StartOffset="176"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.HTTPRequest.java" Intrnl_Id="198">
+<LocList>
+<Loc EndOffset="173" SrcFileId="13" StartOffset="158"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="se.lnu.http.HTTPRequest.java" Intrnl_Id="199">
+<LocList>
+<Loc EndOffset="207" SrcFileId="13" StartOffset="176"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="470" HierarchyLvlTypeId="23" Intrnl_Id="200" Name="getURL">
+<Header>
+<Loc EndOffset="235" SrcFileId="13" StartOffset="213"/>
+</Header>
+<LocList>
+<Loc EndOffset="262" SrcFileId="13" StartOffset="213"/>
+</LocList>
+<StmntSeq Intrnl_Id="201">
+<LocList>
+<Loc EndOffset="259" SrcFileId="13" StartOffset="243"/>
+</LocList>
+<BasicStmnt CovItemId="S3" CovItemPrefix="se.lnu.http.HTTPRequest.java" Intrnl_Id="202">
+<LocList>
+<Loc EndOffset="259" SrcFileId="13" StartOffset="243"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="471" HierarchyLvlTypeId="23" Intrnl_Id="203" Name="getProtocoll">
+<Header>
+<Loc EndOffset="293" SrcFileId="13" StartOffset="265"/>
+</Header>
+<LocList>
+<Loc EndOffset="320" SrcFileId="13" StartOffset="265"/>
+</LocList>
+<StmntSeq Intrnl_Id="204">
+<LocList>
+<Loc EndOffset="317" SrcFileId="13" StartOffset="298"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="se.lnu.http.HTTPRequest.java" Intrnl_Id="205">
+<LocList>
+<Loc EndOffset="317" SrcFileId="13" StartOffset="298"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="476" HierarchyLvlTypeId="22" Intrnl_Id="206" Name="HTTPReader">
+<Header>
+<Loc EndOffset="105" SrcFileId="14" StartOffset="82"/>
+</Header>
+<LocList>
+<Loc EndOffset="1351" SrcFileId="14" StartOffset="82"/>
+</LocList>
+<StmntSeq Intrnl_Id="207">
+<LocList>
+<Loc EndOffset="139" SrcFileId="14" StartOffset="109"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="208">
+<LocList>
+<Loc EndOffset="139" SrcFileId="14" StartOffset="109"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<HierarchyLvl HierarchyLvlId="473" HierarchyLvlTypeId="23" Intrnl_Id="209" Name="HTTPReader">
+<Header>
+<Loc EndOffset="209" SrcFileId="14" StartOffset="169"/>
+</Header>
+<LocList>
+<Loc EndOffset="238" SrcFileId="14" StartOffset="169"/>
+</LocList>
+<StmntSeq Intrnl_Id="210">
+<LocList>
+<Loc EndOffset="235" SrcFileId="14" StartOffset="214"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="211">
+<LocList>
+<Loc EndOffset="235" SrcFileId="14" StartOffset="214"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="474" HierarchyLvlTypeId="23" Intrnl_Id="212" Name="readBody">
+<Header>
+<Loc EndOffset="284" SrcFileId="14" StartOffset="241"/>
+</Header>
+<LocList>
+<Loc EndOffset="447" SrcFileId="14" StartOffset="241"/>
+</LocList>
+<StmntSeq Intrnl_Id="213">
+<LocList>
+<Loc EndOffset="330" SrcFileId="14" StartOffset="289"/>
+<Loc EndOffset="415" SrcFileId="14" StartOffset="333"/>
+<Loc EndOffset="444" SrcFileId="14" StartOffset="421"/>
+</LocList>
+<BasicStmnt CovItemId="S3" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="214">
+<LocList>
+<Loc EndOffset="330" SrcFileId="14" StartOffset="289"/>
+</LocList>
+</BasicStmnt>
+<LoopStmnt CovItemId="S4" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="215" MltplExecId="L1-2" MltplExecPrefix="se.lnu.http.HTTPReader.java" NvrExecId="L1-0" NvrExecPrefix="se.lnu.http.HTTPReader.java" OnceExecutedId="L1-1" OnceExecutedPrefix="se.lnu.http.HTTPReader.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="216">
+<LocList>
+<Loc EndOffset="411" SrcFileId="14" StartOffset="378"/>
+</LocList>
+<BasicStmnt CovItemId="S5" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="217">
+<LocList>
+<Loc EndOffset="411" SrcFileId="14" StartOffset="378"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<Keyword EndOffset="336" SrcFileId="14" StartOffset="333"/>
+<LocList>
+<Loc EndOffset="415" SrcFileId="14" StartOffset="333"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="218">
+<BasicBoolTerm Intrnl_Id="219">
+<LocList>
+<Loc EndOffset="366" SrcFileId="14" StartOffset="349"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</LoopStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="220">
+<LocList>
+<Loc EndOffset="444" SrcFileId="14" StartOffset="421"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="475" HierarchyLvlTypeId="23" Intrnl_Id="221" Name="readHeader">
+<Header>
+<Loc EndOffset="498" SrcFileId="14" StartOffset="450"/>
+</Header>
+<LocList>
+<Loc EndOffset="1349" SrcFileId="14" StartOffset="450"/>
+</LocList>
+<StmntSeq Intrnl_Id="222">
+<LocList>
+<Loc EndOffset="544" SrcFileId="14" StartOffset="503"/>
+<Loc EndOffset="585" SrcFileId="14" StartOffset="547"/>
+<Loc EndOffset="732" SrcFileId="14" StartOffset="591"/>
+<Loc EndOffset="759" SrcFileId="14" StartOffset="735"/>
+<Loc EndOffset="782" SrcFileId="14" StartOffset="762"/>
+<Loc EndOffset="1317" SrcFileId="14" StartOffset="813"/>
+<Loc EndOffset="1346" SrcFileId="14" StartOffset="1323"/>
+</LocList>
+<BasicStmnt CovItemId="S7" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="223">
+<LocList>
+<Loc EndOffset="544" SrcFileId="14" StartOffset="503"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S8" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="224">
+<LocList>
+<Loc EndOffset="585" SrcFileId="14" StartOffset="547"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S9" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="225">
+<Branch CovItemId="B1" CovItemPrefix="se.lnu.http.HTTPReader.java" Implct="false" Intrnl_Id="226">
+<Cond/>
+<LocList>
+<Loc EndOffset="732" SrcFileId="14" StartOffset="615"/>
+</LocList>
+<StmntSeq Intrnl_Id="227">
+<LocList>
+<Loc EndOffset="728" SrcFileId="14" StartOffset="699"/>
+</LocList>
+<BasicStmnt CovItemId="S10" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="228">
+<LocList>
+<Loc EndOffset="728" SrcFileId="14" StartOffset="699"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="se.lnu.http.HTTPReader.java" Implct="true" Intrnl_Id="229">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="230">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="593" SrcFileId="14" StartOffset="591"/>
+<LocList>
+<Loc EndOffset="732" SrcFileId="14" StartOffset="591"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="231">
+<BasicBoolTerm Intrnl_Id="232">
+<LocList>
+<Loc EndOffset="613" SrcFileId="14" StartOffset="595"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S11" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="233">
+<LocList>
+<Loc EndOffset="759" SrcFileId="14" StartOffset="735"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S12" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="234">
+<LocList>
+<Loc EndOffset="782" SrcFileId="14" StartOffset="762"/>
+</LocList>
+</BasicStmnt>
+<LoopStmnt CovItemId="S13" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="235" MltplExecId="L2-2" MltplExecPrefix="se.lnu.http.HTTPReader.java" NvrExecId="L2-0" NvrExecPrefix="se.lnu.http.HTTPReader.java" OnceExecutedId="L2-1" OnceExecutedPrefix="se.lnu.http.HTTPReader.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="236">
+<LocList>
+<Loc EndOffset="867" SrcFileId="14" StartOffset="831"/>
+<Loc EndOffset="1016" SrcFileId="14" StartOffset="875"/>
+<Loc EndOffset="1046" SrcFileId="14" StartOffset="1024"/>
+<Loc EndOffset="1070" SrcFileId="14" StartOffset="1050"/>
+<Loc EndOffset="1163" SrcFileId="14" StartOffset="1074"/>
+<Loc EndOffset="1309" SrcFileId="14" StartOffset="1167"/>
+</LocList>
+<BasicStmnt CovItemId="S14" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="237">
+<LocList>
+<Loc EndOffset="867" SrcFileId="14" StartOffset="831"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S15" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="238">
+<Branch CovItemId="B3" CovItemPrefix="se.lnu.http.HTTPReader.java" Implct="false" Intrnl_Id="239">
+<Cond/>
+<LocList>
+<Loc EndOffset="1016" SrcFileId="14" StartOffset="897"/>
+</LocList>
+<StmntSeq Intrnl_Id="240">
+<LocList>
+<Loc EndOffset="1011" SrcFileId="14" StartOffset="982"/>
+</LocList>
+<BasicStmnt CovItemId="S16" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="241">
+<LocList>
+<Loc EndOffset="1011" SrcFileId="14" StartOffset="982"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B4" CovItemPrefix="se.lnu.http.HTTPReader.java" Implct="true" Intrnl_Id="242">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="243">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="877" SrcFileId="14" StartOffset="875"/>
+<LocList>
+<Loc EndOffset="1016" SrcFileId="14" StartOffset="875"/>
+</LocList>
+<RootTerm CovItemId="C4" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="244">
+<BasicBoolTerm Intrnl_Id="245">
+<LocList>
+<Loc EndOffset="895" SrcFileId="14" StartOffset="879"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S17" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="246">
+<LocList>
+<Loc EndOffset="1046" SrcFileId="14" StartOffset="1024"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S18" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="247">
+<LocList>
+<Loc EndOffset="1070" SrcFileId="14" StartOffset="1050"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S19" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="248">
+<Branch CovItemId="B5" CovItemPrefix="se.lnu.http.HTTPReader.java" Implct="false" Intrnl_Id="249">
+<Cond/>
+<LocList>
+<Loc EndOffset="1163" SrcFileId="14" StartOffset="1146"/>
+</LocList>
+<StmntSeq Intrnl_Id="250">
+<LocList>
+<Loc EndOffset="1158" SrcFileId="14" StartOffset="1152"/>
+</LocList>
+<BasicStmnt CovItemId="S20" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="251">
+<LocList>
+<Loc EndOffset="1158" SrcFileId="14" StartOffset="1152"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B6" CovItemPrefix="se.lnu.http.HTTPReader.java" Implct="true" Intrnl_Id="252">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="253">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1076" SrcFileId="14" StartOffset="1074"/>
+<LocList>
+<Loc EndOffset="1163" SrcFileId="14" StartOffset="1074"/>
+</LocList>
+<RootTerm CovItemId="C5" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="254">
+<OpTerm BooleanOpId="20" Intrnl_Id="255">
+<OpTerm BooleanOpId="20" Intrnl_Id="256">
+<BasicBoolTerm Intrnl_Id="257">
+<LocList>
+<Loc EndOffset="1094" SrcFileId="14" StartOffset="1078"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="258">
+<LocList>
+<Loc EndOffset="1121" SrcFileId="14" StartOffset="1098"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="1097" SrcFileId="14" StartOffset="1095"/>
+</LocList>
+</OpTerm>
+<BasicBoolTerm Intrnl_Id="259">
+<LocList>
+<Loc EndOffset="1144" SrcFileId="14" StartOffset="1125"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="1124" SrcFileId="14" StartOffset="1122"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</CondStmnt>
+<CondStmnt CovItemId="S21" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="260">
+<Branch CovItemId="B7" CovItemPrefix="se.lnu.http.HTTPReader.java" Implct="false" Intrnl_Id="261">
+<Cond/>
+<LocList>
+<Loc EndOffset="1309" SrcFileId="14" StartOffset="1211"/>
+</LocList>
+<StmntSeq Intrnl_Id="262">
+<LocList>
+<Loc EndOffset="1256" SrcFileId="14" StartOffset="1217"/>
+<Loc EndOffset="1303" SrcFileId="14" StartOffset="1261"/>
+</LocList>
+<BasicStmnt CovItemId="S22" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="263">
+<LocList>
+<Loc EndOffset="1256" SrcFileId="14" StartOffset="1217"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S23" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="264">
+<LocList>
+<Loc EndOffset="1303" SrcFileId="14" StartOffset="1261"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B8" CovItemPrefix="se.lnu.http.HTTPReader.java" Implct="true" Intrnl_Id="265">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="266">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1169" SrcFileId="14" StartOffset="1167"/>
+<LocList>
+<Loc EndOffset="1309" SrcFileId="14" StartOffset="1167"/>
+</LocList>
+<RootTerm CovItemId="C6" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="267">
+<BasicBoolTerm Intrnl_Id="268">
+<LocList>
+<Loc EndOffset="1209" SrcFileId="14" StartOffset="1171"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+<Keyword EndOffset="818" SrcFileId="14" StartOffset="813"/>
+<LocList>
+<Loc EndOffset="1317" SrcFileId="14" StartOffset="813"/>
+</LocList>
+</LoopStmnt>
+<BasicStmnt CovItemId="S24" CovItemPrefix="se.lnu.http.HTTPReader.java" Intrnl_Id="269">
+<LocList>
+<Loc EndOffset="1346" SrcFileId="14" StartOffset="1323"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="478" HierarchyLvlTypeId="22" Intrnl_Id="270" Name="HTTPGetProtocoll">
+<Header>
+<Loc EndOffset="142" SrcFileId="15" StartOffset="113"/>
+</Header>
+<LocList>
+<Loc EndOffset="517" SrcFileId="15" StartOffset="113"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="477" HierarchyLvlTypeId="23" Intrnl_Id="271" Name="doGet">
+<Header>
+<Loc EndOffset="262" SrcFileId="15" StartOffset="149"/>
+</Header>
+<LocList>
+<Loc EndOffset="512" SrcFileId="15" StartOffset="149"/>
+</LocList>
+<StmntSeq Intrnl_Id="272">
+<LocList>
+<Loc EndOffset="346" SrcFileId="15" StartOffset="267"/>
+<Loc EndOffset="367" SrcFileId="15" StartOffset="349"/>
+<Loc EndOffset="420" SrcFileId="15" StartOffset="373"/>
+<Loc EndOffset="461" SrcFileId="15" StartOffset="423"/>
+<Loc EndOffset="494" SrcFileId="15" StartOffset="464"/>
+<Loc EndOffset="509" SrcFileId="15" StartOffset="497"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.HTTPGetProtocoll.java" Intrnl_Id="273">
+<LocList>
+<Loc EndOffset="346" SrcFileId="15" StartOffset="267"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="se.lnu.http.HTTPGetProtocoll.java" Intrnl_Id="274">
+<LocList>
+<Loc EndOffset="367" SrcFileId="15" StartOffset="349"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="se.lnu.http.HTTPGetProtocoll.java" Intrnl_Id="275">
+<LocList>
+<Loc EndOffset="420" SrcFileId="15" StartOffset="373"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S4" CovItemPrefix="se.lnu.http.HTTPGetProtocoll.java" Intrnl_Id="276">
+<LocList>
+<Loc EndOffset="461" SrcFileId="15" StartOffset="423"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S5" CovItemPrefix="se.lnu.http.HTTPGetProtocoll.java" Intrnl_Id="277">
+<LocList>
+<Loc EndOffset="494" SrcFileId="15" StartOffset="464"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="se.lnu.http.HTTPGetProtocoll.java" Intrnl_Id="278">
+<LocList>
+<Loc EndOffset="509" SrcFileId="15" StartOffset="497"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="490" HierarchyLvlTypeId="22" Intrnl_Id="279" Name="ConsoleView">
+<Header>
+<Loc EndOffset="191" SrcFileId="16" StartOffset="137"/>
+</Header>
+<LocList>
+<Loc EndOffset="2485" SrcFileId="16" StartOffset="137"/>
+</LocList>
+<StmntSeq Intrnl_Id="280">
+<LocList>
+<Loc EndOffset="275" SrcFileId="16" StartOffset="195"/>
+<Loc EndOffset="351" SrcFileId="16" StartOffset="277"/>
+<Loc EndOffset="412" SrcFileId="16" StartOffset="353"/>
+<Loc EndOffset="473" SrcFileId="16" StartOffset="414"/>
+<Loc EndOffset="562" SrcFileId="16" StartOffset="475"/>
+<Loc EndOffset="618" SrcFileId="16" StartOffset="564"/>
+<Loc EndOffset="667" SrcFileId="16" StartOffset="620"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="281">
+<LocList>
+<Loc EndOffset="275" SrcFileId="16" StartOffset="195"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="282">
+<LocList>
+<Loc EndOffset="351" SrcFileId="16" StartOffset="277"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="283">
+<LocList>
+<Loc EndOffset="412" SrcFileId="16" StartOffset="353"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S4" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="284">
+<LocList>
+<Loc EndOffset="473" SrcFileId="16" StartOffset="414"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S5" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="285">
+<LocList>
+<Loc EndOffset="562" SrcFileId="16" StartOffset="475"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="286">
+<LocList>
+<Loc EndOffset="618" SrcFileId="16" StartOffset="564"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="287">
+<LocList>
+<Loc EndOffset="667" SrcFileId="16" StartOffset="620"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<HierarchyLvl HierarchyLvlId="479" HierarchyLvlTypeId="23" Intrnl_Id="288" Name="ConsoleView">
+<Header>
+<Loc EndOffset="773" SrcFileId="16" StartOffset="701"/>
+</Header>
+<LocList>
+<Loc EndOffset="900" SrcFileId="16" StartOffset="701"/>
+</LocList>
+<StmntSeq Intrnl_Id="289">
+<LocList>
+<Loc EndOffset="871" SrcFileId="16" StartOffset="778"/>
+<Loc EndOffset="894" SrcFileId="16" StartOffset="877"/>
+</LocList>
+<CondStmnt CovItemId="S8" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="290">
+<Branch CovItemId="B1" CovItemPrefix="se.lnu.http.ConsoleView.java" Implct="false" Intrnl_Id="291">
+<Cond/>
+<LocList>
+<Loc EndOffset="871" SrcFileId="16" StartOffset="818"/>
+</LocList>
+<StmntSeq Intrnl_Id="292">
+<LocList>
+<Loc EndOffset="867" SrcFileId="16" StartOffset="823"/>
+</LocList>
+<BasicStmnt CovItemId="S9" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="293">
+<LocList>
+<Loc EndOffset="867" SrcFileId="16" StartOffset="823"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="se.lnu.http.ConsoleView.java" Implct="true" Intrnl_Id="294">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="295">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="780" SrcFileId="16" StartOffset="778"/>
+<LocList>
+<Loc EndOffset="871" SrcFileId="16" StartOffset="778"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="296">
+<OpTerm BooleanOpId="20" Intrnl_Id="297">
+<BasicBoolTerm Intrnl_Id="298">
+<LocList>
+<Loc EndOffset="797" SrcFileId="16" StartOffset="782"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="299">
+<LocList>
+<Loc EndOffset="816" SrcFileId="16" StartOffset="801"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="800" SrcFileId="16" StartOffset="798"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S10" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="300">
+<LocList>
+<Loc EndOffset="894" SrcFileId="16" StartOffset="877"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="480" HierarchyLvlTypeId="23" Intrnl_Id="301" Name="getPort">
+<Header>
+<Loc EndOffset="952" SrcFileId="16" StartOffset="903"/>
+</Header>
+<LocList>
+<Loc EndOffset="1148" SrcFileId="16" StartOffset="903"/>
+</LocList>
+<StmntSeq Intrnl_Id="302">
+<LocList>
+<Loc EndOffset="1011" SrcFileId="16" StartOffset="978"/>
+<Loc EndOffset="1103" SrcFileId="16" StartOffset="969"/>
+<Loc EndOffset="1130" SrcFileId="16" StartOffset="1106"/>
+<Loc EndOffset="1145" SrcFileId="16" StartOffset="1136"/>
+</LocList>
+<BasicStmnt CovItemId="S12" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="303">
+<LocList>
+<Loc EndOffset="1011" SrcFileId="16" StartOffset="978"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S11" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="304">
+<Branch CovItemId="B3" CovItemPrefix="se.lnu.http.ConsoleView.java" Implct="true" Intrnl_Id="305">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="306">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B4" CovItemPrefix="se.lnu.http.ConsoleView.java" Implct="false" Intrnl_Id="307">
+<Cond>
+<Loc EndOffset="1035" SrcFileId="16" StartOffset="1016"/>
+</Cond>
+<LocList>
+<Loc EndOffset="1103" SrcFileId="16" StartOffset="1036"/>
+</LocList>
+<StmntSeq Intrnl_Id="308">
+<LocList>
+<Loc EndOffset="1099" SrcFileId="16" StartOffset="1041"/>
+</LocList>
+<BasicStmnt CovItemId="S13" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="309">
+<LocList>
+<Loc EndOffset="1099" SrcFileId="16" StartOffset="1041"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="972" SrcFileId="16" StartOffset="969"/>
+<LocList>
+<Loc EndOffset="1103" SrcFileId="16" StartOffset="969"/>
+</LocList>
+</CondStmnt>
+<BasicStmnt CovItemId="S14" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="310">
+<LocList>
+<Loc EndOffset="1130" SrcFileId="16" StartOffset="1106"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S15" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="311">
+<LocList>
+<Loc EndOffset="1145" SrcFileId="16" StartOffset="1136"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="481" HierarchyLvlTypeId="23" Intrnl_Id="312" Name="showhelp">
+<Header>
+<Loc EndOffset="1175" SrcFileId="16" StartOffset="1153"/>
+</Header>
+<LocList>
+<Loc EndOffset="1214" SrcFileId="16" StartOffset="1153"/>
+</LocList>
+<StmntSeq Intrnl_Id="313">
+<LocList>
+<Loc EndOffset="1208" SrcFileId="16" StartOffset="1180"/>
+</LocList>
+<BasicStmnt CovItemId="S16" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="314">
+<LocList>
+<Loc EndOffset="1208" SrcFileId="16" StartOffset="1180"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="482" HierarchyLvlTypeId="23" Intrnl_Id="315" Name="getDirectory">
+<Header>
+<Loc EndOffset="1277" SrcFileId="16" StartOffset="1221"/>
+</Header>
+<LocList>
+<Loc EndOffset="1704" SrcFileId="16" StartOffset="1221"/>
+</LocList>
+<StmntSeq Intrnl_Id="316">
+<LocList>
+<Loc EndOffset="1339" SrcFileId="16" StartOffset="1309"/>
+<Loc EndOffset="1489" SrcFileId="16" StartOffset="1383"/>
+<Loc EndOffset="1601" SrcFileId="16" StartOffset="1493"/>
+<Loc EndOffset="1675" SrcFileId="16" StartOffset="1300"/>
+<Loc EndOffset="1701" SrcFileId="16" StartOffset="1684"/>
+</LocList>
+<BasicStmnt CovItemId="S18" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="317">
+<LocList>
+<Loc EndOffset="1339" SrcFileId="16" StartOffset="1309"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S19" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="318">
+<Branch CovItemId="B6" CovItemPrefix="se.lnu.http.ConsoleView.java" Implct="false" Intrnl_Id="319">
+<Cond/>
+<LocList>
+<Loc EndOffset="1489" SrcFileId="16" StartOffset="1416"/>
+</LocList>
+<StmntSeq Intrnl_Id="320">
+<LocList>
+<Loc EndOffset="1484" SrcFileId="16" StartOffset="1422"/>
+</LocList>
+<BasicStmnt CovItemId="S20" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="321">
+<LocList>
+<Loc EndOffset="1484" SrcFileId="16" StartOffset="1422"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B7" CovItemPrefix="se.lnu.http.ConsoleView.java" Implct="true" Intrnl_Id="322">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="323">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1385" SrcFileId="16" StartOffset="1383"/>
+<LocList>
+<Loc EndOffset="1489" SrcFileId="16" StartOffset="1383"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="324">
+<BasicBoolTerm Intrnl_Id="325">
+<LocList>
+<Loc EndOffset="1414" SrcFileId="16" StartOffset="1387"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<CondStmnt CovItemId="S21" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="326">
+<Branch CovItemId="B8" CovItemPrefix="se.lnu.http.ConsoleView.java" Implct="false" Intrnl_Id="327">
+<Cond/>
+<LocList>
+<Loc EndOffset="1601" SrcFileId="16" StartOffset="1531"/>
+</LocList>
+<StmntSeq Intrnl_Id="328">
+<LocList>
+<Loc EndOffset="1596" SrcFileId="16" StartOffset="1537"/>
+</LocList>
+<BasicStmnt CovItemId="S22" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="329">
+<LocList>
+<Loc EndOffset="1596" SrcFileId="16" StartOffset="1537"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B9" CovItemPrefix="se.lnu.http.ConsoleView.java" Implct="true" Intrnl_Id="330">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="331">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1495" SrcFileId="16" StartOffset="1493"/>
+<LocList>
+<Loc EndOffset="1601" SrcFileId="16" StartOffset="1493"/>
+</LocList>
+<RootTerm CovItemId="C3" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="332">
+<BasicBoolTerm Intrnl_Id="333">
+<LocList>
+<Loc EndOffset="1529" SrcFileId="16" StartOffset="1497"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<CondStmnt CovItemId="S17" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="334">
+<Branch CovItemId="B5" CovItemPrefix="se.lnu.http.ConsoleView.java" Implct="true" Intrnl_Id="335">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="336">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B10" CovItemPrefix="se.lnu.http.ConsoleView.java" Implct="false" Intrnl_Id="337">
+<Cond>
+<Loc EndOffset="1629" SrcFileId="16" StartOffset="1610"/>
+</Cond>
+<LocList>
+<Loc EndOffset="1675" SrcFileId="16" StartOffset="1630"/>
+</LocList>
+<StmntSeq Intrnl_Id="338">
+<LocList>
+<Loc EndOffset="1671" SrcFileId="16" StartOffset="1635"/>
+</LocList>
+<BasicStmnt CovItemId="S23" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="339">
+<LocList>
+<Loc EndOffset="1671" SrcFileId="16" StartOffset="1635"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1303" SrcFileId="16" StartOffset="1300"/>
+<LocList>
+<Loc EndOffset="1675" SrcFileId="16" StartOffset="1300"/>
+</LocList>
+</CondStmnt>
+<BasicStmnt CovItemId="S24" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="340">
+<LocList>
+<Loc EndOffset="1701" SrcFileId="16" StartOffset="1684"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="483" HierarchyLvlTypeId="23" Intrnl_Id="341" Name="doStop">
+<Header>
+<Loc EndOffset="1749" SrcFileId="16" StartOffset="1707"/>
+</Header>
+<LocList>
+<Loc EndOffset="1932" SrcFileId="16" StartOffset="1707"/>
+</LocList>
+<StmntSeq Intrnl_Id="342">
+<LocList>
+<Loc EndOffset="1827" SrcFileId="16" StartOffset="1754"/>
+<Loc EndOffset="1861" SrcFileId="16" StartOffset="1833"/>
+<Loc EndOffset="1910" SrcFileId="16" StartOffset="1864"/>
+<Loc EndOffset="1929" SrcFileId="16" StartOffset="1916"/>
+</LocList>
+<BasicStmnt CovItemId="S25" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="343">
+<LocList>
+<Loc EndOffset="1827" SrcFileId="16" StartOffset="1754"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S26" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="344">
+<LocList>
+<Loc EndOffset="1861" SrcFileId="16" StartOffset="1833"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S27" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="345">
+<Branch CovItemId="B11" CovItemPrefix="se.lnu.http.ConsoleView.java" Implct="false" Intrnl_Id="346">
+<Cond/>
+<LocList>
+<Loc EndOffset="1910" SrcFileId="16" StartOffset="1889"/>
+</LocList>
+<StmntSeq Intrnl_Id="347">
+<LocList>
+<Loc EndOffset="1906" SrcFileId="16" StartOffset="1894"/>
+</LocList>
+<BasicStmnt CovItemId="S28" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="348">
+<LocList>
+<Loc EndOffset="1906" SrcFileId="16" StartOffset="1894"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B12" CovItemPrefix="se.lnu.http.ConsoleView.java" Implct="true" Intrnl_Id="349">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="350">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1866" SrcFileId="16" StartOffset="1864"/>
+<LocList>
+<Loc EndOffset="1910" SrcFileId="16" StartOffset="1864"/>
+</LocList>
+<RootTerm CovItemId="C4" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="351">
+<BasicBoolTerm Intrnl_Id="352">
+<LocList>
+<Loc EndOffset="1887" SrcFileId="16" StartOffset="1868"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S29" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="353">
+<LocList>
+<Loc EndOffset="1929" SrcFileId="16" StartOffset="1916"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="484" HierarchyLvlTypeId="23" Intrnl_Id="354" Name="serverConstructed">
+<Header>
+<Loc EndOffset="1978" SrcFileId="16" StartOffset="1936"/>
+</Header>
+<LocList>
+<Loc EndOffset="2028" SrcFileId="16" StartOffset="1936"/>
+</LocList>
+<StmntSeq Intrnl_Id="355">
+<LocList>
+<Loc EndOffset="2022" SrcFileId="16" StartOffset="1983"/>
+</LocList>
+<BasicStmnt CovItemId="S30" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="356">
+<LocList>
+<Loc EndOffset="2022" SrcFileId="16" StartOffset="1983"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="485" HierarchyLvlTypeId="23" Intrnl_Id="357" Name="serverStarted">
+<Header>
+<Loc EndOffset="2069" SrcFileId="16" StartOffset="2031"/>
+</Header>
+<LocList>
+<Loc EndOffset="2115" SrcFileId="16" StartOffset="2031"/>
+</LocList>
+<StmntSeq Intrnl_Id="358">
+<LocList>
+<Loc EndOffset="2109" SrcFileId="16" StartOffset="2074"/>
+</LocList>
+<BasicStmnt CovItemId="S31" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="359">
+<LocList>
+<Loc EndOffset="2109" SrcFileId="16" StartOffset="2074"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="486" HierarchyLvlTypeId="23" Intrnl_Id="360" Name="serverStopped">
+<Header>
+<Loc EndOffset="2156" SrcFileId="16" StartOffset="2118"/>
+</Header>
+<LocList>
+<Loc EndOffset="2202" SrcFileId="16" StartOffset="2118"/>
+</LocList>
+<StmntSeq Intrnl_Id="361">
+<LocList>
+<Loc EndOffset="2196" SrcFileId="16" StartOffset="2161"/>
+</LocList>
+<BasicStmnt CovItemId="S32" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="362">
+<LocList>
+<Loc EndOffset="2196" SrcFileId="16" StartOffset="2161"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="487" HierarchyLvlTypeId="23" Intrnl_Id="363" Name="closedAccept">
+<Header>
+<Loc EndOffset="2242" SrcFileId="16" StartOffset="2205"/>
+</Header>
+<LocList>
+<Loc EndOffset="2302" SrcFileId="16" StartOffset="2205"/>
+</LocList>
+<StmntSeq Intrnl_Id="364">
+<LocList>
+<Loc EndOffset="2296" SrcFileId="16" StartOffset="2247"/>
+</LocList>
+<BasicStmnt CovItemId="S33" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="365">
+<LocList>
+<Loc EndOffset="2296" SrcFileId="16" StartOffset="2247"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="488" HierarchyLvlTypeId="23" Intrnl_Id="366" Name="startedClient">
+<Header>
+<Loc EndOffset="2343" SrcFileId="16" StartOffset="2305"/>
+</Header>
+<LocList>
+<Loc EndOffset="2389" SrcFileId="16" StartOffset="2305"/>
+</LocList>
+<StmntSeq Intrnl_Id="367">
+<LocList>
+<Loc EndOffset="2383" SrcFileId="16" StartOffset="2348"/>
+</LocList>
+<BasicStmnt CovItemId="S34" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="368">
+<LocList>
+<Loc EndOffset="2383" SrcFileId="16" StartOffset="2348"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="489" HierarchyLvlTypeId="23" Intrnl_Id="369" Name="waitForClient">
+<Header>
+<Loc EndOffset="2430" SrcFileId="16" StartOffset="2392"/>
+</Header>
+<LocList>
+<Loc EndOffset="2477" SrcFileId="16" StartOffset="2392"/>
+</LocList>
+<StmntSeq Intrnl_Id="370">
+<LocList>
+<Loc EndOffset="2471" SrcFileId="16" StartOffset="2435"/>
+</LocList>
+<BasicStmnt CovItemId="S35" CovItemPrefix="se.lnu.http.ConsoleView.java" Intrnl_Id="371">
+<LocList>
+<Loc EndOffset="2471" SrcFileId="16" StartOffset="2435"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="493" HierarchyLvlTypeId="22" Intrnl_Id="372" Name="ClientThread">
+<Header>
+<Loc EndOffset="208" SrcFileId="17" StartOffset="168"/>
+</Header>
+<LocList>
+<Loc EndOffset="1752" SrcFileId="17" StartOffset="168"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="491" HierarchyLvlTypeId="23" Intrnl_Id="373" Name="ClientThread">
+<Header>
+<Loc EndOffset="286" SrcFileId="17" StartOffset="246"/>
+</Header>
+<LocList>
+<Loc EndOffset="327" SrcFileId="17" StartOffset="246"/>
+</LocList>
+<StmntSeq Intrnl_Id="374">
+<LocList>
+<Loc EndOffset="324" SrcFileId="17" StartOffset="291"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="375">
+<LocList>
+<Loc EndOffset="324" SrcFileId="17" StartOffset="291"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="492" HierarchyLvlTypeId="23" Intrnl_Id="376" Name="run">
+<Header>
+<Loc EndOffset="348" SrcFileId="17" StartOffset="331"/>
+</Header>
+<LocList>
+<Loc EndOffset="1746" SrcFileId="17" StartOffset="331"/>
+</LocList>
+<StmntSeq Intrnl_Id="377">
+<LocList>
+<Loc EndOffset="438" SrcFileId="17" StartOffset="366"/>
+<Loc EndOffset="535" SrcFileId="17" StartOffset="442"/>
+<Loc EndOffset="586" SrcFileId="17" StartOffset="543"/>
+<Loc EndOffset="637" SrcFileId="17" StartOffset="590"/>
+<Loc EndOffset="680" SrcFileId="17" StartOffset="641"/>
+<Loc EndOffset="756" SrcFileId="17" StartOffset="688"/>
+<Loc EndOffset="788" SrcFileId="17" StartOffset="768"/>
+<Loc EndOffset="1296" SrcFileId="17" StartOffset="792"/>
+<Loc EndOffset="1341" SrcFileId="17" StartOffset="1300"/>
+<Loc EndOffset="1403" SrcFileId="17" StartOffset="1345"/>
+<Loc EndOffset="1442" SrcFileId="17" StartOffset="1407"/>
+<Loc EndOffset="1472" SrcFileId="17" StartOffset="1454"/>
+<Loc EndOffset="1495" SrcFileId="17" StartOffset="1476"/>
+<Loc EndOffset="1511" SrcFileId="17" StartOffset="1499"/>
+<Loc EndOffset="1545" SrcFileId="17" StartOffset="1519"/>
+<Loc EndOffset="1705" SrcFileId="17" StartOffset="357"/>
+<Loc EndOffset="1743" SrcFileId="17" StartOffset="1708"/>
+</LocList>
+<BasicStmnt CovItemId="S3" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="378">
+<LocList>
+<Loc EndOffset="438" SrcFileId="17" StartOffset="366"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S4" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="379">
+<LocList>
+<Loc EndOffset="535" SrcFileId="17" StartOffset="442"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S5" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="380">
+<LocList>
+<Loc EndOffset="586" SrcFileId="17" StartOffset="543"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="381">
+<LocList>
+<Loc EndOffset="637" SrcFileId="17" StartOffset="590"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="382">
+<LocList>
+<Loc EndOffset="680" SrcFileId="17" StartOffset="641"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S8" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="383">
+<LocList>
+<Loc EndOffset="756" SrcFileId="17" StartOffset="688"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S9" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="384">
+<LocList>
+<Loc EndOffset="788" SrcFileId="17" StartOffset="768"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S10" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="385">
+<Branch CovItemId="B2" CovItemPrefix="se.lnu.http.ClientThread.java" Implct="false" Intrnl_Id="386">
+<Cond/>
+<LocList>
+<Loc EndOffset="1179" SrcFileId="17" StartOffset="834"/>
+</LocList>
+<StmntSeq Intrnl_Id="387">
+<LocList>
+<Loc EndOffset="1127" SrcFileId="17" StartOffset="840"/>
+<Loc EndOffset="1169" SrcFileId="17" StartOffset="1132"/>
+</LocList>
+<CondStmnt CovItemId="S11" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="388">
+<Branch CovItemId="B4" CovItemPrefix="se.lnu.http.ClientThread.java" Implct="false" Intrnl_Id="389">
+<Cond/>
+<LocList>
+<Loc EndOffset="1001" SrcFileId="17" StartOffset="874"/>
+</LocList>
+<StmntSeq Intrnl_Id="390">
+<LocList>
+<Loc EndOffset="955" SrcFileId="17" StartOffset="881"/>
+<Loc EndOffset="994" SrcFileId="17" StartOffset="961"/>
+</LocList>
+<BasicStmnt CovItemId="S12" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="391">
+<LocList>
+<Loc EndOffset="955" SrcFileId="17" StartOffset="881"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S13" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="392">
+<LocList>
+<Loc EndOffset="994" SrcFileId="17" StartOffset="961"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B5" CovItemPrefix="se.lnu.http.ClientThread.java" Implct="false" Intrnl_Id="393">
+<Cond>
+<Loc EndOffset="1006" SrcFileId="17" StartOffset="1002"/>
+</Cond>
+<LocList>
+<Loc EndOffset="1127" SrcFileId="17" StartOffset="1007"/>
+</LocList>
+<StmntSeq Intrnl_Id="394">
+<LocList>
+<Loc EndOffset="1075" SrcFileId="17" StartOffset="1014"/>
+<Loc EndOffset="1121" SrcFileId="17" StartOffset="1081"/>
+</LocList>
+<BasicStmnt CovItemId="S14" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="395">
+<LocList>
+<Loc EndOffset="1075" SrcFileId="17" StartOffset="1014"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S15" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="396">
+<LocList>
+<Loc EndOffset="1121" SrcFileId="17" StartOffset="1081"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="842" SrcFileId="17" StartOffset="840"/>
+<LocList>
+<Loc EndOffset="1127" SrcFileId="17" StartOffset="840"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="397">
+<BasicBoolTerm Intrnl_Id="398">
+<LocList>
+<Loc EndOffset="872" SrcFileId="17" StartOffset="844"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S16" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="399">
+<LocList>
+<Loc EndOffset="1169" SrcFileId="17" StartOffset="1132"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B3" CovItemPrefix="se.lnu.http.ClientThread.java" Implct="false" Intrnl_Id="400">
+<Cond>
+<Loc EndOffset="1184" SrcFileId="17" StartOffset="1180"/>
+</Cond>
+<LocList>
+<Loc EndOffset="1296" SrcFileId="17" StartOffset="1185"/>
+</LocList>
+<StmntSeq Intrnl_Id="401">
+<LocList>
+<Loc EndOffset="1246" SrcFileId="17" StartOffset="1195"/>
+<Loc EndOffset="1291" SrcFileId="17" StartOffset="1251"/>
+</LocList>
+<BasicStmnt CovItemId="S17" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="402">
+<LocList>
+<Loc EndOffset="1246" SrcFileId="17" StartOffset="1195"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S18" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="403">
+<LocList>
+<Loc EndOffset="1291" SrcFileId="17" StartOffset="1251"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="794" SrcFileId="17" StartOffset="792"/>
+<LocList>
+<Loc EndOffset="1296" SrcFileId="17" StartOffset="792"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="404">
+<BasicBoolTerm Intrnl_Id="405">
+<LocList>
+<Loc EndOffset="832" SrcFileId="17" StartOffset="796"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S19" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="406">
+<LocList>
+<Loc EndOffset="1341" SrcFileId="17" StartOffset="1300"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S20" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="407">
+<LocList>
+<Loc EndOffset="1403" SrcFileId="17" StartOffset="1345"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S21" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="408">
+<LocList>
+<Loc EndOffset="1442" SrcFileId="17" StartOffset="1407"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S22" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="409">
+<LocList>
+<Loc EndOffset="1472" SrcFileId="17" StartOffset="1454"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S23" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="410">
+<LocList>
+<Loc EndOffset="1495" SrcFileId="17" StartOffset="1476"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S24" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="411">
+<LocList>
+<Loc EndOffset="1511" SrcFileId="17" StartOffset="1499"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S25" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="412">
+<LocList>
+<Loc EndOffset="1545" SrcFileId="17" StartOffset="1519"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S2" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="413">
+<Branch CovItemId="B1" CovItemPrefix="se.lnu.http.ClientThread.java" Implct="true" Intrnl_Id="414">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="415">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B6" CovItemPrefix="se.lnu.http.ClientThread.java" Implct="false" Intrnl_Id="416">
+<Cond>
+<Loc EndOffset="1571" SrcFileId="17" StartOffset="1550"/>
+</Cond>
+<LocList>
+<Loc EndOffset="1601" SrcFileId="17" StartOffset="1572"/>
+</LocList>
+<StmntSeq Intrnl_Id="417">
+<LocList>
+<Loc EndOffset="1597" SrcFileId="17" StartOffset="1577"/>
+</LocList>
+<BasicStmnt CovItemId="S26" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="418">
+<LocList>
+<Loc EndOffset="1597" SrcFileId="17" StartOffset="1577"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B7" CovItemPrefix="se.lnu.http.ClientThread.java" Implct="false" Intrnl_Id="419">
+<Cond>
+<Loc EndOffset="1637" SrcFileId="17" StartOffset="1602"/>
+</Cond>
+<LocList>
+<Loc EndOffset="1705" SrcFileId="17" StartOffset="1638"/>
+</LocList>
+<StmntSeq Intrnl_Id="420">
+<LocList>
+<Loc EndOffset="1701" SrcFileId="17" StartOffset="1681"/>
+</LocList>
+<BasicStmnt CovItemId="S27" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="421">
+<LocList>
+<Loc EndOffset="1701" SrcFileId="17" StartOffset="1681"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="360" SrcFileId="17" StartOffset="357"/>
+<LocList>
+<Loc EndOffset="1705" SrcFileId="17" StartOffset="357"/>
+</LocList>
+</CondStmnt>
+<BasicStmnt CovItemId="S28" CovItemPrefix="se.lnu.http.ClientThread.java" Intrnl_Id="422">
+<LocList>
+<Loc EndOffset="1743" SrcFileId="17" StartOffset="1708"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="495" HierarchyLvlTypeId="22" Intrnl_Id="423" Name="ClientFactory">
+<Header>
+<Loc EndOffset="73" SrcFileId="18" StartOffset="47"/>
+</Header>
+<LocList>
+<Loc EndOffset="183" SrcFileId="18" StartOffset="47"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="494" HierarchyLvlTypeId="23" Intrnl_Id="424" Name="createClient">
+<Header>
+<Loc EndOffset="131" SrcFileId="18" StartOffset="78"/>
+</Header>
+<LocList>
+<Loc EndOffset="180" SrcFileId="18" StartOffset="78"/>
+</LocList>
+<StmntSeq Intrnl_Id="425">
+<LocList>
+<Loc EndOffset="177" SrcFileId="18" StartOffset="139"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.ClientFactory.java" Intrnl_Id="426">
+<LocList>
+<Loc EndOffset="177" SrcFileId="18" StartOffset="139"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="500" HierarchyLvlTypeId="22" Intrnl_Id="427" Name="AcceptThread">
+<Header>
+<Loc EndOffset="178" SrcFileId="19" StartOffset="138"/>
+</Header>
+<LocList>
+<Loc EndOffset="1181" SrcFileId="19" StartOffset="138"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="496" HierarchyLvlTypeId="23" Intrnl_Id="428" Name="AcceptThread">
+<Header>
+<Loc EndOffset="398" SrcFileId="19" StartOffset="293"/>
+</Header>
+<LocList>
+<Loc EndOffset="476" SrcFileId="19" StartOffset="293"/>
+</LocList>
+<StmntSeq Intrnl_Id="429">
+<LocList>
+<Loc EndOffset="417" SrcFileId="19" StartOffset="403"/>
+<Loc EndOffset="445" SrcFileId="19" StartOffset="420"/>
+<Loc EndOffset="473" SrcFileId="19" StartOffset="448"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="se.lnu.http.AcceptThread.java" Intrnl_Id="430">
+<LocList>
+<Loc EndOffset="417" SrcFileId="19" StartOffset="403"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="se.lnu.http.AcceptThread.java" Intrnl_Id="431">
+<LocList>
+<Loc EndOffset="445" SrcFileId="19" StartOffset="420"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="se.lnu.http.AcceptThread.java" Intrnl_Id="432">
+<LocList>
+<Loc EndOffset="473" SrcFileId="19" StartOffset="448"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="497" HierarchyLvlTypeId="23" Intrnl_Id="433" Name="stopme">
+<Header>
+<Loc EndOffset="519" SrcFileId="19" StartOffset="480"/>
+</Header>
+<LocList>
+<Loc EndOffset="542" SrcFileId="19" StartOffset="480"/>
+</LocList>
+<StmntSeq Intrnl_Id="434">
+<LocList>
+<Loc EndOffset="539" SrcFileId="19" StartOffset="524"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="se.lnu.http.AcceptThread.java" Intrnl_Id="435">
+<LocList>
+<Loc EndOffset="539" SrcFileId="19" StartOffset="524"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="498" HierarchyLvlTypeId="23" Intrnl_Id="436" Name="run">
+<Header>
+<Loc EndOffset="563" SrcFileId="19" StartOffset="546"/>
+</Header>
+<LocList>
+<Loc EndOffset="946" SrcFileId="19" StartOffset="546"/>
+</LocList>
+<StmntSeq Intrnl_Id="437">
+<LocList>
+<Loc EndOffset="883" SrcFileId="19" StartOffset="594"/>
+<Loc EndOffset="927" SrcFileId="19" StartOffset="903"/>
+</LocList>
+<LoopStmnt CovItemId="S5" CovItemPrefix="se.lnu.http.AcceptThread.java" Intrnl_Id="438" MltplExecId="L1-2" MltplExecPrefix="se.lnu.http.AcceptThread.java" NvrExecId="L1-0" NvrExecPrefix="se.lnu.http.AcceptThread.java" OnceExecutedId="L1-1" OnceExecutedPrefix="se.lnu.http.AcceptThread.java" OptBodyExec="true">
+<StmntSeq Intrnl_Id="439">
+<LocList>
+<Loc EndOffset="651" SrcFileId="19" StartOffset="636"/>
+<Loc EndOffset="862" SrcFileId="19" StartOffset="619"/>
+</LocList>
+<BasicStmnt CovItemId="S7" CovItemPrefix="se.lnu.http.AcceptThread.java" Intrnl_Id="440">
+<LocList>
+<Loc EndOffset="651" SrcFileId="19" StartOffset="636"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S6" CovItemPrefix="se.lnu.http.AcceptThread.java" Intrnl_Id="441">
+<Branch CovItemId="B1" CovItemPrefix="se.lnu.http.AcceptThread.java" Implct="true" Intrnl_Id="442">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="443">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="se.lnu.http.AcceptThread.java" Implct="false" Intrnl_Id="444">
+<Cond>
+<Loc EndOffset="689" SrcFileId="19" StartOffset="664"/>
+</Cond>
+<LocList>
+<Loc EndOffset="788" SrcFileId="19" StartOffset="690"/>
+</LocList>
+<StmntSeq Intrnl_Id="445">
+<LocList>
+<Loc EndOffset="770" SrcFileId="19" StartOffset="764"/>
+</LocList>
+<BasicStmnt CovItemId="S8" CovItemPrefix="se.lnu.http.AcceptThread.java" Intrnl_Id="446">
+<LocList>
+<Loc EndOffset="770" SrcFileId="19" StartOffset="764"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B3" CovItemPrefix="se.lnu.http.AcceptThread.java" Implct="false" Intrnl_Id="447">
+<Cond>
+<Loc EndOffset="810" SrcFileId="19" StartOffset="789"/>
+</Cond>
+<LocList>
+<Loc EndOffset="862" SrcFileId="19" StartOffset="811"/>
+</LocList>
+<StmntSeq Intrnl_Id="448">
+<LocList>
+<Loc EndOffset="844" SrcFileId="19" StartOffset="824"/>
+</LocList>
+<BasicStmnt CovItemId="S9" CovItemPrefix="se.lnu.http.AcceptThread.java" Intrnl_Id="449">
+<LocList>
+<Loc EndOffset="844" SrcFileId="19" StartOffset="824"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="622" SrcFileId="19" StartOffset="619"/>
+<LocList>
+<Loc EndOffset="862" SrcFileId="19" StartOffset="619"/>
+</LocList>
+</CondStmnt>
+</StmntSeq>
+<Keyword EndOffset="599" SrcFileId="19" StartOffset="594"/>
+<LocList>
+<Loc EndOffset="883" SrcFileId="19" StartOffset="594"/>
+</LocList>
+</LoopStmnt>
+<BasicStmnt CovItemId="S10" CovItemPrefix="se.lnu.http.AcceptThread.java" Intrnl_Id="450">
+<LocList>
+<Loc EndOffset="927" SrcFileId="19" StartOffset="903"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="499" HierarchyLvlTypeId="23" Intrnl_Id="451" Name="acceptClient">
+<Header>
+<Loc EndOffset="995" SrcFileId="19" StartOffset="949"/>
+</Header>
+<LocList>
+<Loc EndOffset="1176" SrcFileId="19" StartOffset="949"/>
+</LocList>
+<StmntSeq Intrnl_Id="452">
+<LocList>
+<Loc EndOffset="1025" SrcFileId="19" StartOffset="1000"/>
+<Loc EndOffset="1066" SrcFileId="19" StartOffset="1028"/>
+<Loc EndOffset="1127" SrcFileId="19" StartOffset="1069"/>
+<Loc EndOffset="1145" SrcFileId="19" StartOffset="1130"/>
+<Loc EndOffset="1173" SrcFileId="19" StartOffset="1148"/>
+</LocList>
+<BasicStmnt CovItemId="S11" CovItemPrefix="se.lnu.http.AcceptThread.java" Intrnl_Id="453">
+<LocList>
+<Loc EndOffset="1025" SrcFileId="19" StartOffset="1000"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S12" CovItemPrefix="se.lnu.http.AcceptThread.java" Intrnl_Id="454">
+<LocList>
+<Loc EndOffset="1066" SrcFileId="19" StartOffset="1028"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S13" CovItemPrefix="se.lnu.http.AcceptThread.java" Intrnl_Id="455">
+<LocList>
+<Loc EndOffset="1127" SrcFileId="19" StartOffset="1069"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S14" CovItemPrefix="se.lnu.http.AcceptThread.java" Intrnl_Id="456">
+<LocList>
+<Loc EndOffset="1145" SrcFileId="19" StartOffset="1130"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S15" CovItemPrefix="se.lnu.http.AcceptThread.java" Intrnl_Id="457">
+<LocList>
+<Loc EndOffset="1173" SrcFileId="19" StartOffset="1148"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</MASTRoot>
+<TestSession Comment="" Date="1385198381959" Name="Nov 23, 2013 10:19:41 AM">
+<TestCase Comment="" Date="1385198381263" Name="se.lnu.http.HTTPServerConsoleTest:testrunConsoleNoPort">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.ConsoleView.java">
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPServerConsole.java">
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.InvalidPortException.java">
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.Port.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.Port.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381317" Name="se.lnu.http.HTTPServerConsoleTest:testrunConsolePort80">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPServerConsole.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="L1-1" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S15" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.Port.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.HTTPServerConsole.java">
+<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.Port.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381322" Name="se.lnu.http.HTTPServerTest:testHTTPServer">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPServer.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.NotStartedException.java">
+<Cov CovItemId="S1" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.Port.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.HTTPServer.java">
+<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.Port.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381330" Name="se.lnu.http.HTTPServerTest:testStart">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.AcceptThread.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="L1-1" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPServer.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="L1-1" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S15" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.Port.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.HTTPServer.java">
+<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.Port.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381435" Name="se.lnu.http.HTTPServerTest:testStop">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.AcceptThread.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="L1-2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="2"/>
+<Cov CovItemId="S12" Value="2"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S15" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="2"/>
+<Cov CovItemId="S7" Value="2"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.ClientFactory.java">
+<Cov CovItemId="S1" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.ClientThread.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S15" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="1"/>
+<Cov CovItemId="S21" Value="1"/>
+<Cov CovItemId="S22" Value="1"/>
+<Cov CovItemId="S23" Value="1"/>
+<Cov CovItemId="S24" Value="1"/>
+<Cov CovItemId="S25" Value="1"/>
+<Cov CovItemId="S28" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPGetProtocoll.java">
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPReader.java">
+<Cov CovItemId="B2" Value="2"/>
+<Cov CovItemId="B4" Value="6"/>
+<Cov CovItemId="B5" Value="2"/>
+<Cov CovItemId="B6" Value="4"/>
+<Cov CovItemId="B7" Value="1"/>
+<Cov CovItemId="B8" Value="3"/>
+<Cov CovItemId="L1-0" Value="1"/>
+<Cov CovItemId="L1-2" Value="1"/>
+<Cov CovItemId="L2-2" Value="2"/>
+<Cov CovItemId="S1" Value="2"/>
+<Cov CovItemId="S11" Value="2"/>
+<Cov CovItemId="S12" Value="2"/>
+<Cov CovItemId="S13" Value="2"/>
+<Cov CovItemId="S14" Value="6"/>
+<Cov CovItemId="S15" Value="6"/>
+<Cov CovItemId="S17" Value="6"/>
+<Cov CovItemId="S18" Value="6"/>
+<Cov CovItemId="S19" Value="6"/>
+<Cov CovItemId="S2" Value="2"/>
+<Cov CovItemId="S20" Value="2"/>
+<Cov CovItemId="S21" Value="4"/>
+<Cov CovItemId="S22" Value="1"/>
+<Cov CovItemId="S23" Value="1"/>
+<Cov CovItemId="S24" Value="2"/>
+<Cov CovItemId="S3" Value="2"/>
+<Cov CovItemId="S4" Value="2"/>
+<Cov CovItemId="S5" Value="48"/>
+<Cov CovItemId="S6" Value="2"/>
+<Cov CovItemId="S7" Value="2"/>
+<Cov CovItemId="S8" Value="2"/>
+<Cov CovItemId="S9" Value="2"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPRequest.java">
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="2"/>
+<Cov CovItemId="S4" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPRequestParser.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPServer.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="L1-1" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S15" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="2"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.Port.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.SocketClient.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B2" Value="2"/>
+<Cov CovItemId="S1" Value="3"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="2"/>
+<Cov CovItemId="S2" Value="3"/>
+<Cov CovItemId="S3" Value="3"/>
+<Cov CovItemId="S4" Value="3"/>
+<Cov CovItemId="S5" Value="3"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.ClientThread.java">
+<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.HTTPReader.java">
+<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="0" Value="2"/>
+<MapEntry BoolAssgnmnt="1" Value="48"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="0" Value="2"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="0" Value="6"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="000" Value="4"/>
+<MapEntry BoolAssgnmnt="001" Value="2"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C6">
+<MapEntry BoolAssgnmnt="0" Value="3"/>
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.HTTPRequestParser.java">
+<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.HTTPServer.java">
+<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.Port.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381556" Name="se.lnu.http.HTTPServerTest:testStopWhenNotStarted">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPServer.java">
+<Cov CovItemId="B1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="2"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S9" Value="2"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.Port.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.HTTPServer.java">
+<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="1" Value="2"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.Port.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381563" Name="se.lnu.http.ConsoleViewTest:testNoArguments">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.ConsoleView.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.WrongNumberOfArgumentsException.java">
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.ConsoleView.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="01" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381568" Name="se.lnu.http.ConsoleViewTest:testCrapArgument1">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.ConsoleView.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.InvalidPortException.java">
+<Cov CovItemId="S2" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.ConsoleView.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381572" Name="se.lnu.http.ConsoleViewTest:testCrapArgument2">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.ConsoleView.java">
+<Cov CovItemId="B10" Value="1"/>
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="B6" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S17" Value="1"/>
+<Cov CovItemId="S18" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S20" Value="1"/>
+<Cov CovItemId="S23" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.NotADirectoryException.java">
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.ConsoleView.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381577" Name="se.lnu.http.ConsoleViewTest:testOkPort">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.ConsoleView.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S15" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.Port.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.ConsoleView.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.Port.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381582" Name="se.lnu.http.ConsoleViewTest:testOkDirectory">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.ConsoleView.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B7" Value="1"/>
+<Cov CovItemId="B9" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S17" Value="1"/>
+<Cov CovItemId="S18" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S21" Value="1"/>
+<Cov CovItemId="S24" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.ConsoleView.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381584" Name="se.lnu.http.ConsoleViewTest:testShowhelp">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.ConsoleView.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.ConsoleView.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381586" Name="se.lnu.http.ConsoleViewTest:testDoStop">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.ConsoleView.java">
+<Cov CovItemId="B11" Value="1"/>
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S25" Value="1"/>
+<Cov CovItemId="S26" Value="1"/>
+<Cov CovItemId="S27" Value="1"/>
+<Cov CovItemId="S28" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.ConsoleView.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381588" Name="se.lnu.http.ConsoleViewTest:testDoNotStop">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.ConsoleView.java">
+<Cov CovItemId="B12" Value="1"/>
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S25" Value="1"/>
+<Cov CovItemId="S26" Value="1"/>
+<Cov CovItemId="S27" Value="1"/>
+<Cov CovItemId="S29" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.ConsoleView.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381590" Name="se.lnu.http.ServerFactoryTest:testCreate">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPServer.java">
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.Port.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.ServerFactory.java">
+<Cov CovItemId="S1" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.Port.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381593" Name="se.lnu.http.SocketClientTest:testGetFromOnlineServer">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPGetProtocoll.java">
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPReader.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="B4" Value="8"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B6" Value="7"/>
+<Cov CovItemId="B7" Value="1"/>
+<Cov CovItemId="B8" Value="6"/>
+<Cov CovItemId="L1-2" Value="1"/>
+<Cov CovItemId="L2-2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="8"/>
+<Cov CovItemId="S15" Value="8"/>
+<Cov CovItemId="S17" Value="8"/>
+<Cov CovItemId="S18" Value="8"/>
+<Cov CovItemId="S19" Value="8"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="1"/>
+<Cov CovItemId="S21" Value="7"/>
+<Cov CovItemId="S22" Value="1"/>
+<Cov CovItemId="S23" Value="1"/>
+<Cov CovItemId="S24" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="44"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.SocketClient.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.HTTPReader.java">
+<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+<MapEntry BoolAssgnmnt="1" Value="44"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="0" Value="8"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="000" Value="7"/>
+<MapEntry BoolAssgnmnt="001" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C6">
+<MapEntry BoolAssgnmnt="0" Value="6"/>
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381747" Name="se.lnu.http.AcceptThreadTest:testrun">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.AcceptThread.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="L1-2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="2"/>
+<Cov CovItemId="S12" Value="2"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S15" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="2"/>
+<Cov CovItemId="S7" Value="2"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList/>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381792" Name="se.lnu.http.AcceptThreadTest:testStopmeNotRunning">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.AcceptThread.java">
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList/>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381794" Name="se.lnu.http.HTTPRequestParserTest:testParseRequest">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPRequest.java">
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPRequestParser.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.HTTPRequestParser.java">
+<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381796" Name="se.lnu.http.HTTPRequestParserTest:testMalformedRequestEmpty">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPRequestParser.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.MalformedRequestException.java">
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.HTTPRequestParser.java">
+<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381799" Name="se.lnu.http.HTTPRequestParserTest:testMalformedRequest">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.HTTPRequestParser.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.MalformedRequestException.java">
+<Cov CovItemId="S1" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.HTTPRequestParser.java">
+<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381801" Name="se.lnu.http.PortTest:testPort0">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.InvalidPortException.java">
+<Cov CovItemId="S2" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.Port.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.Port.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="12" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381803" Name="se.lnu.http.PortTest:testPortTooLarge">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.InvalidPortException.java">
+<Cov CovItemId="S2" Value="1"/>
+</CovPrefix>
+<CovPrefix CovItemPrefix="se.lnu.http.Port.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.Port.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="01" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1385198381804" Name="se.lnu.http.PortTest:testPortOk">
+<CovList>
+<CovPrefix CovItemPrefix="se.lnu.http.Port.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="se.lnu.http.Port.java">
+<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="00" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<MetaDataList/>
+</TestSession>
+</TestSessionContainer>

@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import se.lnu.http.exceptions.MalformedRequestException;
+
+
 public class HTTPRequestParserTest {
 
 	@Test
@@ -17,10 +20,10 @@ public class HTTPRequestParserTest {
 			   ok += "Accept-Encoding: gzip,deflate,sdch\r\n";
 			   ok += "Accept-Language: sv-SE,sv;q=0.8,en-US;q=0.6,en;q=0.4\"\r\n\r\n";
 	    
-		HTTPRequestParser sut = new HTTPRequestParser();   
-		HTTPRequest actual = sut.parseRequest(ok);
 		
-		assertNotNull(sut);
+		HTTPRequest actual = HTTPRequestParser.parseRequest(ok);
+		
+		
 		assertEquals("/", actual.getURL());
 	}
 	

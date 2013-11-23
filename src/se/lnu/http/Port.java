@@ -1,5 +1,7 @@
 package se.lnu.http;
 
+import se.lnu.http.exceptions.InvalidPortException;
+
 public class Port {
 
 	private int portNumber;

@@ -7,6 +7,10 @@ import java.io.File;
 import org.junit.Before;
 import org.junit.Test;
 
+import se.lnu.http.exceptions.InvalidPortException;
+import se.lnu.http.view.ConsoleView;
+
+
 public class HTTPServerConsoleTest {
 
 	private HTTPServerConsole console;

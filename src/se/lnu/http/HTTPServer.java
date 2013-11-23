@@ -2,6 +2,10 @@ package se.lnu.http;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.ServerSocket;
+
+import se.lnu.http.exceptions.NotStartedException;
+
 
 public class HTTPServer {
 
@@ -11,15 +15,19 @@ public class HTTPServer {
 	private Port port;
 	private AcceptThread acceptThread;
 
-	public HTTPServer(Port port, File sharedDirectory, HTTPServerObserver view) {
+	private SharedFolder sharedDirectory;
+
+	public HTTPServer(Port port, SharedFolder sharedDirectory, HTTPServerObserver view) {
 		this.view = view;
 		view.serverConstructed();
 		this.port = port;
+		this.sharedDirectory = sharedDirectory;
 	}
 
 	public void start() throws IOException {
-		
-		acceptThread = new AcceptThread(port, view);
+		ServerSocket socket = new ServerSocket(port.getPort());
+		ClientFactory factory = new ClientFactory(this.sharedDirectory);
+		acceptThread = new AcceptThread(socket, view, factory);
 		
 		acceptThread.start();
 		

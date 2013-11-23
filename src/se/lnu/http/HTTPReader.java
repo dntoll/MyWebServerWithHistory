@@ -24,13 +24,13 @@ public class HTTPReader {
 	public String readHeader()
 			throws IOException {
 		StringBuilder data = new StringBuilder();
-		String statusLine = reader.readLine();
+		/*String statusLine = reader.readLine();
 		
 		if (statusLine == null) { //eof http://docs.oracle.com/javase/1.4.2/docs/api/java/io/BufferedReader.html
 			throw new IOException("eof");
 		}
 		data.append(statusLine);
-		data.append("\r\n");
+		data.append("\r\n");*/
 		
 		//read header lines
 		
@@ -53,6 +53,6 @@ public class HTTPReader {
 			
 		}
 		
-		return data.toString();
+		return data.toString() + readBody();
 	}
 }

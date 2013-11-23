@@ -4,11 +4,15 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.io.IOException;
 import java.net.Socket;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
+
+import se.lnu.http.client.HTTPGetProtocoll;
+import se.lnu.http.client.SocketClient;
 
 
 public class SocketClientTest {
@@ -36,4 +40,6 @@ public class SocketClientTest {
 		}
 		
 	}
+	
+	
 }

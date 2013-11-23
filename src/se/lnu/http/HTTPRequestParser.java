@@ -1,5 +1,7 @@
 package se.lnu.http;
 
+import se.lnu.http.exceptions.MalformedRequestException;
+
 public class HTTPRequestParser {
 
 	public static HTTPRequest parseRequest(String requestString) throws MalformedRequestException {
@@ -14,8 +16,10 @@ public class HTTPRequestParser {
 			throw new MalformedRequestException(requestString);
 		}
 		
+		HTTPRequest.Method method = HTTPRequest.Method.fromString(requestType[0]);
 		
-		return new HTTPRequest(requestType[0], requestType[1]);
+		
+		return new HTTPRequest(method, requestType[1]);
 	}
 
 
