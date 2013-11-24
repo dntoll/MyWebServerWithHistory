@@ -5,6 +5,8 @@ import static org.mockito.Mockito.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,9 +14,13 @@ import org.junit.Test;
 import org.mockito.Mock;
 
 public class SharedFolderTest {
+	private SharedFolder sut;
 
 	@Before
 	public void setUp() throws Exception {
+		URL url = this.getClass().getResource("resources/inner");
+		File folder = new File(url.getFile());
+		sut = new SharedFolder(folder);
 	}
 
 	@After
@@ -22,12 +28,21 @@ public class SharedFolderTest {
 	}
 
 	@Test
-	public void testGetRootURL() throws FileNotFoundException {
+	public void testGetRootURL() throws IOException {
+		File actual = sut.getURL("/");
+		String name = actual.getName();
+		assertEquals("index.html", name);
+	}
+	
+	@Test(expected=FileNotFoundException.class)
+	public void testGetNonExistantFile() throws IOException {
+		sut.getURL("/pindex.html");
+	}
+	
+	@Test(expected=SecurityException.class)
+	public void testGetIllegalFile() throws IOException {
+		sut.getURL("../secret.html");
 		
-		File folder = mock(File.class);
-		SharedFolder sut = new SharedFolder(folder);
-		folder.listFiles()
-		sut.getURL("/");
 	}
 
 }

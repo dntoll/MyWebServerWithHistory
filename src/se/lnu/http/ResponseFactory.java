@@ -2,10 +2,12 @@ package se.lnu.http;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.plaf.metal.MetalIconFactory.FolderIcon16;
 
 import se.lnu.http.response.HTMLFileResponse;
+import se.lnu.http.response.HTTP403Forbidden;
 import se.lnu.http.response.HTTP404FileNotFoundResponse;
 import se.lnu.http.response.HTTP405MethodNotSupportedResponse;
 import se.lnu.http.response.HTTPResponse;
@@ -18,7 +20,7 @@ public class ResponseFactory {
 		this.folder = folder;
 	}
 
-	public HTTPResponse getResponse(HTTPRequest request) {
+	public HTTPResponse getResponse(HTTPRequest request) throws IOException {
 		HTTPRequest.Method method = request.getMethod(); 
 		if (method == HTTPRequest.Method.GET) {
 			try {
@@ -26,6 +28,8 @@ public class ResponseFactory {
 				return new HTMLFileResponse(file);
 			} catch (FileNotFoundException e) {
 				return new HTTP404FileNotFoundResponse(request.getURL());
+			} catch (SecurityException e) {
+				return new HTTP403Forbidden(request.getURL());
 			}
 			
 		} 

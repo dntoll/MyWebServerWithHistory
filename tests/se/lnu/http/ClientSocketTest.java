@@ -41,15 +41,29 @@ public class ClientSocketTest {
 	}
 
 	@Test
-	public void testWriteResponse() throws IOException {
+	public void testWriteResponseHeader() throws IOException {
 		
 		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		when(socket.getOutputStream()).thenReturn( outContent);
-		sut.writeResponse(expected);
+		sut.writeHeader(expected);
 		
 		assertEquals(expected, outContent.toString());
 		
-		verify(socket).close();
+		verify(socket).getOutputStream();
+	}
+	
+	@Test
+	public void testWriteResponseBody() throws IOException {
+		
+		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+		when(socket.getOutputStream()).thenReturn( outContent);
+		sut.writeBody(expected.getBytes());
+		
+		for (int i = 0; i < expected.getBytes().length; i++) {
+			assertEquals(expected.getBytes()[i], outContent.toByteArray()[i]);
+		}
+		
+		verify(socket).getOutputStream();
 	}
 
 }

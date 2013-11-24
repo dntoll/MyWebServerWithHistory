@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.junit.After;
 import org.junit.Before;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 
 import se.lnu.http.response.HTMLFileResponse;
+import se.lnu.http.response.HTTP403Forbidden;
 import se.lnu.http.response.HTTP404FileNotFoundResponse;
 import se.lnu.http.response.HTTP405MethodNotSupportedResponse;
 import se.lnu.http.response.HTTPResponse;
@@ -35,7 +37,7 @@ public class ResponseFactoryTest {
 	
 
 	@Test
-	public void testGetResponseGETRoot() {
+	public void testGetResponseGETRoot() throws IOException {
 		
 		when(request.getMethod()).thenReturn(HTTPRequest.Method.GET);
 		when(request.getURL()).thenReturn("/");
@@ -46,7 +48,7 @@ public class ResponseFactoryTest {
 	}
 	
 	@Test
-	public void testGetResponseUnexistingFile() throws FileNotFoundException {
+	public void testGetResponseUnexistingFile() throws IOException {
 		
 		when(request.getMethod()).thenReturn(HTTPRequest.Method.GET);
 		when(request.getURL()).thenReturn("/crap.html");
@@ -59,7 +61,7 @@ public class ResponseFactoryTest {
 	}
 	
 	@Test
-	public void testUnknownMethod() throws FileNotFoundException {
+	public void testUnknownMethod() throws IOException {
 		
 		when(request.getMethod()).thenReturn(HTTPRequest.Method.DELETE);
 		when(request.getURL()).thenReturn("/crap.html");
@@ -69,6 +71,19 @@ public class ResponseFactoryTest {
 		HTTPResponse resp = sut.getResponse(request);
 		
 		assertTrue(resp.getClass() == HTTP405MethodNotSupportedResponse.class);
+	}
+	
+	@Test
+	public void testIllegalFile() throws IOException {
+		
+		when(request.getMethod()).thenReturn(HTTPRequest.Method.GET);
+		when(request.getURL()).thenReturn("/../crap.html");
+		
+		when(folder.getURL("/../crap.html")).thenThrow(new SecurityException("/crap.html"));
+		
+		HTTPResponse resp = sut.getResponse(request);
+		
+		assertTrue(resp.getClass() == HTTP403Forbidden.class);
 	}
 
 }

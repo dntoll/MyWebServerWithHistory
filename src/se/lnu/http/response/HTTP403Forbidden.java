@@ -4,18 +4,20 @@ import java.io.IOException;
 
 import se.lnu.http.ClientSocket;
 
-public class HTTP404FileNotFoundResponse extends HTTPResponse {
+public class HTTP403Forbidden extends HTTPResponse {
 
-	public HTTP404FileNotFoundResponse(String url) {
-		// TODO Auto-generated constructor stub
+	private String url;
+
+	public HTTP403Forbidden(String url) {
+		this.url = url;
 	}
-	
+
 	@Override
 	public void writeResponse(ClientSocket clientSocket) throws IOException {
-		String content = "<html><body><h1>404 Not found</h1></body></html>";
+		String content = "<html><body><h1>403 Forbidden</h1></body></html>";
 		
 		
-		String response = ("HTTP/1.1 404 Not Found\r\n");
+		String response = ("HTTP/1.1 403 Forbidden\r\n");
 		response += writeContentLengthAndEndHeader(content.getBytes());
 		clientSocket.writeHeader(response);
 		clientSocket.writeBody(content.getBytes());

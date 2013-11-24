@@ -19,8 +19,9 @@ public class HTTP405MethodNotSupportedResponse extends HTTPResponse {
 		
 		
 		String response = ("HTTP/1.1 405 Method not supported\r\n");
-		response += endWithContent(content);
-		clientSocket.writeResponse(response);
+		response += writeContentLengthAndEndHeader(content.getBytes());
+		clientSocket.writeHeader(response);
+		clientSocket.writeBody(content.getBytes());
 			
 		 
 	}

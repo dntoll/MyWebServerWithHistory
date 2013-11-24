@@ -21,14 +21,23 @@ public class ClientSocket {
 		return requestString;
 	}
 
-	public void writeResponse(String response) throws IOException {
+	public void writeHeader(String response) throws IOException {
 		
 		PrintWriter out = new PrintWriter(sock.getOutputStream(), true);
 		out.write(response.toString());
 		out.flush();
 		
+		
+		
+	}
+
+	public void close() throws IOException {
 		sock.close();
 		
+	}
+
+	public void writeBody(byte[] bytes) throws IOException {
+		sock.getOutputStream().write(bytes);
 	}
 
 }

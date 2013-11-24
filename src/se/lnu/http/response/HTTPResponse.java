@@ -8,15 +8,15 @@ public abstract class HTTPResponse {
 
 	public abstract void writeResponse(ClientSocket clientSocket) throws IOException;
 	
-	protected String endWithContent(String content) {
+	protected String writeContentLengthAndEndHeader(byte[] bs) {
 		String ret = "";
 		ret += ("Content-Type: text/html\r\n");
-		ret += ("Content-Length: " + content.length() + "\r\n");
+		ret += ("Content-Length: " + bs.length + "\r\n");
 		ret += ("Connection: close\r\n");
 		
 		
 		ret += ("\r\n");
-		ret += (content);
+		
 		
 		return ret;
 	}

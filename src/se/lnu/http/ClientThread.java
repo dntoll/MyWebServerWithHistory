@@ -36,6 +36,13 @@ public class ClientThread extends Thread{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			clientSocket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println("client ended");
 	}
 

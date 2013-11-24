@@ -32,6 +32,7 @@ public class SocketClient {
 			
 			return data;
 		} catch (IOException e) {
+			socket.close();
 			throw e;
 		}		
 		
