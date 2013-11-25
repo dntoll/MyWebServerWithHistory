@@ -1,6 +1,7 @@
 package se.lnu.http;
 
 import java.io.File;
+import java.net.BindException;
 
 import se.lnu.http.exceptions.InvalidPortException;
 import se.lnu.http.view.ConsoleView;
@@ -46,7 +47,10 @@ public class HTTPServerConsole {
 			
 		} catch (InvalidPortException e) {
 			view.showhelp();
+		} catch (BindException e) {
+			view.showPortTaken();
 		}
+		
 	}
 
 }

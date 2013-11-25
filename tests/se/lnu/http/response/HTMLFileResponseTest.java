@@ -37,7 +37,7 @@ public class HTMLFileResponseTest {
 		byte[] bytes = Files.readAllBytes(Paths.get(file.getAbsolutePath()));
 		
 		ClientSocket clientSocket = mock(ClientSocket.class);
-		HTMLFileResponse response = new HTMLFileResponse(file);
+		HTTP200OKFileResponse response = new HTTP200OKFileResponse(file);
 		
 		
 		response.writeResponse(clientSocket);

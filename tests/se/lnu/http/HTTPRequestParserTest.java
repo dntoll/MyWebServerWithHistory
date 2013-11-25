@@ -49,5 +49,15 @@ public class HTTPRequestParserTest {
 		
 		
 	}
+	
+	@Test(expected=MalformedRequestException.class)
+	public void testMalformedRequest2() throws MalformedRequestException {
+		String ok = "";
+		  	    
+		
+		HTTPRequestParser.parseRequest(ok);
+		
+		
+	}
 
 }

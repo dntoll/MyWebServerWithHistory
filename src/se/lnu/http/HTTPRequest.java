@@ -5,7 +5,7 @@ import se.lnu.http.exceptions.*;
 public class HTTPRequest {
 	//http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol
 	public enum Method {
-	    GET, POST, HEAD, PUT, DELETE, TRACE, OPTIONS, CONNECT, PATCH;
+	    GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, CONNECT, PATCH;
 	    
 	    static Method fromString(String stringMethod) throws MalformedRequestException {
 	    	for(Method m : Method.values()) {
@@ -27,7 +27,6 @@ public class HTTPRequest {
 	}
 
 	public String getURL() {
-		
 		return this.url;
 	}
 

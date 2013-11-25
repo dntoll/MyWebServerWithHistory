@@ -13,10 +13,8 @@ public class HTTP404FileNotFoundResponse extends HTTPResponse {
 	@Override
 	public void writeResponse(ClientSocket clientSocket) throws IOException {
 		String content = "<html><body><h1>404 Not found</h1></body></html>";
-		
-		
 		String response = ("HTTP/1.1 404 Not Found\r\n");
-		response += writeContentLengthAndEndHeader(content.getBytes());
+		response += writeContentLengthAndEndHeader(content.getBytes().length, ContentType.texthtml);
 		clientSocket.writeHeader(response);
 		clientSocket.writeBody(content.getBytes());
 			

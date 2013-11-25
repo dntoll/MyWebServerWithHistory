@@ -5,13 +5,17 @@ import static org.junit.Assert.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintStream;
+import java.net.URL;
 
 import junit.framework.Assert;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 
 import se.lnu.http.Port;
 import se.lnu.http.exceptions.InvalidPortException;
@@ -51,6 +55,20 @@ public class ConsoleViewTest {
 	}
 	
 	@Test(expected=NotADirectoryException.class)
+	public void testNotADirectory1() throws Exception {
+		
+		URL url = this.getClass().getResource("../resources/inner/index.html");
+		File folder = new File(url.getFile());
+		
+		String[] input = new String[2];
+		input[0] = "80";
+		input[1] = folder.getAbsolutePath();
+		ConsoleView view = new ConsoleView(input);
+		
+		view.getDirectory();
+	}
+	
+	@Test(expected=NotADirectoryException.class)
 	public void testCrapArgument2() throws Exception {
 		String[] input = new String[2];
 		input[0] = "80";
@@ -86,13 +104,15 @@ public class ConsoleViewTest {
 		//http://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
 		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(outContent));
-		
+		PrintStream old = System.out;
 		
 		ConsoleView view = new ConsoleView(okInput);
 		view.showhelp();
 		assertEquals(ConsoleView.HELP_TEXT, outContent.toString());
-		System.setOut(null);
+		System.setOut(old);
 	}
+	
+	
 	
 	@Test
 	public void testDoStop() throws Exception  {
@@ -100,12 +120,13 @@ public class ConsoleViewTest {
 		
 		String data = "stop";
 		ByteArrayInputStream inContent = new ByteArrayInputStream(data.getBytes());
+		InputStream old = System.in;
 		System.setIn(inContent);
 		ConsoleView view = new ConsoleView(okInput);
 		boolean actual = view.doStop();
 		
 		assertEquals(true, actual);
-		System.setIn(null);
+		System.setIn(old);
 	}
 	
 	@Test
@@ -114,12 +135,13 @@ public class ConsoleViewTest {
 		
 		String data = "foo";
 		ByteArrayInputStream inContent = new ByteArrayInputStream(data.getBytes());
+		InputStream old = System.in;
 		System.setIn(inContent);
 		ConsoleView view = new ConsoleView(okInput);
 		boolean actual = view.doStop();
 		
 		assertEquals(false, actual);
-		System.setIn(null);
+		System.setIn(old);
 	}
 
 }

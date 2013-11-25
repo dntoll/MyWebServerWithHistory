@@ -10,7 +10,6 @@ public class AcceptThread extends Thread{
 	volatile ServerSocket socket;
 	volatile private HTTPServerObserver observer;
 	private ClientFactory cfactory;
-	private SharedFolder sharedFolder;
 	
 	public AcceptThread(ServerSocket sock, 
 						HTTPServerObserver observer, 

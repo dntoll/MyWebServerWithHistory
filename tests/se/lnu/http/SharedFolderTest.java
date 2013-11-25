@@ -1,8 +1,6 @@
 package se.lnu.http;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,7 +9,6 @@ import java.net.URL;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 
 public class SharedFolderTest {
 	private SharedFolder sut;

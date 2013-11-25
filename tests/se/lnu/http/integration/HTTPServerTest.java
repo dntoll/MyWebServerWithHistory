@@ -25,7 +25,7 @@ public class HTTPServerTest {
 
 	HTTPServerObserver observer;
 	HTTPServer sut;
-	private int portNumber = 8080;
+	private int portNumber = 8088;
 	SharedFolder sharedDirectory = new SharedFolder(new File("/"));
 	
 	@Before

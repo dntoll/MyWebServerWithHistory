@@ -9,9 +9,7 @@ import java.io.IOException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-
-import se.lnu.http.response.HTMLFileResponse;
+import se.lnu.http.response.HTTP200OKFileResponse;
 import se.lnu.http.response.HTTP403Forbidden;
 import se.lnu.http.response.HTTP404FileNotFoundResponse;
 import se.lnu.http.response.HTTP405MethodNotSupportedResponse;
@@ -44,7 +42,7 @@ public class ResponseFactoryTest {
 		
 		HTTPResponse resp = sut.getResponse(request);
 		
-		assertTrue(resp.getClass() == HTMLFileResponse.class);
+		assertTrue(resp.getClass() == HTTP200OKFileResponse.class);
 	}
 	
 	@Test
@@ -84,6 +82,12 @@ public class ResponseFactoryTest {
 		HTTPResponse resp = sut.getResponse(request);
 		
 		assertTrue(resp.getClass() == HTTP403Forbidden.class);
+	}
+	
+	@Test
+	public void getBad() throws IOException {
+		
+		assertNotNull(sut.getBadResponse());
 	}
 
 }

@@ -1,7 +1,5 @@
 package se.lnu.http;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import se.lnu.http.exceptions.InvalidPortException;

@@ -20,6 +20,8 @@ public class ConsoleView implements HTTPServerObserver {
 	static final String SERVER_ACCEPT_THREAD_STOPPED = "HTTP Server Accept thread stopped";
 	static final String STARTED_CLIENT = "Started Client";
 	static final String WAIT_FOR_ACCEPT = "Accept";
+	static final String PORT_IS_TAKEN = "Port is taken";
+	
 	
 	private String[] args;
 	
@@ -120,6 +122,10 @@ public class ConsoleView implements HTTPServerObserver {
 	public void waitForClient() {
 		System.out.println(WAIT_FOR_ACCEPT);
 		
+	}
+
+	public void showPortTaken() {
+		System.out.println(PORT_IS_TAKEN);
 	}
 
 	

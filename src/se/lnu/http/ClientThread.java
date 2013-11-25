@@ -24,30 +24,26 @@ public class ClientThread extends Thread{
 			
 			
 			String requestString = clientSocket.getRequest();
+			HTTPResponse response;
+			try {
+				HTTPRequest request = HTTPRequestParser.parseRequest(requestString);
+				response = factory.getResponse(request);
+			} catch (MalformedRequestException e) {
+				response = factory.getBadResponse();
+			}
 			
-			HTTPRequest request = HTTPRequestParser.parseRequest(requestString);
-			HTTPResponse response = factory.getResponse(request);
 			
 			response.writeResponse(clientSocket);
 			
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (MalformedRequestException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		try {
 			clientSocket.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("client ended");
+		
 	}
-
-	
-
-	
-
 }

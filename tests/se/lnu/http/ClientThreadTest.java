@@ -1,6 +1,5 @@
 package se.lnu.http;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import java.io.IOException;
@@ -9,6 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import se.lnu.http.response.HTTP400BadRequest;
 import se.lnu.http.response.HTTPResponse;
 
 public class ClientThreadTest {
@@ -34,6 +34,19 @@ public class ClientThreadTest {
 		
 		when(sock.getRequest()).thenReturn("GET / HTTP1.1\r\n");
 		when(factory.getResponse(any(HTTPRequest.class))).thenReturn(response);
+		
+		sut.run();
+		
+		verify(response).writeResponse(sock);
+	}
+	
+	@Test
+	public void testMalformed() throws IOException {
+		
+		HTTP400BadRequest response = mock(HTTP400BadRequest.class);
+		when(sock.getRequest()).thenReturn("GET HTTP1.1\r\n");
+		
+		when(factory.getBadResponse()).thenReturn(response);
 		
 		sut.run();
 		

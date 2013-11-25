@@ -3,6 +3,7 @@ package se.lnu.http;
 import static org.mockito.Mockito.*;
 
 import java.io.File;
+import java.net.BindException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -58,5 +59,20 @@ public class HTTPServerConsoleTest {
 		
 		
 	}
-
+	
+	@Test
+	public void runOnTakenPort() throws Exception {
+		when(mockedView.getPort()).thenReturn(port);
+		when(mockedView.getDirectory()).thenReturn(directory);
+		
+		doThrow(new BindException()).when(mockedServer).start();
+		
+		console.runConsole();
+		verify(mockedView, never()).showhelp();
+		verify(mockedServer, never()).stop();
+		verify(mockedView).showPortTaken();
+		
+		
+	}
+	
 }

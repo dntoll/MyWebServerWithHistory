@@ -4,9 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import javax.swing.plaf.metal.MetalIconFactory.FolderIcon16;
-
-import se.lnu.http.response.HTMLFileResponse;
+import se.lnu.http.response.HTTP200OKFileResponse;
+import se.lnu.http.response.HTTP400BadRequest;
 import se.lnu.http.response.HTTP403Forbidden;
 import se.lnu.http.response.HTTP404FileNotFoundResponse;
 import se.lnu.http.response.HTTP405MethodNotSupportedResponse;
@@ -25,7 +24,7 @@ public class ResponseFactory {
 		if (method == HTTPRequest.Method.GET) {
 			try {
 				File file = folder.getURL(request.getURL());
-				return new HTMLFileResponse(file);
+				return new HTTP200OKFileResponse(file);
 			} catch (FileNotFoundException e) {
 				return new HTTP404FileNotFoundResponse(request.getURL());
 			} catch (SecurityException e) {
@@ -35,6 +34,10 @@ public class ResponseFactory {
 		} 
 		
 		return new HTTP405MethodNotSupportedResponse(request.getMethod());
+	}
+
+	public HTTP400BadRequest getBadResponse() {
+		return new HTTP400BadRequest();
 	}
 	
 	

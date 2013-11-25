@@ -1,6 +1,5 @@
 package se.lnu.http;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import java.io.IOException;
@@ -49,6 +48,19 @@ public class AcceptThreadTest {
 		verify(sock, times(2)).accept();
 		
 		verify(thread).start();
+		
+		
+	}
+	
+	@Test
+	public void testsocketfailed() throws IOException {
+	    Socket socket = mock(Socket.class);
+	    ClientThread thread = mock(ClientThread.class);
+		when(sock.accept()).thenThrow(new IOException()).thenThrow(new SocketException());
+		
+		sut.run();
+		
+		verify(thread, never()).start();
 		
 		
 	}

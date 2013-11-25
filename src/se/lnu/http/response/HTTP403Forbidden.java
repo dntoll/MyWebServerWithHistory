@@ -18,7 +18,7 @@ public class HTTP403Forbidden extends HTTPResponse {
 		
 		
 		String response = ("HTTP/1.1 403 Forbidden\r\n");
-		response += writeContentLengthAndEndHeader(content.getBytes());
+		response += writeContentLengthAndEndHeader(content.getBytes().length, ContentType.texthtml);
 		clientSocket.writeHeader(response);
 		clientSocket.writeBody(content.getBytes());
 			
