@@ -15,7 +15,7 @@ public class ServerFactoryTest {
 	@Test
 	public void testCreate() throws InvalidPortException {
 		ServerFactory sut = new ServerFactory();
-		HTTPServerObserver mocks = mock(HTTPServerObserver.class);
+		IServerWatcher mocks = mock(IServerWatcher.class);
 		
 		
 		HTTPServer actual = sut.create(new Port(80), new File("/"), mocks);

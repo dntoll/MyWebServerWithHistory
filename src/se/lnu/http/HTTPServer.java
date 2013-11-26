@@ -9,28 +9,28 @@ import se.lnu.http.exceptions.NotStartedException;
 public class HTTPServer {
 
 	
-	private HTTPServerObserver view;
+	private IServerWatcher watcher;
 	
 	private Port port;
 	private AcceptThread acceptThread;
 
 	private SharedFolder sharedDirectory;
 
-	public HTTPServer(Port port, SharedFolder sharedDirectory, HTTPServerObserver view) {
-		this.view = view;
-		view.serverConstructed();
+	public HTTPServer(Port port, SharedFolder sharedDirectory, IServerWatcher watcher) {
+		this.watcher = watcher;
+		watcher.serverConstructed();
 		this.port = port;
 		this.sharedDirectory = sharedDirectory;
 	}
 
 	public void start() throws IOException {
 		ServerSocket socket = new ServerSocket(port.getPort());
-		ClientFactory factory = new ClientFactory(this.sharedDirectory);
-		acceptThread = new AcceptThread(socket, view, factory);
+		ClientFactory factory = new ClientFactory(this.sharedDirectory, watcher);
+		acceptThread = new AcceptThread(socket, watcher, factory);
 		
 		acceptThread.start();
 		
-		view.serverStarted();
+		watcher.serverStarted();
 	}
 
 	public void stop() throws NotStartedException, InterruptedException, IOException {
@@ -44,7 +44,7 @@ public class HTTPServer {
 		}
 		
 		
-		view.serverStopped();
+		watcher.serverStopped();
 		
 		acceptThread = null;
 	}

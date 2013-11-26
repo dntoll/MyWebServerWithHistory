@@ -24,7 +24,8 @@ public class ResponseFactoryTest {
 	@Before
 	public void setUp() throws Exception {
 		folder = mock(SharedFolder.class);
-		sut = new ResponseFactory(folder);
+		IServerWatcher watcher = mock(IServerWatcher.class);
+		sut = new ResponseFactory(folder, watcher, 1);
 		request = mock(HTTPRequest.class);
 	}
 

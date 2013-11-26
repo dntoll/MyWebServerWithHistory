@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import se.lnu.http.HTTPServer;
-import se.lnu.http.HTTPServerObserver;
+import se.lnu.http.IServerWatcher;
 import se.lnu.http.Port;
 import se.lnu.http.SharedFolder;
 import se.lnu.http.client.HTTPGetProtocoll;
@@ -23,14 +23,14 @@ import se.lnu.http.exceptions.NotStartedException;
 
 public class HTTPServerTest {
 
-	HTTPServerObserver observer;
+	IServerWatcher observer;
 	HTTPServer sut;
 	private int portNumber = 8088;
 	SharedFolder sharedDirectory = new SharedFolder(new File("/"));
 	
 	@Before
 	public void setUp() throws Exception {
-		observer = mock(HTTPServerObserver.class);
+		observer = mock(IServerWatcher.class);
 		
 		sut = new HTTPServer(new Port(portNumber), sharedDirectory, observer);
 	}

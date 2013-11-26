@@ -36,7 +36,7 @@ public class ClientSocketTest {
 		ByteArrayInputStream byteArrayStream = new ByteArrayInputStream(expected.getBytes());
 		when(socket.getInputStream()).thenReturn( byteArrayStream);
 		
-		String actual = sut.getRequest();
+		String actual = sut.getRequest(1000);
 		assertEquals(expected, actual);
 	}
 

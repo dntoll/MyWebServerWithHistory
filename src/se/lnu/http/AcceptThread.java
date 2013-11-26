@@ -8,11 +8,11 @@ import java.net.SocketException;
 public class AcceptThread extends Thread{
 
 	volatile ServerSocket socket;
-	volatile private HTTPServerObserver observer;
+	volatile private IServerWatcher observer;
 	private ClientFactory cfactory;
 	
 	public AcceptThread(ServerSocket sock, 
-						HTTPServerObserver observer, 
+						IServerWatcher observer, 
 						ClientFactory cfactory) {
 		socket = sock;
 		this.observer = observer;
@@ -49,7 +49,7 @@ public class AcceptThread extends Thread{
 		Socket clientSocket = socket.accept();
 		ClientThread client = cfactory.createClient(clientSocket);
 		client.start();
-		observer.startedClient();
+		
 	} 
 	
 }

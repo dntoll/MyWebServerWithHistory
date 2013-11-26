@@ -12,23 +12,22 @@ public class ClientSocket {
 
 	public ClientSocket(Socket sock) {
 		this.sock = sock;
+		
 	}
 
-	public String getRequest() throws IOException {
+	public String getRequest(int timeOutMilliseconds) throws IOException {
+		
+		sock.setSoTimeout(timeOutMilliseconds);
 		BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 		HTTPReader httpReader = new HTTPReader(in);
-		String requestString = httpReader.readHeader();
+		String requestString = httpReader.readAll();
 		return requestString;
 	}
 
 	public void writeHeader(String response) throws IOException {
-		
 		PrintWriter out = new PrintWriter(sock.getOutputStream(), true);
 		out.write(response.toString());
 		out.flush();
-		
-		
-		
 	}
 
 	public void close() throws IOException {

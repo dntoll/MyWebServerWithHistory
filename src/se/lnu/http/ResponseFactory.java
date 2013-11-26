@@ -14,9 +14,13 @@ import se.lnu.http.response.HTTPResponse;
 public class ResponseFactory {
 	
 	private SharedFolder folder;
+	private IServerWatcher watcher;
+	private int clientThread;
 
-	public ResponseFactory(SharedFolder folder) {
+	public ResponseFactory(SharedFolder folder, IServerWatcher watcher, int clientThread) {
 		this.folder = folder;
+		this.watcher = watcher;
+		this.clientThread = clientThread;
 	}
 
 	public HTTPResponse getResponse(HTTPRequest request) throws IOException {
@@ -24,11 +28,11 @@ public class ResponseFactory {
 		if (method == HTTPRequest.Method.GET) {
 			try {
 				File file = folder.getURL(request.getURL());
-				return new HTTP200OKFileResponse(file);
+				return new HTTP200OKFileResponse(file, watcher, clientThread);
 			} catch (FileNotFoundException e) {
 				return new HTTP404FileNotFoundResponse(request.getURL());
 			} catch (SecurityException e) {
-				return new HTTP403Forbidden(request.getURL());
+				return new HTTP403Forbidden();
 			}
 			
 		} 

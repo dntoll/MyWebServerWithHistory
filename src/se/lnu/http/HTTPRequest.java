@@ -1,5 +1,7 @@
 package se.lnu.http;
 
+import java.util.Map;
+
 import se.lnu.http.exceptions.*;
 
 public class HTTPRequest {
@@ -18,12 +20,25 @@ public class HTTPRequest {
 	    }
 	}
 	
+	
+
+	
+	
+	
+	
 	private String url;
 	private Method requestType;
+	private Map<Header.HTTPHeader, Header> headers;
 
-	public HTTPRequest(Method requestType, String url) {
+	public HTTPRequest(Method requestType, String url, Map<Header.HTTPHeader, Header> headers) throws MalformedRequestException {
 		this.url = url;
 		this.requestType = requestType;
+		this.headers = headers;
+		
+		
+		if (headers.containsKey(Header.HTTPHeader.Host) == false) {
+			throw new MalformedRequestException("no header found");
+		}
 	}
 
 	public String getURL() {
@@ -32,6 +47,16 @@ public class HTTPRequest {
 
 	public Method getMethod() {
 		return requestType;
+	}
+
+	public boolean doCloseAfterResponse() {
+		
+		if ( headers.containsKey(Header.HTTPHeader.Connection) ) {
+			if (headers.get(Header.HTTPHeader.Connection).getValue().contains("close")) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

@@ -14,12 +14,12 @@ public class HTTP405MethodNotSupportedResponse extends HTTPResponse {
 	}
 
 	@Override
-	public void writeResponse(ClientSocket clientSocket) throws IOException {
+	public void writeResponse(ClientSocket clientSocket, boolean doContinue) throws IOException {
 		String content = "<html><body><h1>405 Method " +method.toString()+ " not supported</h1></body></html>";
 		
 		
 		String response = ("HTTP/1.1 405 Method not supported\r\n");
-		response += writeContentLengthAndEndHeader(content.getBytes().length, ContentType.texthtml);
+		response += writeContentLengthAndEndHeader(content.getBytes().length, ContentType.texthtml, doContinue);
 		clientSocket.writeHeader(response);
 		clientSocket.writeBody(content.getBytes());
 			

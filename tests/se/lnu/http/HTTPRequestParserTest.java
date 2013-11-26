@@ -51,6 +51,18 @@ public class HTTPRequestParserTest {
 	}
 	
 	@Test(expected=MalformedRequestException.class)
+	public void testMalformedRequestNoHost() throws MalformedRequestException {
+		String ok = "GET / HTTP/1.1\r\n";
+		ok += "Connection: keep-alive\r\n";
+			   
+	    
+		
+		HTTPRequestParser.parseRequest(ok);
+		
+		
+	}
+	
+	@Test(expected=MalformedRequestException.class)
 	public void testMalformedRequest2() throws MalformedRequestException {
 		String ok = "";
 		  	    

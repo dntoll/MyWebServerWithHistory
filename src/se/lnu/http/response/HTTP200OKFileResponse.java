@@ -6,17 +6,22 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import se.lnu.http.ClientSocket;
+import se.lnu.http.IServerWatcher;
 
 public class HTTP200OKFileResponse extends HTTPResponse {
 
 	private File file;
+	private IServerWatcher watcher;
+	private int clientThread;
 
-	public HTTP200OKFileResponse(File file) {
+	public HTTP200OKFileResponse(File file, IServerWatcher watcher, int clientThread) {
 		this.file = file;
+		this.watcher = watcher;
+		this.clientThread = clientThread;
 	}
 
 	@Override
-	public void writeResponse(ClientSocket clientSocket) throws IOException {
+	public void writeResponse(ClientSocket clientSocket, boolean doContinue) throws IOException {
 		String fileName = file.getName();
 		String parts[] = fileName.split("\\.");
 		
@@ -25,12 +30,13 @@ public class HTTP200OKFileResponse extends HTTPResponse {
 		
 		String response = ("HTTP/1.1 200 OK\r\n");
 		
-		response += writeContentLengthAndEndHeader(file.length(), type);
+		response += writeContentLengthAndEndHeader(file.length(), type, doContinue);
 		clientSocket.writeHeader(response);
 		
 		byte[] bytes = Files.readAllBytes(Paths.get(file.getAbsolutePath()));
 		clientSocket.writeBody(bytes);
-			
+		
+		watcher.clientGotFile(file, clientThread);
 		 
 	}
 

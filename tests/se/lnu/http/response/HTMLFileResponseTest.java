@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
 import se.lnu.http.ClientSocket;
+import se.lnu.http.IServerWatcher;
 
 public class HTMLFileResponseTest {
 
@@ -37,10 +38,11 @@ public class HTMLFileResponseTest {
 		byte[] bytes = Files.readAllBytes(Paths.get(file.getAbsolutePath()));
 		
 		ClientSocket clientSocket = mock(ClientSocket.class);
-		HTTP200OKFileResponse response = new HTTP200OKFileResponse(file);
+		IServerWatcher watcher = mock(IServerWatcher.class);
+		HTTP200OKFileResponse response = new HTTP200OKFileResponse(file, watcher, 1);
 		
 		
-		response.writeResponse(clientSocket);
+		response.writeResponse(clientSocket, false);
 		ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
 		verify(clientSocket).writeHeader(argument.capture());
 		
@@ -53,6 +55,8 @@ public class HTMLFileResponseTest {
 		for(int i= 0; i< bytes.length; i++) {
 			assertEquals(bytes[i] , actualBytes[i]);
 		}
+		
+		verify(watcher).clientGotFile(file, 1);
 		
 		
 	}

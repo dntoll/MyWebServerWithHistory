@@ -5,22 +5,24 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import se.lnu.http.HTTPServerObserver;
+import se.lnu.http.IServerWatcher;
 import se.lnu.http.Port;
 import se.lnu.http.exceptions.InvalidPortException;
 import se.lnu.http.exceptions.NotADirectoryException;
 import se.lnu.http.exceptions.WrongNumberOfArgumentsException;
 
 
-public class ConsoleView implements HTTPServerObserver {
+public class ConsoleView implements IServerWatcher {
 	static final String HELP_TEXT = "Enter a valid port 1-65535 and a optional URL";
 	static final String SERVER_CONSTRUCTED = "HTTP Server object constructed";
 	static final String SERVER_STARTED = "HTTP Server started";
 	static final String SERVER_STOPPED = "HTTP Server stopped";
 	static final String SERVER_ACCEPT_THREAD_STOPPED = "HTTP Server Accept thread stopped";
-	static final String STARTED_CLIENT = "Started Client";
+	static final String STARTED_CLIENT = "ClientThread started nr: ";
 	static final String WAIT_FOR_ACCEPT = "Accept";
 	static final String PORT_IS_TAKEN = "Port is taken";
+	static final String CLIENT_GOT_FILE = "ClientThread ";
+	static final String CONNECTION_WAS_BROKEN = "ClientThread stopped nr: ";
 	
 	
 	private String[] args;
@@ -113,8 +115,8 @@ public class ConsoleView implements HTTPServerObserver {
 	}
 
 	@Override
-	public void startedClient() {
-		System.out.println(STARTED_CLIENT);
+	public void startedClient(int threadId) {
+		System.out.println(STARTED_CLIENT + threadId);
 		
 	}
 
@@ -126,6 +128,18 @@ public class ConsoleView implements HTTPServerObserver {
 
 	public void showPortTaken() {
 		System.out.println(PORT_IS_TAKEN);
+	}
+
+	@Override
+	public synchronized  void clientGotFile(File file, int threadId) {
+		System.out.println(CLIENT_GOT_FILE + threadId +  " served file : " + file.getName());
+		
+	}
+
+	@Override
+	public void connectionBroken(int threadId) {
+		System.out.println(CONNECTION_WAS_BROKEN + threadId);
+		
 	}
 
 	

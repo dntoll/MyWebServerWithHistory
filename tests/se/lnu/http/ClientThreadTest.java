@@ -16,12 +16,14 @@ public class ClientThreadTest {
 	private ClientSocket sock;
 	private ResponseFactory factory;
 	private ClientThread sut;
+	private IServerWatcher watcher;
 
 	@Before
 	public void setUp() throws Exception {
 		sock = mock(ClientSocket.class);
 		factory = mock(ResponseFactory.class);
-		sut = new ClientThread(sock, factory);
+		watcher = mock(IServerWatcher.class);
+		sut = new ClientThread(sock, factory, watcher, 1);
 	}
 
 	@After
@@ -32,25 +34,41 @@ public class ClientThreadTest {
 	public void testRun() throws IOException {
 		HTTPResponse response = mock(HTTPResponse.class);
 		
-		when(sock.getRequest()).thenReturn("GET / HTTP1.1\r\n");
+		when(sock.getRequest(ClientThread.timeOutMilliseconds)).thenReturn("GET / HTTP1.1\r\nHost: host\r\nConnection: close\r\n\r\n");
 		when(factory.getResponse(any(HTTPRequest.class))).thenReturn(response);
 		
 		sut.run();
 		
-		verify(response).writeResponse(sock);
+		verify(response).writeResponse(sock, false);
 	}
 	
 	@Test
 	public void testMalformed() throws IOException {
 		
 		HTTP400BadRequest response = mock(HTTP400BadRequest.class);
-		when(sock.getRequest()).thenReturn("GET HTTP1.1\r\n");
+		when(sock.getRequest(ClientThread.timeOutMilliseconds)).thenReturn("GET HTTP1.1\r\nHost: host\r\nConnection: close\r\n\r\n");
 		
 		when(factory.getBadResponse()).thenReturn(response);
 		
 		sut.run();
 		
-		verify(response).writeResponse(sock);
+		verify(response).writeResponse(sock, false);
+	}
+	
+	@Test
+	public void testMultipleConnections() throws IOException {
+		
+		HTTPResponse response = mock(HTTPResponse.class);
+		when(sock.getRequest(ClientThread.timeOutMilliseconds)).
+			thenReturn("GET / HTTP1.1\r\nHost: host\r\n\r\n").
+			thenReturn("GET / HTTP1.1\r\nHost: host\r\nConnection: close\r\n\r\n");
+		
+		when(factory.getResponse(any(HTTPRequest.class))).thenReturn(response);
+		
+		
+		sut.run();
+		
+		verify(sock, times(2)).getRequest(ClientThread.timeOutMilliseconds);
 	}
 	
 	

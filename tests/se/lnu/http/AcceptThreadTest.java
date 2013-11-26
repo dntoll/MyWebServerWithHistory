@@ -14,14 +14,14 @@ import org.junit.Test;
 public class AcceptThreadTest {
 
 	private AcceptThread sut;
-	private HTTPServerObserver observer;
+	private IServerWatcher observer;
 	private ServerSocket sock;
 	private ClientFactory factory;
 
 	@Before
 	public void setUp() throws Exception {
 		sock = mock(ServerSocket.class);
-		observer = mock(HTTPServerObserver.class);
+		observer = mock(IServerWatcher.class);
 		factory = mock(ClientFactory.class);
 		sut = new AcceptThread(sock, observer, factory);
 	}

@@ -12,7 +12,7 @@ public class HTTPReader {
 		this.reader = reader;
 	}
 
-	public String readBody() throws IOException {
+	private String readBody() throws IOException {
 		StringBuilder data = new StringBuilder();
 		for (int i = 0; i < contentlength; i++) {
 			data.append((char)reader.read());
@@ -21,8 +21,7 @@ public class HTTPReader {
 		return data.toString();
 	}
 
-	public String readHeader()
-			throws IOException {
+	public String readAll() throws IOException {
 		StringBuilder data = new StringBuilder();
 				
 		while (true) {
