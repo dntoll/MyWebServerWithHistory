@@ -40,7 +40,7 @@ public class ConsoleViewTest {
 	@Test(expected=WrongNumberOfArgumentsException.class)
 	public void testNoArguments() throws Exception {
 		String[] input = new String[0];
-		ConsoleView view = new ConsoleView(input);
+		ConsoleView view = new ConsoleView(input, System.out);
 		
 		view.getPort();
 	}
@@ -49,7 +49,7 @@ public class ConsoleViewTest {
 	public void testCrapArgument1() throws Exception {
 		String[] input = new String[1];
 		input[0] = "rfsdf";
-		ConsoleView view = new ConsoleView(input);
+		ConsoleView view = new ConsoleView(input, System.out);
 		
 		view.getPort();
 	}
@@ -63,7 +63,7 @@ public class ConsoleViewTest {
 		String[] input = new String[2];
 		input[0] = "80";
 		input[1] = folder.getAbsolutePath();
-		ConsoleView view = new ConsoleView(input);
+		ConsoleView view = new ConsoleView(input, System.out);
 		
 		view.getDirectory();
 	}
@@ -73,21 +73,21 @@ public class ConsoleViewTest {
 		String[] input = new String[2];
 		input[0] = "80";
 		input[1] = "rfsdf";
-		ConsoleView view = new ConsoleView(input);
+		ConsoleView view = new ConsoleView(input, System.out);
 		
 		view.getDirectory();
 	}
 	
 	@Test
 	public void testOkPort() throws Exception {
-		ConsoleView view = new ConsoleView(okInput);
+		ConsoleView view = new ConsoleView(okInput, System.out);
 		Port actual = view.getPort();
 		Assert.assertSame(80, actual.getPort());
 	}
 	
 	@Test
 	public void testOkDirectory() throws Exception {
-		ConsoleView view = new ConsoleView(okInput);
+		ConsoleView view = new ConsoleView(okInput, System.out);
 		File actual = view.getDirectory();
 		
 		String os = System.getProperty("os.name");
@@ -106,7 +106,7 @@ public class ConsoleViewTest {
 		System.setOut(new PrintStream(outContent));
 		PrintStream old = System.out;
 		
-		ConsoleView view = new ConsoleView(okInput);
+		ConsoleView view = new ConsoleView(okInput, System.out);
 		view.showhelp();
 		assertEquals(ConsoleView.HELP_TEXT, outContent.toString());
 		System.setOut(old);
@@ -122,7 +122,7 @@ public class ConsoleViewTest {
 		ByteArrayInputStream inContent = new ByteArrayInputStream(data.getBytes());
 		InputStream old = System.in;
 		System.setIn(inContent);
-		ConsoleView view = new ConsoleView(okInput);
+		ConsoleView view = new ConsoleView(okInput, System.out);
 		boolean actual = view.doStop();
 		
 		assertEquals(true, actual);
@@ -137,7 +137,7 @@ public class ConsoleViewTest {
 		ByteArrayInputStream inContent = new ByteArrayInputStream(data.getBytes());
 		InputStream old = System.in;
 		System.setIn(inContent);
-		ConsoleView view = new ConsoleView(okInput);
+		ConsoleView view = new ConsoleView(okInput, System.out);
 		boolean actual = view.doStop();
 		
 		assertEquals(false, actual);

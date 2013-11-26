@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class SharedFolder {
 
-	volatile private File sharedDirectory;
+	private File sharedDirectory;
 	
 
 	public SharedFolder(File sharedDirectory) {
@@ -14,13 +14,13 @@ public class SharedFolder {
 		this.sharedDirectory = sharedDirectory;
 	}
 
-	public File getURL(String relativePath) throws IOException {
-		
+	public synchronized File getURL(String relativePath) throws IOException {
+		String path = relativePath;
 		//default file
 		if (relativePath.endsWith("/")) {
-			relativePath += "index.html";
+			path += "index.html";
 		}
-		File file = new File(sharedDirectory, relativePath);
+		File file = new File(sharedDirectory, path);
 		
 		String absolute = sharedDirectory.getAbsolutePath();
 		String sharedFileCanonicalPath = file.getCanonicalPath();

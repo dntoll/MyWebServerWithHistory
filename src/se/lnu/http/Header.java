@@ -1,7 +1,6 @@
 package se.lnu.http;
 
 
-import se.lnu.http.Header.HTTPHeader;
 import se.lnu.http.exceptions.MalformedRequestException;
 
 public class Header {

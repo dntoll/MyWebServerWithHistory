@@ -7,8 +7,8 @@ import java.net.SocketException;
 
 public class AcceptThread extends Thread{
 
-	volatile ServerSocket socket;
-	volatile private IServerWatcher observer;
+	ServerSocket socket;
+	private IServerWatcher observer;
 	private ClientFactory cfactory;
 	
 	public AcceptThread(ServerSocket sock, 

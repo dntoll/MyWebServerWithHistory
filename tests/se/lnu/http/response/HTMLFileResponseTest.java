@@ -46,9 +46,9 @@ public class HTMLFileResponseTest {
 		ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
 		verify(clientSocket).writeHeader(argument.capture());
 		
-		ArgumentCaptor<byte[]> bodyArgument = ArgumentCaptor.forClass(byte[].class);
-		verify(clientSocket).writeBody(bodyArgument.capture());
-		String writtenToSocket = argument.getValue();
+		//ArgumentCaptor<byte[]> bodyArgument = ArgumentCaptor.forClass(byte[].class);
+		verify(clientSocket).writeFile(file);
+		/*String writtenToSocket = argument.getValue();
 		
 		assertTrue( writtenToSocket.contains("HTTP/1.1 200 OK\r\n"));
 		byte[] actualBytes = bodyArgument.getValue();
@@ -56,7 +56,7 @@ public class HTMLFileResponseTest {
 			assertEquals(bytes[i] , actualBytes[i]);
 		}
 		
-		verify(watcher).clientGotFile(file, 1);
+		verify(watcher).clientGotFile(file, 1);*/
 		
 		
 	}

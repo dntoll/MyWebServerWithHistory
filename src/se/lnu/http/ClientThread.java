@@ -12,7 +12,7 @@ public class ClientThread extends Thread{
 	private ResponseFactory factory;
 	private IServerWatcher watcher;
 	private int identifier;
-	public static int timeOutMilliseconds = 10000;
+	public static int timeOutMilliseconds = 8000;
 
 	public ClientThread(ClientSocket clientSocket,
 						ResponseFactory factory, 

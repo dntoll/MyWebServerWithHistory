@@ -21,7 +21,7 @@ public class HTTPServerConsole {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
-		ConsoleView view = new ConsoleView(args);
+		ConsoleView view = new ConsoleView(args, System.out);
 		ServerFactory factory = new ServerFactory();
 		HTTPServerConsole server = new HTTPServerConsole(view, factory);
 		server.runConsole();

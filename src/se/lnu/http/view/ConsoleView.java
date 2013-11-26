@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 
 import se.lnu.http.IServerWatcher;
 import se.lnu.http.Port;
@@ -26,16 +27,17 @@ public class ConsoleView implements IServerWatcher {
 	
 	
 	private String[] args;
+	private PrintStream out;
 	
 	
 	
-	public ConsoleView(String[] args) throws WrongNumberOfArgumentsException {
+	public ConsoleView(String[] args, PrintStream out) throws WrongNumberOfArgumentsException {
 		if (args.length > 2 || args.length < 1) {
 			throw new WrongNumberOfArgumentsException();
 		}
 		
 		this.args = args;
-		
+		this.out = out;
 	}
 
 	public Port getPort() throws InvalidPortException {
@@ -52,7 +54,7 @@ public class ConsoleView implements IServerWatcher {
 
 	
 	public void showhelp() {
-		System.out.print(HELP_TEXT);
+		out.print(HELP_TEXT);
 		
 	}
 	
@@ -92,53 +94,53 @@ public class ConsoleView implements IServerWatcher {
 	
 	@Override
 	public void serverConstructed() {
-		System.out.println(SERVER_CONSTRUCTED);
+		out.println(SERVER_CONSTRUCTED);
 		
 	}
 
 	@Override
 	public void serverStarted() {
-		System.out.println(SERVER_STARTED);
+		out.println(SERVER_STARTED);
 		
 	}
 
 	@Override
 	public void serverStopped() {
-		System.out.println(SERVER_STOPPED);
+		out.println(SERVER_STOPPED);
 		
 	}
 
 	@Override
 	public void closedAccept() {
-		System.out.println(SERVER_ACCEPT_THREAD_STOPPED);
+		out.println(SERVER_ACCEPT_THREAD_STOPPED);
 		
 	}
 
 	@Override
 	public void startedClient(int threadId) {
-		System.out.println(STARTED_CLIENT + threadId);
+		out.println(STARTED_CLIENT + threadId);
 		
 	}
 
 	@Override
 	public void waitForClient() {
-		System.out.println(WAIT_FOR_ACCEPT);
+		out.println(WAIT_FOR_ACCEPT);
 		
 	}
 
 	public void showPortTaken() {
-		System.out.println(PORT_IS_TAKEN);
+		out.println(PORT_IS_TAKEN);
 	}
 
 	@Override
 	public synchronized  void clientGotFile(File file, int threadId) {
-		System.out.println(CLIENT_GOT_FILE + threadId +  " served file : " + file.getName());
+		out.println(CLIENT_GOT_FILE + threadId +  " served file : " + file.getName());
 		
 	}
 
 	@Override
 	public void connectionBroken(int threadId) {
-		System.out.println(CONNECTION_WAS_BROKEN + threadId);
+		out.println(CONNECTION_WAS_BROKEN + threadId);
 		
 	}
 

@@ -1,0 +1,938 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.5" timestamp="2013-11-26T18:15:10.389">
+<file name="src/se/lnu/http/AcceptThread.java">
+<violation beginline="8" endline="8" begincolumn="0" endcolumn="0" rule="DoNotUseThreads" ruleset="J2EE Rules" package="se.lnu.http" class="AcceptThread" externalInfoUrl="http://pmd.sourceforge.net/rules/j2ee.html#DoNotUseThreads" priority="3">
+To be compliant to J2EE, a webapp should not use any thread.
+</violation>
+<violation beginline="10" endline="10" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="AcceptThread" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="10" endline="10" begincolumn="0" endcolumn="0" rule="DefaultPackage" ruleset="Controversial Rules" package="se.lnu.http" class="AcceptThread" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DefaultPackage" priority="3">
+Use explicit scoping instead of the default package private level
+</violation>
+<violation beginline="10" endline="10" begincolumn="0" endcolumn="0" rule="AvoidUsingVolatile" ruleset="Controversial Rules" package="se.lnu.http" class="AcceptThread" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#AvoidUsingVolatile" priority="2">
+Use of modifier volatile is not recommended.
+</violation>
+<violation beginline="11" endline="11" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="AcceptThread" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="11" endline="11" begincolumn="0" endcolumn="0" rule="AvoidUsingVolatile" ruleset="Controversial Rules" package="se.lnu.http" class="AcceptThread" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#AvoidUsingVolatile" priority="2">
+Use of modifier volatile is not recommended.
+</violation>
+<violation beginline="12" endline="12" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="AcceptThread" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="12" endline="12" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="AcceptThread" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'cfactory' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="14" endline="20" begincolumn="0" endcolumn="0" rule="CallSuperInConstructor" ruleset="Controversial Rules" package="se.lnu.http" class="AcceptThread" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#CallSuperInConstructor" priority="3">
+It is a good practice to call super() in a constructor
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="AcceptThread" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'sock' is not assigned and could be declared final
+</violation>
+<violation beginline="15" endline="15" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="AcceptThread" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'observer' is not assigned and could be declared final
+</violation>
+<violation beginline="16" endline="16" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="AcceptThread" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'cfactory' is not assigned and could be declared final
+</violation>
+<violation beginline="36" endline="36" begincolumn="0" endcolumn="0" rule="AvoidPrintStackTrace" ruleset="Java Logging Rules" package="se.lnu.http" class="AcceptThread" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#AvoidPrintStackTrace" priority="3">
+Avoid printStackTrace(); use a logger call instead.
+</violation>
+<violation beginline="49" endline="49" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="AcceptThread" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'clientSocket' could be declared final
+</violation>
+<violation beginline="50" endline="50" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="AcceptThread" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'client' could be declared final
+</violation>
+</file>
+<file name="src/se/lnu/http/ClientFactory.java">
+<violation beginline="7" endline="7" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="ClientFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="7" endline="7" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="ClientFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'folder' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="8" endline="8" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="ClientFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="8" endline="8" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="ClientFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'watcher' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="9" endline="9" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="ClientFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="11" endline="11" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'folder' is not assigned and could be declared final
+</violation>
+<violation beginline="11" endline="11" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'watcher' is not assigned and could be declared final
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'clientSocket' is not assigned and could be declared final
+</violation>
+</file>
+<file name="src/se/lnu/http/ClientSocket.java">
+<violation beginline="11" endline="11" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="ClientSocket" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="11" endline="11" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="ClientSocket" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'sock' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="13" endline="13" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientSocket" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'sock' is not assigned and could be declared final
+</violation>
+<violation beginline="18" endline="18" begincolumn="0" endcolumn="0" rule="LongVariable" ruleset="Naming Rules" package="se.lnu.http" class="ClientSocket" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#LongVariable" priority="3">
+Avoid excessively long variable names like timeOutMilliseconds
+</violation>
+<violation beginline="18" endline="18" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientSocket" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'timeOutMilliseconds' is not assigned and could be declared final
+</violation>
+<violation beginline="21" endline="21" begincolumn="0" endcolumn="0" rule="ShortVariable" ruleset="Naming Rules" package="se.lnu.http" class="ClientSocket" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like in
+</violation>
+<violation beginline="21" endline="21" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientSocket" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'in' could be declared final
+</violation>
+<violation beginline="22" endline="22" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientSocket" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'httpReader' could be declared final
+</violation>
+<violation beginline="23" endline="23" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientSocket" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'requestString' could be declared final
+</violation>
+<violation beginline="24" endline="24" begincolumn="0" endcolumn="0" rule="UnnecessaryLocalBeforeReturn" ruleset="Design Rules" package="se.lnu.http" class="ClientSocket" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UnnecessaryLocalBeforeReturn" priority="3">
+Consider simply returning the value vs storing it in local variable 'requestString'
+</violation>
+<violation beginline="27" endline="27" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientSocket" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'response' is not assigned and could be declared final
+</violation>
+<violation beginline="28" endline="28" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientSocket" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'out' could be declared final
+</violation>
+<violation beginline="29" endline="29" begincolumn="0" endcolumn="0" rule="StringToString" ruleset="String and StringBuffer Rules" package="se.lnu.http" class="ClientSocket" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#StringToString" priority="3">
+Avoid calling toString() on String objects; this is unnecessary.
+</violation>
+<violation beginline="38" endline="38" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientSocket" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'bytes' is not assigned and could be declared final
+</violation>
+</file>
+<file name="src/se/lnu/http/ClientThread.java">
+<violation beginline="8" endline="8" begincolumn="0" endcolumn="0" rule="DoNotUseThreads" ruleset="J2EE Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/j2ee.html#DoNotUseThreads" priority="3">
+To be compliant to J2EE, a webapp should not use any thread.
+</violation>
+<violation beginline="11" endline="11" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="11" endline="11" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'clientSocket' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="12" endline="12" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="12" endline="12" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'factory' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="13" endline="13" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="13" endline="13" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'watcher' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'identifier' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="15" endline="15" begincolumn="0" endcolumn="0" rule="LongVariable" ruleset="Naming Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#LongVariable" priority="3">
+Avoid excessively long variable names like timeOutMilliseconds
+</violation>
+<violation beginline="17" endline="25" begincolumn="0" endcolumn="0" rule="CallSuperInConstructor" ruleset="Controversial Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#CallSuperInConstructor" priority="3">
+It is a good practice to call super() in a constructor
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'clientSocket' is not assigned and could be declared final
+</violation>
+<violation beginline="18" endline="18" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'factory' is not assigned and could be declared final
+</violation>
+<violation beginline="19" endline="19" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'identifier' is not assigned and could be declared final
+</violation>
+<violation beginline="19" endline="19" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'watcher' is not assigned and could be declared final
+</violation>
+<violation beginline="31" endline="31" begincolumn="0" endcolumn="0" rule="EmptyWhileStmt" ruleset="Basic Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyWhileStmt" priority="3">
+Avoid empty while statements
+</violation>
+<violation beginline="31" endline="31" begincolumn="0" endcolumn="0" rule="WhileLoopsMustUseBraces" ruleset="Braces Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/braces.html#WhileLoopsMustUseBraces" priority="3">
+Avoid using while statements without curly braces
+</violation>
+<violation beginline="33" endline="36" begincolumn="0" endcolumn="0" rule="EmptyCatchBlock" ruleset="Basic Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="41" endline="41" begincolumn="0" endcolumn="0" rule="AvoidPrintStackTrace" ruleset="Java Logging Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#AvoidPrintStackTrace" priority="3">
+Avoid printStackTrace(); use a logger call instead.
+</violation>
+<violation beginline="49" endline="57" begincolumn="0" endcolumn="0" rule="DataflowAnomalyAnalysis" ruleset="Controversial Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DataflowAnomalyAnalysis" priority="5">
+Found 'DD'-anomaly for variable 'doContinue' (lines '49'-'57').
+</violation>
+<violation beginline="49" endline="63" begincolumn="0" endcolumn="0" rule="DataflowAnomalyAnalysis" ruleset="Controversial Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DataflowAnomalyAnalysis" priority="5">
+Found 'DD'-anomaly for variable 'doContinue' (lines '49'-'63').
+</violation>
+<violation beginline="50" endline="50" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'requestString' could be declared final
+</violation>
+<violation beginline="53" endline="53" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'request' could be declared final
+</violation>
+<violation beginline="57" endline="63" begincolumn="0" endcolumn="0" rule="DataflowAnomalyAnalysis" ruleset="Controversial Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DataflowAnomalyAnalysis" priority="5">
+Found 'DD'-anomaly for variable 'doContinue' (lines '57'-'63').
+</violation>
+<violation beginline="60" endline="62" begincolumn="0" endcolumn="0" rule="DataflowAnomalyAnalysis" ruleset="Controversial Rules" package="se.lnu.http" class="ClientThread" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DataflowAnomalyAnalysis" priority="5">
+Found 'DD'-anomaly for variable 'response' (lines '60'-'62').
+</violation>
+</file>
+<file name="src/se/lnu/http/HTTPReader.java">
+<violation beginline="7" endline="7" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="HTTPReader" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="9" endline="9" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="HTTPReader" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="9" endline="9" begincolumn="0" endcolumn="0" rule="DefaultPackage" ruleset="Controversial Rules" package="se.lnu.http" class="HTTPReader" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DefaultPackage" priority="3">
+Use explicit scoping instead of the default package private level
+</violation>
+<violation beginline="11" endline="11" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPReader" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'reader' is not assigned and could be declared final
+</violation>
+<violation beginline="16" endline="16" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPReader" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'data' could be declared final
+</violation>
+<violation beginline="25" endline="47" begincolumn="0" endcolumn="0" rule="DataflowAnomalyAnalysis" ruleset="Controversial Rules" package="se.lnu.http" class="HTTPReader" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DataflowAnomalyAnalysis" priority="5">
+Found 'DU'-anomaly for variable 'data' (lines '25'-'47').
+</violation>
+<violation beginline="25" endline="25" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPReader" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'data' could be declared final
+</violation>
+<violation beginline="28" endline="28" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPReader" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'lineRead' could be declared final
+</violation>
+<violation beginline="40" endline="40" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPReader" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'number' could be declared final
+</violation>
+</file>
+<file name="src/se/lnu/http/HTTPRequest.java">
+<violation beginline="12" endline="12" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'stringMethod' is not assigned and could be declared final
+</violation>
+<violation beginline="29" endline="29" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="HTTPRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="29" endline="29" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="HTTPRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'url' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="30" endline="30" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="HTTPRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="30" endline="30" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="HTTPRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'requestType' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="31" endline="31" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="HTTPRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="31" endline="31" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="HTTPRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'headers' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="33" endline="33" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'headers' is not assigned and could be declared final
+</violation>
+<violation beginline="33" endline="33" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'requestType' is not assigned and could be declared final
+</violation>
+<violation beginline="33" endline="33" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'url' is not assigned and could be declared final
+</violation>
+<violation beginline="39" endline="39" begincolumn="0" endcolumn="0" rule="SimplifyBooleanExpressions" ruleset="Design Rules" package="se.lnu.http" class="HTTPRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions" priority="3">
+Avoid unnecessary comparisons in boolean expressions
+</violation>
+<violation beginline="55" endline="57" begincolumn="0" endcolumn="0" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="se.lnu.http" class="HTTPRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="56" endline="56" begincolumn="0" endcolumn="0" rule="OnlyOneReturn" ruleset="Controversial Rules" package="se.lnu.http" class="HTTPRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#OnlyOneReturn" priority="3">
+A method should have only one exit point, and that should be the last statement in the method
+</violation>
+</file>
+<file name="src/se/lnu/http/HTTPRequestParser.java">
+<violation beginline="3" endline="3" begincolumn="0" endcolumn="0" rule="UnusedImports" ruleset="Type Resolution Rules" package="se.lnu.http" class="HTTPRequestParser" externalInfoUrl="http://pmd.sourceforge.net/rules/typeresolution.html#UnusedImports" priority="4">
+Avoid unused imports such as 'java.util.ArrayList'
+</violation>
+<violation beginline="3" endline="3" begincolumn="0" endcolumn="0" rule="UnusedImports" ruleset="Type Resolution Rules" package="se.lnu.http" class="HTTPRequestParser" externalInfoUrl="http://pmd.sourceforge.net/rules/typeresolution.html#UnusedImports" priority="4">
+Avoid unused imports such as 'java.util.ArrayList'
+</violation>
+<violation beginline="5" endline="5" begincolumn="0" endcolumn="0" rule="UnusedImports" ruleset="Type Resolution Rules" package="se.lnu.http" class="HTTPRequestParser" externalInfoUrl="http://pmd.sourceforge.net/rules/typeresolution.html#UnusedImports" priority="4">
+Avoid unused imports such as 'java.util.List'
+</violation>
+<violation beginline="5" endline="5" begincolumn="0" endcolumn="0" rule="UnusedImports" ruleset="Type Resolution Rules" package="se.lnu.http" class="HTTPRequestParser" externalInfoUrl="http://pmd.sourceforge.net/rules/typeresolution.html#UnusedImports" priority="4">
+Avoid unused imports such as 'java.util.List'
+</violation>
+<violation beginline="10" endline="34" begincolumn="0" endcolumn="0" rule="UseSingleton" ruleset="Design Rules" package="se.lnu.http" class="HTTPRequestParser" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UseSingleton" priority="3">
+All methods are static.  Consider using Singleton instead.  Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+</violation>
+<violation beginline="12" endline="12" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPRequestParser" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'requestString' is not assigned and could be declared final
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPRequestParser" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'lines' could be declared final
+</violation>
+<violation beginline="16" endline="16" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPRequestParser" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'firstLine' could be declared final
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPRequestParser" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'requestType' could be declared final
+</violation>
+<violation beginline="22" endline="22" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPRequestParser" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'method' could be declared final
+</violation>
+<violation beginline="24" endline="24" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPRequestParser" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'headers' could be declared final
+</violation>
+<violation beginline="26" endline="26" begincolumn="0" endcolumn="0" rule="ShortVariable" ruleset="Naming Rules" package="se.lnu.http" class="HTTPRequestParser" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like h
+</violation>
+<violation beginline="26" endline="26" begincolumn="0" endcolumn="0" rule="UnnecessaryParentheses" ruleset="Controversial Rules" package="se.lnu.http" class="HTTPRequestParser" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UnnecessaryParentheses" priority="3">
+This statement may have some unnecessary parentheses
+</violation>
+</file>
+<file name="src/se/lnu/http/HTTPServer.java">
+<violation beginline="12" endline="12" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="HTTPServer" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="12" endline="12" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="HTTPServer" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'watcher' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="HTTPServer" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="HTTPServer" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'port' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="15" endline="15" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="HTTPServer" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="HTTPServer" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="HTTPServer" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'sharedDirectory' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="19" endline="19" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPServer" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'port' is not assigned and could be declared final
+</violation>
+<violation beginline="19" endline="19" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPServer" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'sharedDirectory' is not assigned and could be declared final
+</violation>
+<violation beginline="19" endline="19" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPServer" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'watcher' is not assigned and could be declared final
+</violation>
+<violation beginline="27" endline="27" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPServer" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'socket' could be declared final
+</violation>
+<violation beginline="28" endline="28" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPServer" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'factory' could be declared final
+</violation>
+<violation beginline="37" endline="38" begincolumn="0" endcolumn="0" rule="IfStmtsMustUseBraces" ruleset="Braces Rules" package="se.lnu.http" class="HTTPServer" externalInfoUrl="http://pmd.sourceforge.net/rules/braces.html#IfStmtsMustUseBraces" priority="3">
+Avoid using if statements without curly braces
+</violation>
+<violation beginline="49" endline="49" begincolumn="0" endcolumn="0" rule="NullAssignment" ruleset="Controversial Rules" package="se.lnu.http" class="HTTPServer" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#NullAssignment" priority="3">
+Assigning an Object to null is a code smell.  Consider refactoring.
+</violation>
+</file>
+<file name="src/se/lnu/http/HTTPServerConsole.java">
+<violation beginline="11" endline="11" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="11" endline="11" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'view' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="12" endline="12" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="12" endline="12" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'factory' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'factory' is not assigned and could be declared final
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'view' is not assigned and could be declared final
+</violation>
+<violation beginline="23" endline="23" begincolumn="0" endcolumn="0" rule="SignatureDeclareThrowsException" ruleset="Type Resolution Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/typeresolution.html#SignatureDeclareThrowsException" priority="3">
+A method/constructor shouldn't explicitly throw java.lang.Exception
+</violation>
+<violation beginline="23" endline="23" begincolumn="0" endcolumn="0" rule="SignatureDeclareThrowsException" ruleset="Type Resolution Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/typeresolution.html#SignatureDeclareThrowsException" priority="3">
+A method/constructor shouldn't explicitly throw java.lang.Exception
+</violation>
+<violation beginline="23" endline="23" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'args' is not assigned and could be declared final
+</violation>
+<violation beginline="24" endline="24" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'view' could be declared final
+</violation>
+<violation beginline="25" endline="25" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'factory' could be declared final
+</violation>
+<violation beginline="26" endline="26" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'server' could be declared final
+</violation>
+<violation beginline="32" endline="32" begincolumn="0" endcolumn="0" rule="SignatureDeclareThrowsException" ruleset="Type Resolution Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/typeresolution.html#SignatureDeclareThrowsException" priority="3">
+A method/constructor shouldn't explicitly throw java.lang.Exception
+</violation>
+<violation beginline="32" endline="32" begincolumn="0" endcolumn="0" rule="SignatureDeclareThrowsException" ruleset="Type Resolution Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/typeresolution.html#SignatureDeclareThrowsException" priority="3">
+A method/constructor shouldn't explicitly throw java.lang.Exception
+</violation>
+<violation beginline="32" endline="54" begincolumn="0" endcolumn="0" rule="DefaultPackage" ruleset="Controversial Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DefaultPackage" priority="3">
+Use explicit scoping instead of the default package private level
+</violation>
+<violation beginline="35" endline="35" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'port' could be declared final
+</violation>
+<violation beginline="36" endline="36" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="HTTPServerConsole" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'sharedDirectory' could be declared final
+</violation>
+</file>
+<file name="src/se/lnu/http/Header.java">
+<violation beginline="22" endline="22" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="Header" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'headerText' is not assigned and could be declared final
+</violation>
+<violation beginline="29" endline="29" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="Header" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="30" endline="30" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="Header" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="32" endline="32" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="Header" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'type' is not assigned and could be declared final
+</violation>
+<violation beginline="32" endline="32" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="Header" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'value' is not assigned and could be declared final
+</violation>
+<violation beginline="45" endline="45" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="Header" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'stringHeader' is not assigned and could be declared final
+</violation>
+<violation beginline="45" endline="60" begincolumn="0" endcolumn="0" rule="DefaultPackage" ruleset="Controversial Rules" package="se.lnu.http" class="Header" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DefaultPackage" priority="3">
+Use explicit scoping instead of the default package private level
+</violation>
+<violation beginline="46" endline="46" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="Header" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'parts' could be declared final
+</violation>
+<violation beginline="53" endline="53" begincolumn="0" endcolumn="0" rule="OnlyOneReturn" ruleset="Controversial Rules" package="se.lnu.http" class="Header" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#OnlyOneReturn" priority="3">
+A method should have only one exit point, and that should be the last statement in the method
+</violation>
+</file>
+<file name="src/se/lnu/http/Port.java">
+<violation beginline="7" endline="7" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="Port" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="7" endline="7" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="Port" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'portNumber' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="9" endline="9" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="Port" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'portNumber' is not assigned and could be declared final
+</violation>
+</file>
+<file name="src/se/lnu/http/ResponseFactory.java">
+<violation beginline="16" endline="16" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="ResponseFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="16" endline="16" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="ResponseFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'folder' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="ResponseFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="ResponseFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'watcher' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="18" endline="18" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="ResponseFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="18" endline="18" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http" class="ResponseFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'clientThread' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="20" endline="20" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ResponseFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'clientThread' is not assigned and could be declared final
+</violation>
+<violation beginline="20" endline="20" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ResponseFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'folder' is not assigned and could be declared final
+</violation>
+<violation beginline="20" endline="20" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ResponseFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'watcher' is not assigned and could be declared final
+</violation>
+<violation beginline="26" endline="26" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ResponseFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'request' is not assigned and could be declared final
+</violation>
+<violation beginline="27" endline="27" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ResponseFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'method' could be declared final
+</violation>
+<violation beginline="30" endline="30" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ResponseFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'file' could be declared final
+</violation>
+<violation beginline="31" endline="31" begincolumn="0" endcolumn="0" rule="OnlyOneReturn" ruleset="Controversial Rules" package="se.lnu.http" class="ResponseFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#OnlyOneReturn" priority="3">
+A method should have only one exit point, and that should be the last statement in the method
+</violation>
+<violation beginline="33" endline="33" begincolumn="0" endcolumn="0" rule="OnlyOneReturn" ruleset="Controversial Rules" package="se.lnu.http" class="ResponseFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#OnlyOneReturn" priority="3">
+A method should have only one exit point, and that should be the last statement in the method
+</violation>
+<violation beginline="35" endline="35" begincolumn="0" endcolumn="0" rule="OnlyOneReturn" ruleset="Controversial Rules" package="se.lnu.http" class="ResponseFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#OnlyOneReturn" priority="3">
+A method should have only one exit point, and that should be the last statement in the method
+</violation>
+</file>
+<file name="src/se/lnu/http/ServerFactory.java">
+<violation beginline="7" endline="7" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ServerFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'port' is not assigned and could be declared final
+</violation>
+<violation beginline="7" endline="7" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ServerFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'sharedDirectory' is not assigned and could be declared final
+</violation>
+<violation beginline="7" endline="7" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="ServerFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'view' is not assigned and could be declared final
+</violation>
+</file>
+<file name="src/se/lnu/http/SharedFolder.java">
+<violation beginline="9" endline="9" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http" class="SharedFolder" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="9" endline="9" begincolumn="0" endcolumn="0" rule="AvoidUsingVolatile" ruleset="Controversial Rules" package="se.lnu.http" class="SharedFolder" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#AvoidUsingVolatile" priority="2">
+Use of modifier volatile is not recommended.
+</violation>
+<violation beginline="12" endline="12" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="SharedFolder" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'sharedDirectory' is not assigned and could be declared final
+</violation>
+<violation beginline="13" endline="13" begincolumn="0" endcolumn="0" rule="UnnecessaryParentheses" ruleset="Controversial Rules" package="se.lnu.http" class="SharedFolder" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UnnecessaryParentheses" priority="3">
+This statement may have some unnecessary parentheses
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="AvoidReassigningParameters" ruleset="Design Rules" package="se.lnu.http" class="SharedFolder" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidReassigningParameters" priority="2">
+Avoid reassigning parameters such as 'relativePath'
+</violation>
+<violation beginline="23" endline="23" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="SharedFolder" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'file' could be declared final
+</violation>
+<violation beginline="25" endline="25" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="SharedFolder" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'absolute' could be declared final
+</violation>
+<violation beginline="26" endline="26" begincolumn="0" endcolumn="0" rule="LongVariable" ruleset="Naming Rules" package="se.lnu.http" class="SharedFolder" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#LongVariable" priority="3">
+Avoid excessively long variable names like sharedFileCanonicalPath
+</violation>
+<violation beginline="26" endline="26" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="SharedFolder" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'sharedFileCanonicalPath' could be declared final
+</violation>
+<violation beginline="27" endline="27" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http" class="SharedFolder" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'startOfFile' could be declared final
+</violation>
+<violation beginline="28" endline="28" begincolumn="0" endcolumn="0" rule="SimplifyBooleanExpressions" ruleset="Design Rules" package="se.lnu.http" class="SharedFolder" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions" priority="3">
+Avoid unnecessary comparisons in boolean expressions
+</violation>
+</file>
+<file name="src/se/lnu/http/client/HTTPGetProtocoll.java">
+<violation beginline="12" endline="12" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.client" class="HTTPGetProtocoll" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'file' is not assigned and could be declared final
+</violation>
+<violation beginline="12" endline="12" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.client" class="HTTPGetProtocoll" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'hostName' is not assigned and could be declared final
+</violation>
+<violation beginline="12" endline="21" begincolumn="0" endcolumn="0" rule="DefaultPackage" ruleset="Controversial Rules" package="se.lnu.http.client" class="HTTPGetProtocoll" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DefaultPackage" priority="3">
+Use explicit scoping instead of the default package private level
+</violation>
+<violation beginline="13" endline="13" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.client" class="HTTPGetProtocoll" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'outWriter' is not assigned and could be declared final
+</violation>
+<violation beginline="13" endline="13" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.client" class="HTTPGetProtocoll" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'reader' is not assigned and could be declared final
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.client" class="HTTPGetProtocoll" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'httpReader' could be declared final
+</violation>
+<violation beginline="19" endline="19" begincolumn="0" endcolumn="0" rule="UseStringBufferForStringAppends" ruleset="Optimization Rules" package="se.lnu.http.client" class="HTTPGetProtocoll" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#UseStringBufferForStringAppends" priority="3">
+Prefer StringBuffer over += for concatenating strings
+</violation>
+</file>
+<file name="src/se/lnu/http/client/SocketClient.java">
+<violation beginline="13" endline="13" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http.client" class="SocketClient" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="13" endline="13" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http.client" class="SocketClient" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'client' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http.client" class="SocketClient" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http.client" class="SocketClient" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'socket' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="16" endline="16" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.client" class="SocketClient" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'client' is not assigned and could be declared final
+</violation>
+<violation beginline="16" endline="16" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.client" class="SocketClient" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'echoSocket' is not assigned and could be declared final
+</violation>
+<violation beginline="21" endline="21" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.client" class="SocketClient" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'file' is not assigned and could be declared final
+</violation>
+<violation beginline="21" endline="21" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.client" class="SocketClient" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'hostName' is not assigned and could be declared final
+</violation>
+<violation beginline="21" endline="21" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.client" class="SocketClient" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'portNumber' is not assigned and could be declared final
+</violation>
+<violation beginline="24" endline="24" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.client" class="SocketClient" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'endpoint' could be declared final
+</violation>
+<violation beginline="26" endline="26" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.client" class="SocketClient" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'writer' could be declared final
+</violation>
+<violation beginline="27" endline="27" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.client" class="SocketClient" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'reader' could be declared final
+</violation>
+<violation beginline="29" endline="29" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.client" class="SocketClient" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'data' could be declared final
+</violation>
+</file>
+<file name="src/se/lnu/http/exceptions/InvalidPortException.java">
+<violation beginline="10" endline="10" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.exceptions" class="InvalidPortException" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'string' is not assigned and could be declared final
+</violation>
+</file>
+<file name="src/se/lnu/http/exceptions/MalformedRequestException.java">
+<violation beginline="5" endline="5" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.exceptions" class="MalformedRequestException" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'requestString' is not assigned and could be declared final
+</violation>
+</file>
+<file name="src/se/lnu/http/exceptions/NotADirectoryException.java">
+<violation beginline="5" endline="5" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.exceptions" class="NotADirectoryException" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'string' is not assigned and could be declared final
+</violation>
+<violation beginline="9" endline="9" begincolumn="0" endcolumn="0" rule="ShortVariable" ruleset="Naming Rules" package="se.lnu.http.exceptions" class="NotADirectoryException" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like e
+</violation>
+<violation beginline="9" endline="9" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.exceptions" class="NotADirectoryException" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'e' is not assigned and could be declared final
+</violation>
+</file>
+<file name="src/se/lnu/http/exceptions/NotStartedException.java">
+<violation beginline="3" endline="10" begincolumn="0" endcolumn="0" rule="AtLeastOneConstructor" ruleset="Controversial Rules" package="se.lnu.http.exceptions" class="NotStartedException" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#AtLeastOneConstructor" priority="3">
+Each class should declare at least one constructor
+</violation>
+</file>
+<file name="src/se/lnu/http/response/ContentType.java">
+<violation beginline="13" endline="13" begincolumn="0" endcolumn="0" rule="SingularField" ruleset="Design Rules" package="se.lnu.http.response" class="ContentType" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SingularField" priority="3">
+Perhaps 'fileEndings' could be replaced by a local variable.
+</violation>
+<violation beginline="15" endline="15" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="ContentType" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'fileEndings' is not assigned and could be declared final
+</violation>
+<violation beginline="15" endline="15" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="ContentType" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'mimeType' is not assigned and could be declared final
+</violation>
+<violation beginline="24" endline="24" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="ContentType" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'fileEnding' is not assigned and could be declared final
+</violation>
+<violation beginline="29" endline="29" begincolumn="0" endcolumn="0" rule="OnlyOneReturn" ruleset="Controversial Rules" package="se.lnu.http.response" class="ContentType" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#OnlyOneReturn" priority="3">
+A method should have only one exit point, and that should be the last statement in the method
+</violation>
+</file>
+<file name="src/se/lnu/http/response/HTTP200OKFileResponse.java">
+<violation beginline="13" endline="13" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="13" endline="13" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'file' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'watcher' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="15" endline="15" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="15" endline="15" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'clientThread' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="17" endline="21" begincolumn="0" endcolumn="0" rule="CallSuperInConstructor" ruleset="Controversial Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#CallSuperInConstructor" priority="3">
+It is a good practice to call super() in a constructor
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'clientThread' is not assigned and could be declared final
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'file' is not assigned and could be declared final
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'watcher' is not assigned and could be declared final
+</violation>
+<violation beginline="24" endline="24" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'clientSocket' is not assigned and could be declared final
+</violation>
+<violation beginline="24" endline="24" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'doContinue' is not assigned and could be declared final
+</violation>
+<violation beginline="25" endline="25" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'fileName' could be declared final
+</violation>
+<violation beginline="26" endline="26" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'parts' could be declared final
+</violation>
+<violation beginline="29" endline="29" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'type' could be declared final
+</violation>
+<violation beginline="31" endline="31" begincolumn="0" endcolumn="0" rule="UnnecessaryParentheses" ruleset="Controversial Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UnnecessaryParentheses" priority="3">
+This statement may have some unnecessary parentheses
+</violation>
+<violation beginline="33" endline="33" begincolumn="0" endcolumn="0" rule="UseStringBufferForStringAppends" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#UseStringBufferForStringAppends" priority="3">
+Prefer StringBuffer over += for concatenating strings
+</violation>
+<violation beginline="36" endline="36" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP200OKFileResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'bytes' could be declared final
+</violation>
+</file>
+<file name="src/se/lnu/http/response/HTTP400BadRequest.java">
+<violation beginline="10" endline="10" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP400BadRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'clientSocket' is not assigned and could be declared final
+</violation>
+<violation beginline="10" endline="10" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP400BadRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'doContinue' is not assigned and could be declared final
+</violation>
+<violation beginline="11" endline="11" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP400BadRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'content' could be declared final
+</violation>
+<violation beginline="12" endline="12" begincolumn="0" endcolumn="0" rule="UnnecessaryParentheses" ruleset="Controversial Rules" package="se.lnu.http.response" class="HTTP400BadRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UnnecessaryParentheses" priority="3">
+This statement may have some unnecessary parentheses
+</violation>
+<violation beginline="13" endline="13" begincolumn="0" endcolumn="0" rule="UseStringBufferForStringAppends" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP400BadRequest" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#UseStringBufferForStringAppends" priority="3">
+Prefer StringBuffer over += for concatenating strings
+</violation>
+</file>
+<file name="src/se/lnu/http/response/HTTP403Forbidden.java">
+<violation beginline="9" endline="10" begincolumn="0" endcolumn="0" rule="UnnecessaryConstructor" ruleset="Controversial Rules" package="se.lnu.http.response" class="HTTP403Forbidden" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UnnecessaryConstructor" priority="3">
+Avoid unnecessary constructors - the compiler will generate these for you
+</violation>
+<violation beginline="9" endline="10" begincolumn="0" endcolumn="0" rule="UncommentedEmptyConstructor" ruleset="Design Rules" package="se.lnu.http.response" class="HTTP403Forbidden" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyConstructor" priority="3">
+Document empty constructor
+</violation>
+<violation beginline="9" endline="10" begincolumn="0" endcolumn="0" rule="CallSuperInConstructor" ruleset="Controversial Rules" package="se.lnu.http.response" class="HTTP403Forbidden" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#CallSuperInConstructor" priority="3">
+It is a good practice to call super() in a constructor
+</violation>
+<violation beginline="13" endline="13" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP403Forbidden" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'clientSocket' is not assigned and could be declared final
+</violation>
+<violation beginline="13" endline="13" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP403Forbidden" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'doContinue' is not assigned and could be declared final
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP403Forbidden" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'content' could be declared final
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="UnnecessaryParentheses" ruleset="Controversial Rules" package="se.lnu.http.response" class="HTTP403Forbidden" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UnnecessaryParentheses" priority="3">
+This statement may have some unnecessary parentheses
+</violation>
+<violation beginline="18" endline="18" begincolumn="0" endcolumn="0" rule="UseStringBufferForStringAppends" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP403Forbidden" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#UseStringBufferForStringAppends" priority="3">
+Prefer StringBuffer over += for concatenating strings
+</violation>
+</file>
+<file name="src/se/lnu/http/response/HTTP404FileNotFoundResponse.java">
+<violation beginline="9" endline="11" begincolumn="0" endcolumn="0" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="se.lnu.http.response" class="HTTP404FileNotFoundResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused constructor parameters such as 'url'.
+</violation>
+<violation beginline="9" endline="11" begincolumn="0" endcolumn="0" rule="CallSuperInConstructor" ruleset="Controversial Rules" package="se.lnu.http.response" class="HTTP404FileNotFoundResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#CallSuperInConstructor" priority="3">
+It is a good practice to call super() in a constructor
+</violation>
+<violation beginline="9" endline="9" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP404FileNotFoundResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'url' is not assigned and could be declared final
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP404FileNotFoundResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'clientSocket' is not assigned and could be declared final
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP404FileNotFoundResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'doContinue' is not assigned and could be declared final
+</violation>
+<violation beginline="15" endline="15" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP404FileNotFoundResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'content' could be declared final
+</violation>
+<violation beginline="16" endline="16" begincolumn="0" endcolumn="0" rule="UnnecessaryParentheses" ruleset="Controversial Rules" package="se.lnu.http.response" class="HTTP404FileNotFoundResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UnnecessaryParentheses" priority="3">
+This statement may have some unnecessary parentheses
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="UseStringBufferForStringAppends" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP404FileNotFoundResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#UseStringBufferForStringAppends" priority="3">
+Prefer StringBuffer over += for concatenating strings
+</violation>
+</file>
+<file name="src/se/lnu/http/response/HTTP405MethodNotSupportedResponse.java">
+<violation beginline="10" endline="10" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http.response" class="HTTP405MethodNotSupportedResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="10" endline="10" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http.response" class="HTTP405MethodNotSupportedResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'method' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="12" endline="14" begincolumn="0" endcolumn="0" rule="CallSuperInConstructor" ruleset="Controversial Rules" package="se.lnu.http.response" class="HTTP405MethodNotSupportedResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#CallSuperInConstructor" priority="3">
+It is a good practice to call super() in a constructor
+</violation>
+<violation beginline="12" endline="12" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP405MethodNotSupportedResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'method' is not assigned and could be declared final
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP405MethodNotSupportedResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'clientSocket' is not assigned and could be declared final
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP405MethodNotSupportedResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'doContinue' is not assigned and could be declared final
+</violation>
+<violation beginline="18" endline="18" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP405MethodNotSupportedResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'content' could be declared final
+</violation>
+<violation beginline="21" endline="21" begincolumn="0" endcolumn="0" rule="UnnecessaryParentheses" ruleset="Controversial Rules" package="se.lnu.http.response" class="HTTP405MethodNotSupportedResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UnnecessaryParentheses" priority="3">
+This statement may have some unnecessary parentheses
+</violation>
+<violation beginline="22" endline="22" begincolumn="0" endcolumn="0" rule="UseStringBufferForStringAppends" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTP405MethodNotSupportedResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#UseStringBufferForStringAppends" priority="3">
+Prefer StringBuffer over += for concatenating strings
+</violation>
+</file>
+<file name="src/se/lnu/http/response/HTTPResponse.java">
+<violation beginline="7" endline="27" begincolumn="0" endcolumn="0" rule="AbstractNaming" ruleset="Naming Rules" package="se.lnu.http.response" class="HTTPResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#AbstractNaming" priority="3">
+Abstract classes should be named AbstractXXX
+</violation>
+<violation beginline="11" endline="11" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTPResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'doContinue' is not assigned and could be declared final
+</violation>
+<violation beginline="11" endline="11" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTPResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'length' is not assigned and could be declared final
+</violation>
+<violation beginline="11" endline="11" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTPResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'type' is not assigned and could be declared final
+</violation>
+<violation beginline="13" endline="13" begincolumn="0" endcolumn="0" rule="UseStringBufferForStringAppends" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTPResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#UseStringBufferForStringAppends" priority="3">
+Prefer StringBuffer over += for concatenating strings
+</violation>
+<violation beginline="14" endline="14" begincolumn="0" endcolumn="0" rule="UseStringBufferForStringAppends" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTPResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#UseStringBufferForStringAppends" priority="3">
+Prefer StringBuffer over += for concatenating strings
+</violation>
+<violation beginline="16" endline="16" begincolumn="0" endcolumn="0" rule="SimplifyBooleanExpressions" ruleset="Design Rules" package="se.lnu.http.response" class="HTTPResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions" priority="3">
+Avoid unnecessary comparisons in boolean expressions
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="UseStringBufferForStringAppends" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTPResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#UseStringBufferForStringAppends" priority="3">
+Prefer StringBuffer over += for concatenating strings
+</violation>
+<violation beginline="17" endline="17" begincolumn="0" endcolumn="0" rule="UnnecessaryParentheses" ruleset="Controversial Rules" package="se.lnu.http.response" class="HTTPResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UnnecessaryParentheses" priority="3">
+This statement may have some unnecessary parentheses
+</violation>
+<violation beginline="21" endline="21" begincolumn="0" endcolumn="0" rule="UseStringBufferForStringAppends" ruleset="Optimization Rules" package="se.lnu.http.response" class="HTTPResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#UseStringBufferForStringAppends" priority="3">
+Prefer StringBuffer over += for concatenating strings
+</violation>
+<violation beginline="21" endline="21" begincolumn="0" endcolumn="0" rule="UnnecessaryParentheses" ruleset="Controversial Rules" package="se.lnu.http.response" class="HTTPResponse" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UnnecessaryParentheses" priority="3">
+This statement may have some unnecessary parentheses
+</violation>
+</file>
+<file name="src/se/lnu/http/view/ConsoleView.java">
+<violation beginline="16" endline="148" begincolumn="0" endcolumn="0" rule="TooManyMethods" ruleset="Code Size Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+<violation beginline="17" endline="16" begincolumn="0" endcolumn="0" rule="DefaultPackage" ruleset="Controversial Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DefaultPackage" priority="3">
+Use explicit scoping instead of the default package private level
+</violation>
+<violation beginline="18" endline="17" begincolumn="0" endcolumn="0" rule="LongVariable" ruleset="Naming Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#LongVariable" priority="3">
+Avoid excessively long variable names like SERVER_CONSTRUCTED
+</violation>
+<violation beginline="18" endline="17" begincolumn="0" endcolumn="0" rule="DefaultPackage" ruleset="Controversial Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DefaultPackage" priority="3">
+Use explicit scoping instead of the default package private level
+</violation>
+<violation beginline="19" endline="18" begincolumn="0" endcolumn="0" rule="DefaultPackage" ruleset="Controversial Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DefaultPackage" priority="3">
+Use explicit scoping instead of the default package private level
+</violation>
+<violation beginline="20" endline="19" begincolumn="0" endcolumn="0" rule="DefaultPackage" ruleset="Controversial Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DefaultPackage" priority="3">
+Use explicit scoping instead of the default package private level
+</violation>
+<violation beginline="21" endline="20" begincolumn="0" endcolumn="0" rule="LongVariable" ruleset="Naming Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#LongVariable" priority="3">
+Avoid excessively long variable names like SERVER_ACCEPT_THREAD_STOPPED
+</violation>
+<violation beginline="21" endline="20" begincolumn="0" endcolumn="0" rule="DefaultPackage" ruleset="Controversial Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DefaultPackage" priority="3">
+Use explicit scoping instead of the default package private level
+</violation>
+<violation beginline="26" endline="25" begincolumn="0" endcolumn="0" rule="LongVariable" ruleset="Naming Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#LongVariable" priority="3">
+Avoid excessively long variable names like CONNECTION_WAS_BROKEN
+</violation>
+<violation beginline="29" endline="28" begincolumn="0" endcolumn="0" rule="BeanMembersShouldSerialize" ruleset="JavaBean Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/javabeans.html#BeanMembersShouldSerialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="29" endline="28" begincolumn="0" endcolumn="0" rule="ImmutableField" ruleset="Design Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ImmutableField" priority="3">
+Private field 'args' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="34" endline="32" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'args' is not assigned and could be declared final
+</violation>
+<violation beginline="34" endline="32" begincolumn="0" endcolumn="0" rule="ArrayIsStoredDirectly" ruleset="Security Code Guidelines" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/sunsecure.html#ArrayIsStoredDirectly" priority="3">
+The user-supplied array 'args' is stored directly.
+</violation>
+<violation beginline="46" endline="51" begincolumn="0" endcolumn="0" rule="DataflowAnomalyAnalysis" ruleset="Controversial Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DataflowAnomalyAnalysis" priority="5">
+Found 'DU'-anomaly for variable 'port' (lines '44'-'51').
+</violation>
+<violation beginline="48" endline="46" begincolumn="0" endcolumn="0" rule="PreserveStackTrace" ruleset="Design Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#PreserveStackTrace" priority="3">
+New exception is thrown in catch block, original stack trace may be lost
+</violation>
+<violation beginline="50" endline="48" begincolumn="0" endcolumn="0" rule="ShortVariable" ruleset="Naming Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like p
+</violation>
+<violation beginline="50" endline="48" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'p' could be declared final
+</violation>
+<violation beginline="57" endline="55" begincolumn="0" endcolumn="0" rule="SystemPrintln" ruleset="Java Logging Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="2">
+System.out.print is used
+</violation>
+<violation beginline="69" endline="67" begincolumn="0" endcolumn="0" rule="SimplifyBooleanExpressions" ruleset="Design Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions" priority="3">
+Avoid unnecessary comparisons in boolean expressions
+</violation>
+<violation beginline="72" endline="70" begincolumn="0" endcolumn="0" rule="SimplifyBooleanExpressions" ruleset="Design Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SimplifyBooleanExpressions" priority="3">
+Avoid unnecessary comparisons in boolean expressions
+</violation>
+<violation beginline="85" endline="83" begincolumn="0" endcolumn="0" rule="ShortVariable" ruleset="Naming Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like br
+</violation>
+<violation beginline="85" endline="83" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'br' could be declared final
+</violation>
+<violation beginline="87" endline="85" begincolumn="0" endcolumn="0" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'line' could be declared final
+</violation>
+<violation beginline="88" endline="86" begincolumn="0" endcolumn="0" rule="PositionLiteralsFirstInComparisons" ruleset="Design Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#PositionLiteralsFirstInComparisons" priority="3">
+Position literals first in String comparisons
+</violation>
+<violation beginline="89" endline="87" begincolumn="0" endcolumn="0" rule="OnlyOneReturn" ruleset="Controversial Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#OnlyOneReturn" priority="3">
+A method should have only one exit point, and that should be the last statement in the method
+</violation>
+<violation beginline="97" endline="95" begincolumn="0" endcolumn="0" rule="SystemPrintln" ruleset="Java Logging Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="2">
+System.out.print is used
+</violation>
+<violation beginline="103" endline="101" begincolumn="0" endcolumn="0" rule="SystemPrintln" ruleset="Java Logging Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="2">
+System.out.print is used
+</violation>
+<violation beginline="109" endline="107" begincolumn="0" endcolumn="0" rule="SystemPrintln" ruleset="Java Logging Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="2">
+System.out.print is used
+</violation>
+<violation beginline="115" endline="113" begincolumn="0" endcolumn="0" rule="SystemPrintln" ruleset="Java Logging Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="2">
+System.out.print is used
+</violation>
+<violation beginline="120" endline="118" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'threadId' is not assigned and could be declared final
+</violation>
+<violation beginline="136" endline="134" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'file' is not assigned and could be declared final
+</violation>
+<violation beginline="136" endline="134" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'threadId' is not assigned and could be declared final
+</violation>
+<violation beginline="136" endline="137" begincolumn="0" endcolumn="0" rule="AvoidSynchronizedAtMethodLevel" ruleset="Design Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AvoidSynchronizedAtMethodLevel" priority="3">
+Use block level rather than method level synchronization
+</violation>
+<violation beginline="142" endline="140" begincolumn="0" endcolumn="0" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="se.lnu.http.view" class="ConsoleView" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'threadId' is not assigned and could be declared final
+</violation>
+</file>
+</pmd>

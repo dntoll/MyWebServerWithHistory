@@ -1,0 +1,294 @@
+
+src/se/lnu/http/AcceptThread.java:8	To be compliant to J2EE, a webapp should not use any thread.
+src/se/lnu/http/AcceptThread.java:10	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/AcceptThread.java:10	Use explicit scoping instead of the default package private level
+src/se/lnu/http/AcceptThread.java:10	Use of modifier volatile is not recommended.
+src/se/lnu/http/AcceptThread.java:11	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/AcceptThread.java:11	Use of modifier volatile is not recommended.
+src/se/lnu/http/AcceptThread.java:12	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/AcceptThread.java:12	Private field 'cfactory' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/AcceptThread.java:14	It is a good practice to call super() in a constructor
+src/se/lnu/http/AcceptThread.java:14	Parameter 'sock' is not assigned and could be declared final
+src/se/lnu/http/AcceptThread.java:15	Parameter 'observer' is not assigned and could be declared final
+src/se/lnu/http/AcceptThread.java:16	Parameter 'cfactory' is not assigned and could be declared final
+src/se/lnu/http/AcceptThread.java:36	Avoid printStackTrace(); use a logger call instead.
+src/se/lnu/http/AcceptThread.java:49	Local variable 'clientSocket' could be declared final
+src/se/lnu/http/AcceptThread.java:50	Local variable 'client' could be declared final
+src/se/lnu/http/ClientFactory.java:7	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/ClientFactory.java:7	Private field 'folder' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/ClientFactory.java:8	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/ClientFactory.java:8	Private field 'watcher' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/ClientFactory.java:9	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/ClientFactory.java:11	Parameter 'folder' is not assigned and could be declared final
+src/se/lnu/http/ClientFactory.java:11	Parameter 'watcher' is not assigned and could be declared final
+src/se/lnu/http/ClientFactory.java:17	Parameter 'clientSocket' is not assigned and could be declared final
+src/se/lnu/http/ClientSocket.java:11	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/ClientSocket.java:11	Private field 'sock' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/ClientSocket.java:13	Parameter 'sock' is not assigned and could be declared final
+src/se/lnu/http/ClientSocket.java:18	Avoid excessively long variable names like timeOutMilliseconds
+src/se/lnu/http/ClientSocket.java:18	Parameter 'timeOutMilliseconds' is not assigned and could be declared final
+src/se/lnu/http/ClientSocket.java:21	Avoid variables with short names like in
+src/se/lnu/http/ClientSocket.java:21	Local variable 'in' could be declared final
+src/se/lnu/http/ClientSocket.java:22	Local variable 'httpReader' could be declared final
+src/se/lnu/http/ClientSocket.java:23	Local variable 'requestString' could be declared final
+src/se/lnu/http/ClientSocket.java:24	Consider simply returning the value vs storing it in local variable 'requestString'
+src/se/lnu/http/ClientSocket.java:27	Parameter 'response' is not assigned and could be declared final
+src/se/lnu/http/ClientSocket.java:28	Local variable 'out' could be declared final
+src/se/lnu/http/ClientSocket.java:29	Avoid calling toString() on String objects; this is unnecessary.
+src/se/lnu/http/ClientSocket.java:38	Parameter 'bytes' is not assigned and could be declared final
+src/se/lnu/http/ClientThread.java:8	To be compliant to J2EE, a webapp should not use any thread.
+src/se/lnu/http/ClientThread.java:11	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/ClientThread.java:11	Private field 'clientSocket' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/ClientThread.java:12	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/ClientThread.java:12	Private field 'factory' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/ClientThread.java:13	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/ClientThread.java:13	Private field 'watcher' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/ClientThread.java:14	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/ClientThread.java:14	Private field 'identifier' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/ClientThread.java:15	Avoid excessively long variable names like timeOutMilliseconds
+src/se/lnu/http/ClientThread.java:17	It is a good practice to call super() in a constructor
+src/se/lnu/http/ClientThread.java:17	Parameter 'clientSocket' is not assigned and could be declared final
+src/se/lnu/http/ClientThread.java:18	Parameter 'factory' is not assigned and could be declared final
+src/se/lnu/http/ClientThread.java:19	Parameter 'identifier' is not assigned and could be declared final
+src/se/lnu/http/ClientThread.java:19	Parameter 'watcher' is not assigned and could be declared final
+src/se/lnu/http/ClientThread.java:31	Avoid empty while statements
+src/se/lnu/http/ClientThread.java:31	Avoid using while statements without curly braces
+src/se/lnu/http/ClientThread.java:33	Avoid empty catch blocks
+src/se/lnu/http/ClientThread.java:41	Avoid printStackTrace(); use a logger call instead.
+src/se/lnu/http/ClientThread.java:49	Found 'DD'-anomaly for variable 'doContinue' (lines '49'-'57').
+src/se/lnu/http/ClientThread.java:49	Found 'DD'-anomaly for variable 'doContinue' (lines '49'-'63').
+src/se/lnu/http/ClientThread.java:50	Local variable 'requestString' could be declared final
+src/se/lnu/http/ClientThread.java:53	Local variable 'request' could be declared final
+src/se/lnu/http/ClientThread.java:57	Found 'DD'-anomaly for variable 'doContinue' (lines '57'-'63').
+src/se/lnu/http/ClientThread.java:60	Found 'DD'-anomaly for variable 'response' (lines '60'-'62').
+src/se/lnu/http/HTTPReader.java:7	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/HTTPReader.java:9	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/HTTPReader.java:9	Use explicit scoping instead of the default package private level
+src/se/lnu/http/HTTPReader.java:11	Parameter 'reader' is not assigned and could be declared final
+src/se/lnu/http/HTTPReader.java:16	Local variable 'data' could be declared final
+src/se/lnu/http/HTTPReader.java:25	Found 'DU'-anomaly for variable 'data' (lines '25'-'47').
+src/se/lnu/http/HTTPReader.java:25	Local variable 'data' could be declared final
+src/se/lnu/http/HTTPReader.java:28	Local variable 'lineRead' could be declared final
+src/se/lnu/http/HTTPReader.java:40	Local variable 'number' could be declared final
+src/se/lnu/http/HTTPRequest.java:12	Parameter 'stringMethod' is not assigned and could be declared final
+src/se/lnu/http/HTTPRequest.java:29	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/HTTPRequest.java:29	Private field 'url' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/HTTPRequest.java:30	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/HTTPRequest.java:30	Private field 'requestType' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/HTTPRequest.java:31	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/HTTPRequest.java:31	Private field 'headers' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/HTTPRequest.java:33	Parameter 'headers' is not assigned and could be declared final
+src/se/lnu/http/HTTPRequest.java:33	Parameter 'requestType' is not assigned and could be declared final
+src/se/lnu/http/HTTPRequest.java:33	Parameter 'url' is not assigned and could be declared final
+src/se/lnu/http/HTTPRequest.java:39	Avoid unnecessary comparisons in boolean expressions
+src/se/lnu/http/HTTPRequest.java:55	These nested if statements could be combined
+src/se/lnu/http/HTTPRequest.java:56	A method should have only one exit point, and that should be the last statement in the method
+src/se/lnu/http/HTTPRequestParser.java:3	Avoid unused imports such as 'java.util.ArrayList'
+src/se/lnu/http/HTTPRequestParser.java:3	Avoid unused imports such as 'java.util.ArrayList'
+src/se/lnu/http/HTTPRequestParser.java:5	Avoid unused imports such as 'java.util.List'
+src/se/lnu/http/HTTPRequestParser.java:5	Avoid unused imports such as 'java.util.List'
+src/se/lnu/http/HTTPRequestParser.java:10	All methods are static.  Consider using Singleton instead.  Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+src/se/lnu/http/HTTPRequestParser.java:12	Parameter 'requestString' is not assigned and could be declared final
+src/se/lnu/http/HTTPRequestParser.java:14	Local variable 'lines' could be declared final
+src/se/lnu/http/HTTPRequestParser.java:16	Local variable 'firstLine' could be declared final
+src/se/lnu/http/HTTPRequestParser.java:17	Local variable 'requestType' could be declared final
+src/se/lnu/http/HTTPRequestParser.java:22	Local variable 'method' could be declared final
+src/se/lnu/http/HTTPRequestParser.java:24	Local variable 'headers' could be declared final
+src/se/lnu/http/HTTPRequestParser.java:26	Avoid variables with short names like h
+src/se/lnu/http/HTTPRequestParser.java:26	This statement may have some unnecessary parentheses
+src/se/lnu/http/HTTPServer.java:12	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/HTTPServer.java:12	Private field 'watcher' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/HTTPServer.java:14	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/HTTPServer.java:14	Private field 'port' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/HTTPServer.java:15	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/HTTPServer.java:17	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/HTTPServer.java:17	Private field 'sharedDirectory' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/HTTPServer.java:19	Parameter 'port' is not assigned and could be declared final
+src/se/lnu/http/HTTPServer.java:19	Parameter 'sharedDirectory' is not assigned and could be declared final
+src/se/lnu/http/HTTPServer.java:19	Parameter 'watcher' is not assigned and could be declared final
+src/se/lnu/http/HTTPServer.java:27	Local variable 'socket' could be declared final
+src/se/lnu/http/HTTPServer.java:28	Local variable 'factory' could be declared final
+src/se/lnu/http/HTTPServer.java:37	Avoid using if statements without curly braces
+src/se/lnu/http/HTTPServer.java:49	Assigning an Object to null is a code smell.  Consider refactoring.
+src/se/lnu/http/HTTPServerConsole.java:11	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/HTTPServerConsole.java:11	Private field 'view' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/HTTPServerConsole.java:12	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/HTTPServerConsole.java:12	Private field 'factory' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/HTTPServerConsole.java:14	Parameter 'factory' is not assigned and could be declared final
+src/se/lnu/http/HTTPServerConsole.java:14	Parameter 'view' is not assigned and could be declared final
+src/se/lnu/http/HTTPServerConsole.java:23	A method/constructor shouldn't explicitly throw java.lang.Exception
+src/se/lnu/http/HTTPServerConsole.java:23	A method/constructor shouldn't explicitly throw java.lang.Exception
+src/se/lnu/http/HTTPServerConsole.java:23	Parameter 'args' is not assigned and could be declared final
+src/se/lnu/http/HTTPServerConsole.java:24	Local variable 'view' could be declared final
+src/se/lnu/http/HTTPServerConsole.java:25	Local variable 'factory' could be declared final
+src/se/lnu/http/HTTPServerConsole.java:26	Local variable 'server' could be declared final
+src/se/lnu/http/HTTPServerConsole.java:32	A method/constructor shouldn't explicitly throw java.lang.Exception
+src/se/lnu/http/HTTPServerConsole.java:32	A method/constructor shouldn't explicitly throw java.lang.Exception
+src/se/lnu/http/HTTPServerConsole.java:32	Use explicit scoping instead of the default package private level
+src/se/lnu/http/HTTPServerConsole.java:35	Local variable 'port' could be declared final
+src/se/lnu/http/HTTPServerConsole.java:36	Local variable 'sharedDirectory' could be declared final
+src/se/lnu/http/Header.java:22	Parameter 'headerText' is not assigned and could be declared final
+src/se/lnu/http/Header.java:29	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/Header.java:30	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/Header.java:32	Parameter 'type' is not assigned and could be declared final
+src/se/lnu/http/Header.java:32	Parameter 'value' is not assigned and could be declared final
+src/se/lnu/http/Header.java:45	Parameter 'stringHeader' is not assigned and could be declared final
+src/se/lnu/http/Header.java:45	Use explicit scoping instead of the default package private level
+src/se/lnu/http/Header.java:46	Local variable 'parts' could be declared final
+src/se/lnu/http/Header.java:53	A method should have only one exit point, and that should be the last statement in the method
+src/se/lnu/http/Port.java:7	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/Port.java:7	Private field 'portNumber' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/Port.java:9	Parameter 'portNumber' is not assigned and could be declared final
+src/se/lnu/http/ResponseFactory.java:16	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/ResponseFactory.java:16	Private field 'folder' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/ResponseFactory.java:17	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/ResponseFactory.java:17	Private field 'watcher' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/ResponseFactory.java:18	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/ResponseFactory.java:18	Private field 'clientThread' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/ResponseFactory.java:20	Parameter 'clientThread' is not assigned and could be declared final
+src/se/lnu/http/ResponseFactory.java:20	Parameter 'folder' is not assigned and could be declared final
+src/se/lnu/http/ResponseFactory.java:20	Parameter 'watcher' is not assigned and could be declared final
+src/se/lnu/http/ResponseFactory.java:26	Parameter 'request' is not assigned and could be declared final
+src/se/lnu/http/ResponseFactory.java:27	Local variable 'method' could be declared final
+src/se/lnu/http/ResponseFactory.java:30	Local variable 'file' could be declared final
+src/se/lnu/http/ResponseFactory.java:31	A method should have only one exit point, and that should be the last statement in the method
+src/se/lnu/http/ResponseFactory.java:33	A method should have only one exit point, and that should be the last statement in the method
+src/se/lnu/http/ResponseFactory.java:35	A method should have only one exit point, and that should be the last statement in the method
+src/se/lnu/http/ServerFactory.java:7	Parameter 'port' is not assigned and could be declared final
+src/se/lnu/http/ServerFactory.java:7	Parameter 'sharedDirectory' is not assigned and could be declared final
+src/se/lnu/http/ServerFactory.java:7	Parameter 'view' is not assigned and could be declared final
+src/se/lnu/http/SharedFolder.java:9	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/SharedFolder.java:9	Use of modifier volatile is not recommended.
+src/se/lnu/http/SharedFolder.java:12	Parameter 'sharedDirectory' is not assigned and could be declared final
+src/se/lnu/http/SharedFolder.java:13	This statement may have some unnecessary parentheses
+src/se/lnu/http/SharedFolder.java:17	Avoid reassigning parameters such as 'relativePath'
+src/se/lnu/http/SharedFolder.java:23	Local variable 'file' could be declared final
+src/se/lnu/http/SharedFolder.java:25	Local variable 'absolute' could be declared final
+src/se/lnu/http/SharedFolder.java:26	Avoid excessively long variable names like sharedFileCanonicalPath
+src/se/lnu/http/SharedFolder.java:26	Local variable 'sharedFileCanonicalPath' could be declared final
+src/se/lnu/http/SharedFolder.java:27	Local variable 'startOfFile' could be declared final
+src/se/lnu/http/SharedFolder.java:28	Avoid unnecessary comparisons in boolean expressions
+src/se/lnu/http/client/HTTPGetProtocoll.java:12	Parameter 'file' is not assigned and could be declared final
+src/se/lnu/http/client/HTTPGetProtocoll.java:12	Parameter 'hostName' is not assigned and could be declared final
+src/se/lnu/http/client/HTTPGetProtocoll.java:12	Use explicit scoping instead of the default package private level
+src/se/lnu/http/client/HTTPGetProtocoll.java:13	Parameter 'outWriter' is not assigned and could be declared final
+src/se/lnu/http/client/HTTPGetProtocoll.java:13	Parameter 'reader' is not assigned and could be declared final
+src/se/lnu/http/client/HTTPGetProtocoll.java:17	Local variable 'httpReader' could be declared final
+src/se/lnu/http/client/HTTPGetProtocoll.java:19	Prefer StringBuffer over += for concatenating strings
+src/se/lnu/http/client/SocketClient.java:13	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/client/SocketClient.java:13	Private field 'client' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/client/SocketClient.java:14	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/client/SocketClient.java:14	Private field 'socket' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/client/SocketClient.java:16	Parameter 'client' is not assigned and could be declared final
+src/se/lnu/http/client/SocketClient.java:16	Parameter 'echoSocket' is not assigned and could be declared final
+src/se/lnu/http/client/SocketClient.java:21	Parameter 'file' is not assigned and could be declared final
+src/se/lnu/http/client/SocketClient.java:21	Parameter 'hostName' is not assigned and could be declared final
+src/se/lnu/http/client/SocketClient.java:21	Parameter 'portNumber' is not assigned and could be declared final
+src/se/lnu/http/client/SocketClient.java:24	Local variable 'endpoint' could be declared final
+src/se/lnu/http/client/SocketClient.java:26	Local variable 'writer' could be declared final
+src/se/lnu/http/client/SocketClient.java:27	Local variable 'reader' could be declared final
+src/se/lnu/http/client/SocketClient.java:29	Local variable 'data' could be declared final
+src/se/lnu/http/exceptions/InvalidPortException.java:10	Parameter 'string' is not assigned and could be declared final
+src/se/lnu/http/exceptions/MalformedRequestException.java:5	Parameter 'requestString' is not assigned and could be declared final
+src/se/lnu/http/exceptions/NotADirectoryException.java:5	Parameter 'string' is not assigned and could be declared final
+src/se/lnu/http/exceptions/NotADirectoryException.java:9	Avoid variables with short names like e
+src/se/lnu/http/exceptions/NotADirectoryException.java:9	Parameter 'e' is not assigned and could be declared final
+src/se/lnu/http/exceptions/NotStartedException.java:3	Each class should declare at least one constructor
+src/se/lnu/http/response/ContentType.java:13	Perhaps 'fileEndings' could be replaced by a local variable.
+src/se/lnu/http/response/ContentType.java:15	Parameter 'fileEndings' is not assigned and could be declared final
+src/se/lnu/http/response/ContentType.java:15	Parameter 'mimeType' is not assigned and could be declared final
+src/se/lnu/http/response/ContentType.java:24	Parameter 'fileEnding' is not assigned and could be declared final
+src/se/lnu/http/response/ContentType.java:29	A method should have only one exit point, and that should be the last statement in the method
+src/se/lnu/http/response/HTTP200OKFileResponse.java:13	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/response/HTTP200OKFileResponse.java:13	Private field 'file' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/response/HTTP200OKFileResponse.java:14	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/response/HTTP200OKFileResponse.java:14	Private field 'watcher' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/response/HTTP200OKFileResponse.java:15	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/response/HTTP200OKFileResponse.java:15	Private field 'clientThread' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/response/HTTP200OKFileResponse.java:17	It is a good practice to call super() in a constructor
+src/se/lnu/http/response/HTTP200OKFileResponse.java:17	Parameter 'clientThread' is not assigned and could be declared final
+src/se/lnu/http/response/HTTP200OKFileResponse.java:17	Parameter 'file' is not assigned and could be declared final
+src/se/lnu/http/response/HTTP200OKFileResponse.java:17	Parameter 'watcher' is not assigned and could be declared final
+src/se/lnu/http/response/HTTP200OKFileResponse.java:24	Parameter 'clientSocket' is not assigned and could be declared final
+src/se/lnu/http/response/HTTP200OKFileResponse.java:24	Parameter 'doContinue' is not assigned and could be declared final
+src/se/lnu/http/response/HTTP200OKFileResponse.java:25	Local variable 'fileName' could be declared final
+src/se/lnu/http/response/HTTP200OKFileResponse.java:26	Local variable 'parts' could be declared final
+src/se/lnu/http/response/HTTP200OKFileResponse.java:29	Local variable 'type' could be declared final
+src/se/lnu/http/response/HTTP200OKFileResponse.java:31	This statement may have some unnecessary parentheses
+src/se/lnu/http/response/HTTP200OKFileResponse.java:33	Prefer StringBuffer over += for concatenating strings
+src/se/lnu/http/response/HTTP200OKFileResponse.java:36	Local variable 'bytes' could be declared final
+src/se/lnu/http/response/HTTP400BadRequest.java:10	Parameter 'clientSocket' is not assigned and could be declared final
+src/se/lnu/http/response/HTTP400BadRequest.java:10	Parameter 'doContinue' is not assigned and could be declared final
+src/se/lnu/http/response/HTTP400BadRequest.java:11	Local variable 'content' could be declared final
+src/se/lnu/http/response/HTTP400BadRequest.java:12	This statement may have some unnecessary parentheses
+src/se/lnu/http/response/HTTP400BadRequest.java:13	Prefer StringBuffer over += for concatenating strings
+src/se/lnu/http/response/HTTP403Forbidden.java:9	Avoid unnecessary constructors - the compiler will generate these for you
+src/se/lnu/http/response/HTTP403Forbidden.java:9	Document empty constructor
+src/se/lnu/http/response/HTTP403Forbidden.java:9	It is a good practice to call super() in a constructor
+src/se/lnu/http/response/HTTP403Forbidden.java:13	Parameter 'clientSocket' is not assigned and could be declared final
+src/se/lnu/http/response/HTTP403Forbidden.java:13	Parameter 'doContinue' is not assigned and could be declared final
+src/se/lnu/http/response/HTTP403Forbidden.java:14	Local variable 'content' could be declared final
+src/se/lnu/http/response/HTTP403Forbidden.java:17	This statement may have some unnecessary parentheses
+src/se/lnu/http/response/HTTP403Forbidden.java:18	Prefer StringBuffer over += for concatenating strings
+src/se/lnu/http/response/HTTP404FileNotFoundResponse.java:9	Avoid unused constructor parameters such as 'url'.
+src/se/lnu/http/response/HTTP404FileNotFoundResponse.java:9	It is a good practice to call super() in a constructor
+src/se/lnu/http/response/HTTP404FileNotFoundResponse.java:9	Parameter 'url' is not assigned and could be declared final
+src/se/lnu/http/response/HTTP404FileNotFoundResponse.java:14	Parameter 'clientSocket' is not assigned and could be declared final
+src/se/lnu/http/response/HTTP404FileNotFoundResponse.java:14	Parameter 'doContinue' is not assigned and could be declared final
+src/se/lnu/http/response/HTTP404FileNotFoundResponse.java:15	Local variable 'content' could be declared final
+src/se/lnu/http/response/HTTP404FileNotFoundResponse.java:16	This statement may have some unnecessary parentheses
+src/se/lnu/http/response/HTTP404FileNotFoundResponse.java:17	Prefer StringBuffer over += for concatenating strings
+src/se/lnu/http/response/HTTP405MethodNotSupportedResponse.java:10	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/response/HTTP405MethodNotSupportedResponse.java:10	Private field 'method' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/response/HTTP405MethodNotSupportedResponse.java:12	It is a good practice to call super() in a constructor
+src/se/lnu/http/response/HTTP405MethodNotSupportedResponse.java:12	Parameter 'method' is not assigned and could be declared final
+src/se/lnu/http/response/HTTP405MethodNotSupportedResponse.java:17	Parameter 'clientSocket' is not assigned and could be declared final
+src/se/lnu/http/response/HTTP405MethodNotSupportedResponse.java:17	Parameter 'doContinue' is not assigned and could be declared final
+src/se/lnu/http/response/HTTP405MethodNotSupportedResponse.java:18	Local variable 'content' could be declared final
+src/se/lnu/http/response/HTTP405MethodNotSupportedResponse.java:21	This statement may have some unnecessary parentheses
+src/se/lnu/http/response/HTTP405MethodNotSupportedResponse.java:22	Prefer StringBuffer over += for concatenating strings
+src/se/lnu/http/response/HTTPResponse.java:7	Abstract classes should be named AbstractXXX
+src/se/lnu/http/response/HTTPResponse.java:11	Parameter 'doContinue' is not assigned and could be declared final
+src/se/lnu/http/response/HTTPResponse.java:11	Parameter 'length' is not assigned and could be declared final
+src/se/lnu/http/response/HTTPResponse.java:11	Parameter 'type' is not assigned and could be declared final
+src/se/lnu/http/response/HTTPResponse.java:13	Prefer StringBuffer over += for concatenating strings
+src/se/lnu/http/response/HTTPResponse.java:14	Prefer StringBuffer over += for concatenating strings
+src/se/lnu/http/response/HTTPResponse.java:16	Avoid unnecessary comparisons in boolean expressions
+src/se/lnu/http/response/HTTPResponse.java:17	Prefer StringBuffer over += for concatenating strings
+src/se/lnu/http/response/HTTPResponse.java:17	This statement may have some unnecessary parentheses
+src/se/lnu/http/response/HTTPResponse.java:21	Prefer StringBuffer over += for concatenating strings
+src/se/lnu/http/response/HTTPResponse.java:21	This statement may have some unnecessary parentheses
+src/se/lnu/http/view/ConsoleView.java:16	This class has too many methods, consider refactoring it.
+src/se/lnu/http/view/ConsoleView.java:17	Use explicit scoping instead of the default package private level
+src/se/lnu/http/view/ConsoleView.java:18	Avoid excessively long variable names like SERVER_CONSTRUCTED
+src/se/lnu/http/view/ConsoleView.java:18	Use explicit scoping instead of the default package private level
+src/se/lnu/http/view/ConsoleView.java:19	Use explicit scoping instead of the default package private level
+src/se/lnu/http/view/ConsoleView.java:20	Use explicit scoping instead of the default package private level
+src/se/lnu/http/view/ConsoleView.java:21	Avoid excessively long variable names like SERVER_ACCEPT_THREAD_STOPPED
+src/se/lnu/http/view/ConsoleView.java:21	Use explicit scoping instead of the default package private level
+src/se/lnu/http/view/ConsoleView.java:26	Avoid excessively long variable names like CONNECTION_WAS_BROKEN
+src/se/lnu/http/view/ConsoleView.java:29	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/se/lnu/http/view/ConsoleView.java:29	Private field 'args' could be made final; it is only initialized in the declaration or constructor.
+src/se/lnu/http/view/ConsoleView.java:34	Parameter 'args' is not assigned and could be declared final
+src/se/lnu/http/view/ConsoleView.java:34	The user-supplied array 'args' is stored directly.
+src/se/lnu/http/view/ConsoleView.java:46	Found 'DU'-anomaly for variable 'port' (lines '44'-'51').
+src/se/lnu/http/view/ConsoleView.java:48	New exception is thrown in catch block, original stack trace may be lost
+src/se/lnu/http/view/ConsoleView.java:50	Avoid variables with short names like p
+src/se/lnu/http/view/ConsoleView.java:50	Local variable 'p' could be declared final
+src/se/lnu/http/view/ConsoleView.java:57	System.out.print is used
+src/se/lnu/http/view/ConsoleView.java:69	Avoid unnecessary comparisons in boolean expressions
+src/se/lnu/http/view/ConsoleView.java:72	Avoid unnecessary comparisons in boolean expressions
+src/se/lnu/http/view/ConsoleView.java:85	Avoid variables with short names like br
+src/se/lnu/http/view/ConsoleView.java:85	Local variable 'br' could be declared final
+src/se/lnu/http/view/ConsoleView.java:87	Local variable 'line' could be declared final
+src/se/lnu/http/view/ConsoleView.java:88	Position literals first in String comparisons
+src/se/lnu/http/view/ConsoleView.java:89	A method should have only one exit point, and that should be the last statement in the method
+src/se/lnu/http/view/ConsoleView.java:97	System.out.print is used
+src/se/lnu/http/view/ConsoleView.java:103	System.out.print is used
+src/se/lnu/http/view/ConsoleView.java:109	System.out.print is used
+src/se/lnu/http/view/ConsoleView.java:115	System.out.print is used
+src/se/lnu/http/view/ConsoleView.java:120	Parameter 'threadId' is not assigned and could be declared final
+src/se/lnu/http/view/ConsoleView.java:136	Parameter 'file' is not assigned and could be declared final
+src/se/lnu/http/view/ConsoleView.java:136	Parameter 'threadId' is not assigned and could be declared final
+src/se/lnu/http/view/ConsoleView.java:136	Use block level rather than method level synchronization
+src/se/lnu/http/view/ConsoleView.java:142	Parameter 'threadId' is not assigned and could be declared final
