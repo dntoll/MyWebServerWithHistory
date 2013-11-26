@@ -85,7 +85,7 @@ public class ConsoleView implements IServerWatcher {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		String line = br.readLine();
-		if (line.equals("stop")) {
+		if (line != null && line.equals("stop")) {
 			return true;
 		}
 		

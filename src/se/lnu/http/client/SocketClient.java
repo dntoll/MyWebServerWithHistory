@@ -26,7 +26,7 @@ public class SocketClient {
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
-			String data = client.doGet(hostName, file, writer, reader);
+			String data = client.doGet(hostName, file, writer, reader, true);
 			
 			socket.close();
 			

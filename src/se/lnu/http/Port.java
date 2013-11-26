@@ -16,7 +16,6 @@ public class Port {
 	}
 
 	public int getPort() {
-		// TODO Auto-generated method stub
 		return portNumber;
 	}
 	

@@ -83,9 +83,6 @@ public class HTTPServerTest {
 		} catch (Exception e) {
 			//e.printStackTrace();
 		}
-			
-		
-		
 		return false;
 	}
 	
