@@ -86,6 +86,20 @@ public class ConsoleViewTest {
 	}
 	
 	@Test
+	public void testPortTaken() throws Exception {
+		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+		
+		PrintStream old = System.out;
+		System.setOut(new PrintStream(outContent));
+		ConsoleView view = new ConsoleView(okInput, System.out);
+		view.showPortTaken();
+		
+		System.setOut(old);
+		
+		assertEquals(ConsoleView.PORT_IS_TAKEN+ "\n", outContent.toString());
+	}
+	
+	@Test
 	public void testOkDirectory() throws Exception {
 		ConsoleView view = new ConsoleView(okInput, System.out);
 		File actual = view.getDirectory();

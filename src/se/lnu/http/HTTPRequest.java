@@ -20,12 +20,6 @@ public class HTTPRequest {
 	    }
 	}
 	
-	
-
-	
-	
-	
-	
 	private String url;
 	private Method requestType;
 	private Map<Header.HTTPHeader, Header> headers;

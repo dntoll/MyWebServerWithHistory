@@ -31,12 +31,12 @@ import se.lnu.http.view.ConsoleView;
 
 public class StressTest {
 
-	private static final long RUN_TIME_MILLIS = 60000;
+	private static final long RUN_TIME_MILLIS = 1000;
 	private IServerWatcher observer;
 	private HTTPServer sut;
-	
+	private String hostname = "127.0.0.1";
 	private int portNumber = 8089;
-	private int NUMBEROFTHREADS = 100;
+	private int NUMBEROFTHREADS = 5;
 	private ClientThread[] threads = new ClientThread[NUMBEROFTHREADS];
 
 	public class NullOutputStream extends OutputStream {
@@ -156,7 +156,7 @@ public class StressTest {
 		public void run() {
 			try {
 				while(!Thread.interrupted() ) {
-					String hostname = "127.0.0.1";
+					
 					try {
 						setupSocket(hostname, portNumber);
 					} catch (IOException e1) {
